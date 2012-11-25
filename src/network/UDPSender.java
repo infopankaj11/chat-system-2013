@@ -8,14 +8,13 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-import signals.Signal;
+import signals.*;
 
 public class UDPSender {
 	
 	private DatagramSocket socketUDPSend=null;
 	private int portLocal;
 
-	
 	public UDPSender(int port){
 		this.portLocal=port;
 		try {
@@ -44,12 +43,6 @@ public class UDPSender {
 	
 	public void sendSignal(InetAddress adressDistant,Signal signal,int portDest){
 		byte[] send_signal=serialiserSignal(signal);
-		
-		System.err.println("ad "+adressDistant);
-		System.err.println("ad "+signal.getClass());
-
-		System.err.println("ad "+send_signal);
-		System.err.println("ad "+send_signal.length);
 
 		DatagramPacket packet=new DatagramPacket(send_signal,send_signal.length,adressDistant,portDest);
 		try {
@@ -59,4 +52,5 @@ public class UDPSender {
 			System.out.println("Send with socket UDP failed!!");
 		}
 	}
+	
 }

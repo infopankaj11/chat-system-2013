@@ -9,7 +9,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class TCPSender {
+public class TCPClient {
 
 	private Socket socketClient = null;
 	private InetAddress addressServer=null;
@@ -17,7 +17,7 @@ public class TCPSender {
 	private PrintWriter out=null;
 	private BufferedReader in =null;
 	
-	public TCPSender(InetAddress addressServer,int portServer) {
+	public TCPClient(InetAddress addressServer,int portServer) {
 		try {
 			socketClient=new Socket(addressServer.getHostName(),portServer);
 		} catch (UnknownHostException e) {
