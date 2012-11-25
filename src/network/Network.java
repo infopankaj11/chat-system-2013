@@ -10,7 +10,6 @@ public class Network {
 	static UDPReceiver udpR = new UDPReceiver();
 	public static void main(String[] args){
 		udpR.start();
-		udpR.run();
 		signal_Hello();
 		signal_Bye();
 		signal_Hello_Reply();
