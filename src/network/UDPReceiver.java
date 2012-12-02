@@ -8,14 +8,21 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
+import controller.ChatController;
+
 import signals.*;
 
 public class UDPReceiver extends Thread{
      private final int portLocal=5500;
      byte[] buf = new byte[2560];
      Signal sigal;
+     private ChatController c;
 
-    public static Signal deserializeSignal(byte[] sigToRead){
+     public UDPReceiver(ChatController c){
+    	 this.c=c;
+     }
+     
+     public static Signal deserializeSignal(byte[] sigToRead){
         Signal sigal=null;
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(sigToRead);
@@ -56,7 +63,7 @@ public class UDPReceiver extends Thread{
                     	try {
                     		sigal = (Signal) received.readObject();
                     		if (sigal instanceof Hello){
-                    			System.out.println(((Hello) sigal).getUsername()+ " says hello to you");
+                    			c.controlDisplayHello((Hello)sigal);
                     		}
                     		if(sigal instanceof SendText){
                     			System.out.println(adr.getHostName()+" : "+((SendText) sigal).getMessage());
