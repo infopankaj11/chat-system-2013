@@ -17,9 +17,18 @@ public class ChatController {
 	private User localUser;
 	private ListUser listUser;
 	
+	
 	public ChatController(){
 		this.listUser=null;
 //		localUser.setConnected(false);
+	}
+	
+	public void setLocalUser(String localUser) {
+		this.localUser = new User(localUser);
+	}
+
+	public User getLocalUser(){
+		return localUser;
 	}
 	
 	public void setNi(Network ni){
@@ -30,20 +39,14 @@ public class ChatController {
 		Network ni=new Network(this);
 		this.setNi(ni);
 		Network.signal_Hello();
-//		localUser.setConnected(true);
+	//	localUser.setConnected(true);
 	}
 
 	public void setGui(GUI gui) {
 		this.gui = gui;
 	}
 
-	public void setLocalUser(String localUser) {
-		this.localUser = new User(localUser);
-	}
 
-	public User getLocalUser(){
-		return localUser;
-	}
 	
 	public void controlConnexion(){
 		Network.signal_Hello();
