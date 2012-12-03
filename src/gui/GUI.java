@@ -44,12 +44,13 @@ public class GUI extends JFrame{
 	JButton buttonBrowse;
 	
 	private ChatController c;
-	public GUI(String nom,ChatController c){
+	public GUI(ChatController c){
 		this.c=c;
 		pack();
 		this.setSize(1000, 600);
 		this.intComponents();
 		this.setVisible(true);
+		this.setTitle("Welcome to chat system !!!");
 	}
 
 	
@@ -99,6 +100,8 @@ public class GUI extends JFrame{
 		userPanel.setPreferredSize(new Dimension(260,430));
 		
 		buttonConnect.addActionListener(new ConnexionListener());
+		buttonDisconnect.addActionListener(new DixconnexionListener());
+		
 		panelLeftTop.add(labelUser);
 		panelLeftTop.add(textUser);
 		
@@ -131,6 +134,15 @@ public class GUI extends JFrame{
 
 	}
 	
+	 class DixconnexionListener implements ActionListener{
+		 public void actionPerformed(ActionEvent a){
+			 textUser.setText(" ");
+			 buttonConnect.setEnabled(true);
+			 buttonDisconnect.setEnabled(false);	
+			 c.controlDisconnexion();
+		 }    
+	}
+	 
 	 class ConnexionListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){
 			 c.setLocalUser(textUser.getText());
@@ -139,10 +151,9 @@ public class GUI extends JFrame{
 			 c.lancheNi();
 		 }    
 	}
-	
+		    
 	public void displayMsg(String message){
-		textMiddleTop.setText(message);	
-		userPanel.setText(c.getLocalUser().getUserName());
+		textMiddleTop.append(message);	
+//		userPanel.setText(c.getLocalUser().getUserName());
 	}
-
 }

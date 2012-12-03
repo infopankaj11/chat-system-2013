@@ -19,5 +19,8 @@ public class ListUser {
 		this.listUser = listUser;
 	}
 	
+	public void addListUser(User user){
+		listUser.add(user);
+	}
 	
 }

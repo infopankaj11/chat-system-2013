@@ -2,7 +2,6 @@ package network;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 import controller.ChatController;
 import signals.*;
@@ -14,20 +13,11 @@ public class Network {
         private static UDPReceiver udpR;
         
         public Network (ChatController c){
-        	this.c=c;
+        	Network.c=c;
         	UDPReceiver udpR = new UDPReceiver(c);
         	udpR.start();
-        }
-//        public static void main(String[] args){
-//                udpR.start();
-//                signal_Hello();
-//    //            signal_Bye();
-//     //           signal_Hello_Reply();
-//                signal_Send_Text();
-//                
-//        }
-        
-       
+        }      
+     
         public static void signal_Hello(){
                 Signal signalHello=new Hello(c.getLocalUser().getUserName());
                 try {
@@ -76,7 +66,5 @@ public class Network {
     	  } catch (UnknownHostException e) {
 			e.printStackTrace();
     	  }  
-      }  
-      
-      
+      }      
 }
