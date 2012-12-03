@@ -8,8 +8,10 @@ public class User {
     private InetAddress userAddress;
     private boolean connected;
 
-    public User(String name) {
-        userName = name;
+    public User(String name,InetAddress address) {
+        this.userName = name;
+        this.userAddress=address;
+        
     }
 
     public boolean isConnected() {
