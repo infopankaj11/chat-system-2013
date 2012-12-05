@@ -157,14 +157,16 @@ public class GUI extends JFrame{
         }
        
          class DixconnexionListener implements ActionListener{
-                 public void actionPerformed(ActionEvent a){
+                 public void actionPerformed(ActionEvent a){          
                          textUser.setText(" ");
                          buttonConnect.setEnabled(true);
                          buttonDisconnect.setEnabled(false); 
-                         c.controllerCloseThread();
+                   
                          buttonConversion.setEnabled(false);
                          buttonSend.setEnabled(false);
                          buttonBrowse.setEnabled(false);
+                         c.controllerCloseThread();
+                         System.out.println("test 99 ");
   //                       textMiddleTop.setText(" ");
                          
                  }    
@@ -208,9 +210,14 @@ public class GUI extends JFrame{
              userPanel.setListData(this.liste);
          }
          
-         public void deleteUser(){
+         public void deleteUserFromUserPanel(){
              this.liste.remove(c.getLocalUser().getUserName()); 
              userPanel.setListData(this.liste);
+         }
+         
+         public void deleteUserFromParticipates(){
+             this.listeP.remove(c.getLocalUser().getUserName()); 
+             participates.setListData(this.listeP);
          }
          
         public void displayMsg(String message){

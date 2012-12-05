@@ -1,6 +1,5 @@
 package chatSystem;
 
-import model.ListUser;
 import gui.GUI;
 import controller.ChatController;
 

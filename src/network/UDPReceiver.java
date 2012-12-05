@@ -8,6 +8,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
+import model.User;
+
 import controller.ChatController;
 
 import signals.*;
@@ -66,8 +68,14 @@ public class UDPReceiver extends Thread{
                     try {
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){
-                        		c.getLocalUser().setUserName(adr.getHostName());
+                        	if(c.getLocalUser().getUserAddress().equals(InetAddress.getLocalHost())){
+                        		c.controlSendHelloReply(c.getLocalUser().getUserName());
+                        	}
+                        	else{
+                        		c.getLocalUser().setUserName(((Hello) sigal).getUsername());
                                 c.controlDisplayHello((Hello)sigal);
+                        	}
+                                
                         }
                         if(sigal instanceof GoodBye){
                         		c.getLocalUser().setUserName(adr.getHostName());
@@ -77,9 +85,14 @@ public class UDPReceiver extends Thread{
                         	c.getLocalUser().setUserName(adr.getHostName());
                         	c.controlDisplayText((SendText)sigal);
                         }
+                        if (sigal instanceof HelloReply){
+                        	c.getLocalUser().setUserName(((HelloReply) sigal).getUsername());
+                        }
+                        
                         } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
-                        }              
+                        }   
+                        
                         } catch (IOException e) {
                                 e.printStackTrace();
                                 System.out.println("Receive with socket UDP failed!!");
