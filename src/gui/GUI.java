@@ -223,13 +223,9 @@ public class GUI extends JFrame{
         	}
         }
         
-         public void addUser(){
-             try {
-				this.liste.add(c.getUser().getUsername()+ "@ " + InetAddress.getLocalHost().getHostAddress());
-			} catch (UnknownHostException e) {
-				System.out.println("failed to add user");
-				e.printStackTrace();
-			}  
+         public void addUser(String userName){
+             //			this.liste.add(c.getUser().getUsername()+ "@ " + InetAddress.getHostAddress());
+			 this.liste.add(userName);  
              userPanel.setListData(this.liste);
          }
 //         

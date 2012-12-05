@@ -69,7 +69,6 @@ public class UDPReceiver extends Thread{
                     try {
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){  
-                        	System.out.println("Controlleur 2 " +c);
                                 c.controlDisplayHello((Hello)sigal); 
                               	System.out.println("test hello UDP Receiver !!");
 //                              c.controlSendHelloReply(adr.getHostAddress());;                                                
