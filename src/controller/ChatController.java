@@ -97,7 +97,7 @@ public class ChatController {
         
         public void controlDisplayHelloReply(HelloReply hr){
         	Date d = new Date();
-        	String s = this.getLocalUser().getUserName() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
         	gui.displayMsg(s);
         	gui.addUser();
         }
