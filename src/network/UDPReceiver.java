@@ -70,21 +70,17 @@ public class UDPReceiver extends Thread{
                         if (sigal instanceof Hello){
                         	String s=InetAddress.getLocalHost().toString().substring(InetAddress.getLocalHost().toString().indexOf("/"));
                         	String userAddress=s.substring(1,s.length());
-                        	if(userAddress.equals(adr.getHostAddress())){
+                        	if(! userAddress.equals(adr.getHostAddress())){
                         		System.out.println("test 3 : "+userAddress.equals(InetAddress.getLocalHost()));
                         		System.out.println("test 5 "+userAddress);
                         		System.out.println("test 7 "+adr.getHostAddress());
-                        		c.getLocalUser().setUserName(((Hello) sigal).getUsername());
-                                c.controlDisplayHello((Hello)sigal);                   		
+                        		c.controlSendHelloReply(c.getLocalUser().getUserName());                       		  		
                         	}
-                        	else{
-                        		System.out.println("test 2 : "+userAddress.equals(InetAddress.getLocalHost()));
-                        		System.out.println("test 6 "+userAddress);
-                        		System.out.println("test 8 "+adr.getHostAddress());
-                        		c.controlSendHelloReply(c.getLocalUser().getUserName());
-                        		
-                        	}
-                                
+             //           	System.out.println("test 2 : "+userAddress.equals(InetAddress.getLocalHost()));
+                    		System.out.println("test 4 "+userAddress);
+                    		System.out.println("test 6 "+adr.getHostAddress());
+                        	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
+                            c.controlDisplayHello((Hello)sigal);                                                
                         }
                         if(sigal instanceof GoodBye){
                         		c.getLocalUser().setUserName(adr.getHostName());
