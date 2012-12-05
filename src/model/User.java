@@ -3,27 +3,15 @@ package model;
 import java.net.InetAddress;
 
 public class User {
-	
-	private String userName;
-    private InetAddress userAddress;
-    private boolean connected;
 
-    public User(String name,InetAddress address) {
-        this.userName = name;
-        this.userAddress=address;
-        
+    private String userName;
+    private InetAddress userAddress;
+
+    public User(String name) {
+        userName = name;
     }
 
-    public boolean isConnected() {
-		return connected;
-	}
-
-	public void setConnected(boolean connected) {
-		this.connected = connected;
-	}
-
-
-	public InetAddress getUserAddress() {
+    public InetAddress getUserAddress() {
         return userAddress;
     }
 
@@ -38,4 +26,11 @@ public class User {
     public void setUserName(String name) {
         userName = name;
     }
+
+    public String toString() {
+        return userName;
+    }
+
 }
+
+

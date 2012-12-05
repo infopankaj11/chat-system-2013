@@ -1,26 +1,29 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
-public class ListUser {
-	
-	private ArrayList<User> listUser=new ArrayList<User>();
+public class ListUser
+{
+   private Vector<User> listUser;
+   
+   public ListUser(Vector<User> listUser) {
+	this.listUser = listUser;
+   }
 
-	public ListUser(ArrayList<User> listUser) {
-		super();
-		this.listUser = listUser;
-	}
+   public Vector<User> getListUser() {
+	   return listUser;
+   }
 
-	public ArrayList<User> getListUser() {
-		return listUser;
-	}
+   public void setListUser(Vector<User> listUser) {
+	   this.listUser = listUser;
+   }
+   
+   public void addListUser(User user){
+       listUser.add(user);
+}
 
-	public void setListUser(ArrayList<User> listUser) {
-		this.listUser = listUser;
-	}
-	
-	public void addListUser(User user){
-		listUser.add(user);
-	}
-	
+   
+   
+   
 }
