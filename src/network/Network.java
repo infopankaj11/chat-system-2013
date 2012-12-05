@@ -16,13 +16,15 @@ public class Network {
                 this.c=c;
                 UDPReceiver udpR = new UDPReceiver(c);
                 udpR.start();
+                System.out.println("test cao ni ma : " + udpR);
         }      
-        
-        public  UDPReceiver getUDPReceiver() {
-            return udpR;
+
+		public  UDPReceiver getUDPR() {
+        	 System.out.println("test cao ni ma 80: " + this.udpR);
+            return this.udpR; 
         }
-     
-        public void signal_Hello(){
+
+		public void signal_Hello(){
                 Signal signalHello=new Hello(c.getLocalUser().getUserName());
                 try {
                 	udpS.sendSignal(InetAddress.getByName("255.255.255.255"),signalHello,portDest);
@@ -40,17 +42,9 @@ public class Network {
                 }
         }
        
-        public void signal_Hello_Reply(){
-                Signal signalHelloReply=new HelloReply(c.getLocalUser().getUserName());
-                if (udpR.sigal instanceof Hello){
-                        String username=((Hello) udpR.sigal).getUsername();
-                        try {
-                                udpS.sendSignal(InetAddress.getByName(username), signalHelloReply, portDest);
-                               
-                        } catch (UnknownHostException e) {
-                                e.printStackTrace();
-                        }
-                }                
+        public void signal_Hello_Reply(InetAddress address){
+                Signal signalHelloReply=new HelloReply(c.getLocalUser().getUserName());             
+                udpS.sendSignal(address, signalHelloReply, portDest);            
         }
 
        

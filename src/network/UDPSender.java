@@ -36,7 +36,7 @@ public class UDPSender {
                 }
                 catch (IOException ioe) {
                         ioe.printStackTrace();
-                        System.out.println("Message non serialisé");    
+                        System.out.println("Message non serialise");    
                 }
                 return serial;
         }
