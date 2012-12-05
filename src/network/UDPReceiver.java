@@ -74,7 +74,7 @@ public class UDPReceiver extends Thread{
 //                        		System.out.println("test 3 : "+userAddress.equals(InetAddress.getLocalHost()));
 //                        		System.out.println("test 5 "+userAddress);
 //                        		System.out.println("test 7 "+adr.getHostAddress());                      		   
-                        	   	c.getLocalUser().setUserName(adr.getHostName());
+                        	   	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
                                 c.controlDisplayHello((Hello)sigal); 
                                 c.controlSendHelloReply(c.getLocalUser().getUserName());
  //                               c.controlDisplayHelloReply((HelloReply)sigal);

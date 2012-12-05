@@ -57,7 +57,7 @@ public class ChatController {
                 this.setNi(ni);
                 System.out.println("test 2 : " + ni);
 //                System.out.println("test 3 : " + ni.getUDPR());
-                ni.signal_Hello();
+                controlConnexion();
                 //connected=true;
         }
 
