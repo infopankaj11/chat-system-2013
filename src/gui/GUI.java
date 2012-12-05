@@ -4,6 +4,10 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import model.LocalUserModel;
+import model.RemoteUser;
+
 import java.awt.event.*;  
 import java.text.DateFormat;
 import java.util.Date;
@@ -43,13 +47,23 @@ public class GUI extends JFrame{
         JButton buttonBrowse;
        
         private ChatController c;
-        public GUI(ChatController c){
-                this.c=c;
+        private LocalUserModel localUser;
+        
+        public GUI(){
                 pack();
                 this.setSize(1000, 600);
                 this.intComponents();
                 this.setVisible(true);
                 this.setTitle("Welcome to chat system !!!");
+        }
+        
+        public void setController(ChatController c) {
+            this.c=c;
+        }
+        
+        public void setLocalUser(LocalUserModel l) {
+            localUser=l;
+            this.userPanel.setModel(localUser.getRemoteUsers());
         }
 
        
@@ -75,11 +89,11 @@ public class GUI extends JFrame{
                 userPanel=new JList();
                 jScrollPane1 = new JScrollPane();
                 jScrollPane2 = new JScrollPane();
-                userPanel.setModel(new AbstractListModel() {
-					private static final long serialVersionUID = 1234L;
-					String[] strings = {  };
-                    public int getSize() { return strings.length; }
-                    public Object getElementAt(int i) { return strings[i]; }});
+//                userPanel.setModel(new AbstractListModel() {
+//					private static final long serialVersionUID = 1234L;
+//					String[] strings = {  };
+//                    public int getSize() { return strings.length; }
+//                    public Object getElementAt(int i) { return strings[i]; }});
                 jScrollPane1.setViewportView(userPanel);
                 buttonConversion=new JButton("Add use(s) to conversion !");
                 buttonConversion.setEnabled(false);
@@ -165,7 +179,7 @@ public class GUI extends JFrame{
                          buttonConversion.setEnabled(false);
                          buttonSend.setEnabled(false);
                          buttonBrowse.setEnabled(false);
-                         c.controllerCloseThread();
+ //                        c.controllerCloseThread();
                          System.out.println("test 99 ");
   //                       textMiddleTop.setText(" ");
                          
@@ -174,8 +188,9 @@ public class GUI extends JFrame{
          
          class ConnexionListener implements ActionListener{
                  public void actionPerformed(ActionEvent a){
-                         c.createLocalUser(textUser.getText()); 
-                         c.lancheNi();
+                         c.setUser(new RemoteUser(textUser.getText()));
+                         c.login();
+                         System.out.println("c 3 " + c);
                          userPanel.setEnabled(true);
                          buttonConnect.setEnabled(false);
                          buttonDisconnect.setEnabled(true);
@@ -195,6 +210,7 @@ public class GUI extends JFrame{
         		
         	 }
          }
+         
         class AddToConversionListener implements ActionListener{
         	public void actionPerformed(ActionEvent a){
         		Object[] o=userPanel.getSelectedValues();
@@ -206,21 +222,21 @@ public class GUI extends JFrame{
         }
         
          public void addUser(){
-             this.liste.add(c.getLocalUser().getUserName());  
+             this.liste.add(c.getUser().getUsername());  
              userPanel.setListData(this.liste);
          }
-         
-         public void deleteUserFromUserPanel(){
-             this.liste.remove(c.getLocalUser().getUserName()); 
-             userPanel.setListData(this.liste);
-         }
-         
-         public void deleteUserFromParticipates(){
-             this.listeP.remove(c.getLocalUser().getUserName()); 
-             participates.setListData(this.listeP);
-         }
-         
+//         
+//         public void deleteUserFromUserPanel(){
+//             this.liste.remove(c.getLocalUser().getUsername()); 
+//             userPanel.setListData(this.liste);
+//         }
+//         
+//         public void deleteUserFromParticipates(){
+//             this.listeP.remove(c.getLocalUser().getUsername()); 
+//             participates.setListData(this.listeP);
+//         }
+//         
         public void displayMsg(String message){
-                textMiddleTop.append(message);  
+                textMiddleTop.append(message); 
         }
 }
