@@ -68,11 +68,18 @@ public class UDPReceiver extends Thread{
                     try {
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){
-                        	if(c.getLocalUser().getUserAddress().equals(InetAddress.getLocalHost())){
-                        		System.out.println("test 5 "+c.getLocalUser().getUserAddress());
+                        	String s=InetAddress.getLocalHost().toString().substring(InetAddress.getLocalHost().toString().indexOf("/"));
+                        	String userAddress=s.substring(1,s.length());
+                        	if(userAddress.equals(InetAddress.getLocalHost())){
+                        		System.out.println("test 3 : "+userAddress.equals(InetAddress.getLocalHost()));
+                        		System.out.println("test 5 "+userAddress);
+                        		System.out.println("test 7 "+InetAddress.getLocalHost());
                         		c.controlSendHelloReply(c.getLocalUser().getUserName());
                         	}
                         	else{
+                        		System.out.println("test 2 : "+userAddress.equals(InetAddress.getLocalHost()));
+                        		System.out.println("test 6 "+userAddress);
+                        		System.out.println("test 8 "+ s.substring(1,s.length()));
                         		c.getLocalUser().setUserName(((Hello) sigal).getUsername());
                                 c.controlDisplayHello((Hello)sigal);
                         	}

@@ -12,6 +12,7 @@ import signals.Hello;
 import signals.HelloReply;
 import signals.SendText;
 import network.Network;
+import model.LocalUSer;
 import model.User;
 import gui.GUI;
 
@@ -19,7 +20,7 @@ public class ChatController {
        
         private GUI gui;
         private Network network;
-        private User localUser;
+        private LocalUSer localUser;
         private DefaultListModel listUser;
         private boolean connected;
        
@@ -29,7 +30,12 @@ public class ChatController {
         }
         
         public void createLocalUser (String s){
-            this.localUser = new User(s);
+            try {
+				this.localUser = new LocalUSer(s);
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 
        
