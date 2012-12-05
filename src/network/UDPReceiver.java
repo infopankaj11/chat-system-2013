@@ -69,6 +69,7 @@ public class UDPReceiver extends Thread{
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){
                         	if(c.getLocalUser().getUserAddress().equals(InetAddress.getLocalHost())){
+                        		System.out.println("test 5 "+c.getLocalUser().getUserAddress());
                         		c.controlSendHelloReply(c.getLocalUser().getUserName());
                         	}
                         	else{
