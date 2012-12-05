@@ -9,6 +9,8 @@ import model.LocalUserModel;
 import model.RemoteUser;
 
 import java.awt.event.*;  
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -222,7 +224,12 @@ public class GUI extends JFrame{
         }
         
          public void addUser(){
-             this.liste.add(c.getUser().getUsername());  
+             try {
+				this.liste.add(c.getUser().getUsername()+ "@ " + InetAddress.getLocalHost().getHostAddress());
+			} catch (UnknownHostException e) {
+				System.out.println("failed to add user");
+				e.printStackTrace();
+			}  
              userPanel.setListData(this.liste);
          }
 //         
