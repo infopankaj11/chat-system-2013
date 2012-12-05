@@ -12,7 +12,6 @@ import signals.Hello;
 import signals.HelloReply;
 import signals.SendText;
 import network.Network;
-import model.LocalUSer;
 import model.User;
 import gui.GUI;
 
@@ -20,7 +19,7 @@ public class ChatController {
        
         private GUI gui;
         private Network network;
-        private LocalUSer localUser;
+        private User localUser;
         private DefaultListModel listUser;
         private boolean connected;
        
@@ -29,12 +28,8 @@ public class ChatController {
       //          connected=false;
         }
         
-        public void createLocalUser (String s) {
-            try {
-				this.localUser = new LocalUSer(s);
-			} catch (UnknownHostException e) {
-				System.out.println("failed to create local user !");
-			}
+        public void createLocalUser (String s){
+            this.localUser = new User(s);
         }
 
        
