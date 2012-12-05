@@ -57,7 +57,7 @@ public class ChatController {
         public void controlDisplayHello(Hello h){
         	Date d = new Date();
         	String s = h.getUsername() +" : "+ " says Hello to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.addUser();
+        	gui.addUser(h.getUsername());
         	gui.displayMsg(s);
         }
        
