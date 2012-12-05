@@ -73,16 +73,16 @@ public class UDPReceiver extends Thread{
 //                        	if(! userAddress.equals(adr.getHostAddress())){
 //                        		System.out.println("test 3 : "+userAddress.equals(InetAddress.getLocalHost()));
 //                        		System.out.println("test 5 "+userAddress);
-//                        		System.out.println("test 7 "+adr.getHostAddress());
-                        		c.controlSendHelloReply(c.getLocalUser().getUserName());   
-                        	   	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
+//                        		System.out.println("test 7 "+adr.getHostAddress());                      		   
+                        	   	c.getLocalUser().setUserName(adr.getHostName());
                                 c.controlDisplayHello((Hello)sigal); 
+                                c.controlSendHelloReply(c.getLocalUser().getUserName());
 //                        	}
 //                        	System.out.println("test 2 : "+userAddress.equals(InetAddress.getLocalHost()));
 //                    		System.out.println("test 4 "+userAddress);
 //                    		System.out.println("test 6 "+adr.getHostAddress());
 //                        	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
-//                            c.controlDisplayHello((Hello)sigal);                                                
+//                          c.controlDisplayHello((Hello)sigal);                                                
                         }
                         if(sigal instanceof GoodBye){
                         		c.getLocalUser().setUserName(adr.getHostName());
@@ -93,7 +93,8 @@ public class UDPReceiver extends Thread{
                         	c.controlDisplayText((SendText)sigal);
                         }
                         if (sigal instanceof HelloReply){
-                        	c.getLocalUser().setUserName(((HelloReply) sigal).getUsername());
+                        	c.getLocalUser().setUserName(adr.getHostName());
+                        	c.controlDisplayHelloReply((HelloReply)sigal);
                         }
                         
                         } catch (ClassNotFoundException e) {

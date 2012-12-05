@@ -105,6 +105,7 @@ public class ChatController {
         public void controlSendHelloReply(String username){
         	try {
 				network.signal_Hello_Reply(InetAddress.getByName(username));
+				System.out.println("Test : "+ InetAddress.getByName(username));
 			} catch (UnknownHostException e) {
 				System.out.println("failed to send hell back !");
 			}
