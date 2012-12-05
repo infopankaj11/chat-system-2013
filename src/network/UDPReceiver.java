@@ -8,7 +8,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-import model.User;
+import model.RemoteUser;
 
 import controller.ChatController;
 
@@ -18,12 +18,13 @@ public class UDPReceiver extends Thread{
      private final int portLocal=5500;
      byte[] buf = new byte[1024];
      Signal sigal;
-     private ChatController c;
+     private ChatController c=new ChatController();
      private boolean active;
      
      public UDPReceiver(ChatController c){
-         this.c=c;
          this.active = true;
+         this.c=c;
+         
      }
      
      public boolean isActive() {
@@ -67,38 +68,22 @@ public class UDPReceiver extends Thread{
                 ObjectInputStream received = new ObjectInputStream(bis);    
                     try {
                         sigal = (Signal) received.readObject();
-                        if (sigal instanceof Hello){
-//                        	String s=InetAddress.getLocalHost().toString().substring(InetAddress.getLocalHost().toString().indexOf("/"));
-//                        	String userAddress=s.substring(1,s.length());
-//                        	if(! userAddress.equals(adr.getHostAddress())){
-//                        		System.out.println("test 3 : "+userAddress.equals(InetAddress.getLocalHost()));
-//                        		System.out.println("test 5 "+userAddress);
-//                        		System.out.println("test 7 "+adr.getHostAddress());                      		   
-                        	   	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
+                        if (sigal instanceof Hello){  
+                        	System.out.println("Controlleur 2 " +c);
                                 c.controlDisplayHello((Hello)sigal); 
-                                c.controlSendHelloReply(adr.getHostAddress());
-                                System.out.println(" 1 ... : " + c.getLocalUser().getUserName());
- //                               c.controlDisplayHelloReply((HelloReply)sigal);
-//                        	}
-//                        	System.out.println("test 2 : "+userAddress.equals(InetAddress.getLocalHost()));
-//                    		System.out.println("test 4 "+userAddress);
-//                    		System.out.println("test 6 "+adr.getHostAddress());
-//                        	c.getLocalUser().setUserName(((Hello) sigal).getUsername());
-//                          c.controlDisplayHello((Hello)sigal);                                                
+                              	System.out.println("test hello UDP Receiver !!");
+//                              c.controlSendHelloReply(adr.getHostAddress());;                                                
                         }
-                        if(sigal instanceof GoodBye){
-                        		c.getLocalUser().setUserName(adr.getHostName());
-                                c.controlDisplayBye((GoodBye)sigal);
-                        }
-                        if(sigal instanceof SendText){
-                        	c.getLocalUser().setUserName(adr.getHostName());
-                        	c.controlDisplayText((SendText)sigal);
-                        }
-                        if (sigal instanceof HelloReply){
-                        	c.getLocalUser().setUserName(adr.getHostName());
-                        	c.controlDisplayHelloReply((HelloReply)sigal);
-                        }
-                        
+//                        if(sigal instanceof GoodBye){
+//                        	c.controlDisplayBye((GoodBye)sigal);
+//                        }
+//                        if(sigal instanceof SendText){
+//                        	c.controlDisplayText((SendText)sigal);
+//                        }
+//                        if (sigal instanceof HelloReply){
+//                        	c.controlDisplayHelloReply((HelloReply)sigal);
+//                        }
+//                        
                         } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                         }   

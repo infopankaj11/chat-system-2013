@@ -11,67 +11,48 @@ import signals.GoodBye;
 import signals.Hello;
 import signals.HelloReply;
 import signals.SendText;
+import model.LocalUserModel;
+import model.RemoteUser;
 import network.Network;
-import model.LocalUSer;
-import model.User;
 import gui.GUI;
 
 public class ChatController {
        
         private GUI gui;
         private Network network;
-        private LocalUSer localUser;
-        private DefaultListModel listUser;
-        private boolean connected;
+        private LocalUserModel localUser; 
+        private RemoteUser user;
        
+        public ChatController(){}      
        
-        public ChatController(){
-      //          connected=false;
-        }
-        
-        public void createLocalUser (String s){
-            try {
-				this.localUser = new LocalUSer(s);
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
+        public RemoteUser getUser() {
+			return user;
+		}
 
-       
-        public DefaultListModel getListUser() {
-                return listUser;
-        }
+		public void setUser(RemoteUser user) {
+			this.user = user;
+		}
 
-        public User getLocalUser(){
-                return localUser;
-        }
-       
-        public void setNi(Network ni){
+		public void setLocalUser(LocalUserModel localUser) {
+			this.localUser = localUser;
+		}
+
+		public void setNi(Network ni){
                 this.network=ni;
         }
+        
+        public void setGui(GUI g) {
+            this.gui = g;
+        }
        
-        public void lancheNi(){
-                Network ni=new Network(this);
-                System.out.println("test 1 : " + ni);
-                this.setNi(ni);
-                System.out.println("test 2 : " + ni);
-//                System.out.println("test 3 : " + ni.getUDPR());
-                controlConnexion();
-                //connected=true;
-        }
 
-        public void setGui(GUI gui) {
-                this.gui = gui;
-        }
-
-        public void controlConnexion(){
+        public void login(){
         	network.signal_Hello();
         }
        
-        public void controlDisconnexion(){
-        	network.signal_Bye();
-        }
+//        public void controlDisconnexion(){
+//        	network.signal_Bye();
+//        }
        
         public void controlDisplayHello(Hello h){
         	Date d = new Date();
@@ -80,42 +61,42 @@ public class ChatController {
         	gui.displayMsg(s);
         }
        
-        public void controlDisplayBye(GoodBye b){
-        	Date d = new Date();
-        	String s = this.getLocalUser().getUserName() +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.displayMsg(s);
-        	gui.deleteUserFromUserPanel();
-        	gui.deleteUserFromParticipates();
-        	
-        }
+//        public void controlDisplayBye(GoodBye b){
+//        	Date d = new Date();
+//        	String s = this.getLocalUser().getUsername() +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
+//        	gui.displayMsg(s);
+//        	gui.deleteUserFromUserPanel();
+//        	gui.deleteUserFromParticipates();
+//        	
+//        }
         
-        public void controlDisplayText(SendText t){
-        	Date d = new Date();
-        	String s = this.getLocalUser().getUserName() +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.displayMsg(s);
-        }
+//        public void controlDisplayText(SendText t){
+//        	Date d = new Date();
+//        	String s = this.getLocalUser().getUserName() +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
+//        	gui.displayMsg(s);
+//        }
         
-        public void controlDisplayHelloReply(HelloReply hr){
-        	Date d = new Date();
-        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.displayMsg(s);
-        	gui.addUser();
-        }
+//        public void controlDisplayHelloReply(HelloReply hr){
+//        	Date d = new Date();
+//        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
+//        	gui.displayMsg(s);
+//        	gui.addUser();
+//        }
         
-        public void controlSendHelloReply(String adress){
-        	try {
-				network.signal_Hello_Reply(adress);
-				System.out.println("Test : "+ InetAddress.getByName(adress));
-			} catch (UnknownHostException e) {
-				System.out.println("failed to send hello back !");
-			}
-        }
-        
-        public void controllerCloseThread(){       	
-        	network.signal_Bye();
-        	System.out.println("test cao ni ma1 : " + network.getUDPR());
- //       	network.getUDPR().setActive(false);
-        }
-       
+//        public void controlSendHelloReply(String adress){
+//        	try {
+//				network.signal_Hello_Reply(adress);
+//				System.out.println("Test : "+ InetAddress.getByName(adress));
+//			} catch (UnknownHostException e) {
+//				System.out.println("failed to send hello back !");
+//			}
+//        }
+//        
+//        public void controllerCloseThread(){       	
+//        	network.signal_Bye();
+//        	System.out.println("test cao ni ma1 : " + network.getUDPR());
+//        	network.getUDPR().setActive(false);
+//        }
+//       
 }
 
