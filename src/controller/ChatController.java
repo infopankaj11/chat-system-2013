@@ -102,12 +102,12 @@ public class ChatController {
         	gui.addUser();
         }
         
-        public void controlSendHelloReply(String username){
+        public void controlSendHelloReply(String adress){
         	try {
-				network.signal_Hello_Reply(InetAddress.getByName(username));
-				System.out.println("Test : "+ InetAddress.getByName(username));
+				network.signal_Hello_Reply(adress);
+				System.out.println("Test : "+ InetAddress.getByName(adress));
 			} catch (UnknownHostException e) {
-				System.out.println("failed to send hell back !");
+				System.out.println("failed to send hello back !");
 			}
         }
         

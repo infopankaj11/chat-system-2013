@@ -42,10 +42,14 @@ public class Network {
                 }
         }
        
-        public void signal_Hello_Reply(InetAddress address){
+        public void signal_Hello_Reply(String address){
                 Signal signalHelloReply=new HelloReply(c.getLocalUser().getUserName());     
                 System.out.println("test HelloReply: " + c.getLocalUser().getUserName());
-                udpS.sendSignal(address, signalHelloReply, portDest);            
+                try {
+					udpS.sendSignal(InetAddress.getByName(address), signalHelloReply, portDest);
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}            
         }
 
        
