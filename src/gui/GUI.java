@@ -23,7 +23,7 @@ public class GUI extends JFrame{
        
         private static final long serialVersionUID = 1234L;
         private Vector<String> liste=new Vector<String>();
-        private InetAddress[] listP;
+        private InetAddress[] listP=null;
         private boolean connected;
         
         public boolean isConnected() {
