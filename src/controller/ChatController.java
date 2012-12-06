@@ -105,7 +105,7 @@ public class ChatController {
         
         public void controlDisplayText(SendText t,String username){
         	Date d = new Date();
-        	String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	String s = username +" : "+ " says " + t.getMessage()+ ", at "  + "\n";
         	gui.displayMsg(s);
         }
         
