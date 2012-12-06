@@ -117,6 +117,7 @@ public class LocalUserModel {
      */
     public void removeRemoteUser(RemoteUser remoteUser) {
         remoteUsers.removeElement(remoteUser);
+        System.out.println("Tester Remote User \n");
     }
 
     /**
