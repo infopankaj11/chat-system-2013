@@ -58,6 +58,7 @@ public class ChatController {
         	 if(!localUser.isConnected()){
                  localUser.setConnected(true);
                  localUser.setUsername(username);
+ //                network.getUdpR().start();
                  network.signal_Hello();
              }
         	 else{
