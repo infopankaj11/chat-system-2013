@@ -70,7 +70,12 @@ public class UDPReceiver extends Thread{
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){  
                                 c.controlDisplayHello((Hello)sigal); 
+  //                              c.setUser(new RemoteUser(InetAddress.getByName(adr.getHostAddress()),adr.getHostName()));
+                                c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
+                                System.out.println("===="+c.getUser().getAddressIP());
+                                System.out.println("===="+c.getUser().getUsername());
                               	System.out.println("test hello UDP Receiver !!");
+                              	System.out.println("controlleur dans UDP "+ c);
 //                              c.controlSendHelloReply(adr.getHostAddress());;                                                
                         }
 //                        if(sigal instanceof GoodBye){

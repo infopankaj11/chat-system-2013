@@ -147,6 +147,7 @@ public class GUI extends JFrame{
                 panelLeftMiddle.add(buttonDisconnect);
                
                 panelLeftBottom.add(userConnect,BorderLayout.NORTH);
+              //  panelLeftBottom.add(userPanel,BorderLayout.CENTER);
                 panelLeftBottom.add(jScrollPane1,BorderLayout.CENTER);
                 panelLeftBottom.add(buttonConversion,BorderLayout.SOUTH);
                
@@ -223,11 +224,11 @@ public class GUI extends JFrame{
         	}
         }
         
-         public void addUser(String userName){
-             //			this.liste.add(c.getUser().getUsername()+ "@ " + InetAddress.getHostAddress());
-			 this.liste.add(userName);  
-             userPanel.setListData(this.liste);
-         }
+//         public void addUser(){
+//             //			this.liste.add(c.getUser().getUsername()+ "@ " + InetAddress.getHostAddress());
+//			 this.liste.add();  
+//             userPanel.setListData(this.liste);
+//         }
 //         
 //         public void deleteUserFromUserPanel(){
 //             this.liste.remove(c.getLocalUser().getUsername()); 

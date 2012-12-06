@@ -49,15 +49,25 @@ public class ChatController {
         public void login(){
         	network.signal_Hello();
         }
+        
+        
        
 //        public void controlDisconnexion(){
 //        	network.signal_Bye();
 //        }
        
-        public void controlDisplayHello(Hello h){
+        public LocalUserModel getLocalUser() {
+			return localUser;
+		}
+
+		public void controlDisplayHello(Hello h){
         	Date d = new Date();
         	String s = h.getUsername() +" : "+ " says Hello to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.addUser(h.getUsername());
+        	gui.setLocalUser(localUser);
+        //	gui.addUser();
+        	System.out.println("test 100 : " +user.getUsername());
+        	System.out.println("test 100 : " +user.getAddressIP());
+        	System.out.println("test 100 : " +this);
         	gui.displayMsg(s);
         }
        

@@ -54,4 +54,10 @@ public class RemoteUser {
     public void setUsername(String u) {
         username=u;
     }
+
+	public void setAddressIP(InetAddress addressIP) {
+		this.addressIP = addressIP;
+	}
+    
+    
 }
