@@ -67,6 +67,7 @@ public class Network {
                          int i;
                          Signal sendText= new SendText(msg,UserIp);
                          for(i=0;i<UserIp.length;i++){
+                        	 System.out.println("length of address : " + UserIp.length);
                                  udpS.sendSignal(UserIp[i],sendText,portDest);
                          }
                  }
