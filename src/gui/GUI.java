@@ -48,6 +48,7 @@ public class GUI extends JFrame{
         JScrollPane jScrollPane2;
         JList userPanel;
         JButton buttonConversion;
+        JTabbedPane tabMiddleTop;
         JTextArea textMiddleTop;
         JTextArea msg;
         JTextArea participates;
@@ -109,7 +110,10 @@ public class GUI extends JFrame{
                 jScrollPane1.setViewportView(userPanel);
                 buttonConversion=new JButton("Add use(s) to conversion !");
                 buttonConversion.setEnabled(false);
+                tabMiddleTop=new JTabbedPane(JTabbedPane.TOP);
                 textMiddleTop=new JTextArea();
+ //               tabMiddleTop.add(textMiddleTop);
+                tabMiddleTop.addTab("Talk1", textMiddleTop);
                 msg=new JTextArea();
                 participates=new JTextArea();
  //               this.participates.setModel(localUser.getParticipeUsers());
@@ -126,7 +130,7 @@ public class GUI extends JFrame{
 
                 userPanel.setBorder(blueline);
                 textUser.setBorder(blueline);
-                textMiddleTop.setBorder(blueline);
+                tabMiddleTop.setBorder(blueline);
                 participates.setBorder(blueline);
                 jScrollPane1.setPreferredSize(new Dimension(150,425));
                 jScrollPane2.setPreferredSize(new Dimension(150,200));
@@ -138,7 +142,7 @@ public class GUI extends JFrame{
                 buttonSend.setEnabled(false);
                 buttonBrowse.setEnabled(false);
                 msg.setBorder(blueline);
-                textMiddleTop.setPreferredSize(new Dimension(100,500));
+                tabMiddleTop.setPreferredSize(new Dimension(100,500));
                 labelUser.setPreferredSize(new Dimension(60,30));
                 textUser.setPreferredSize(new Dimension(200,30));
                 buttonConnect.setPreferredSize(new Dimension(130,30));
@@ -165,7 +169,7 @@ public class GUI extends JFrame{
                 panelLeft.add(panelLeftMiddle,BorderLayout.CENTER);
                 panelLeft.add(panelLeftBottom,BorderLayout.SOUTH);
                
-                panelMiddle.add(textMiddleTop,BorderLayout.NORTH);
+                panelMiddle.add(tabMiddleTop,BorderLayout.NORTH);
                 panelMiddle.add(msg,BorderLayout.CENTER);
                
                 panelRightBottom.add(buttonSend);
@@ -240,10 +244,6 @@ public class GUI extends JFrame{
                 }
                 participates.setText(r.toString());
         	}
-        }
-        
-        public void addByOthers(ArrayList<RemoteUser> user){
-        	 participates.setText(user.toString());
         }
   
 //         public void deleteUserFromParticipates(){
