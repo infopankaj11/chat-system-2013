@@ -239,8 +239,11 @@ public class GUI extends JFrame{
                 	 System.out.println("Test of send message : " +listP[j]);
                 }
                 participates.setText(r.toString());
-               
         	}
+        }
+        
+        public void addByOthers(ArrayList<RemoteUser> user){
+        	 participates.setText(user.toString());
         }
   
 //         public void deleteUserFromParticipates(){
