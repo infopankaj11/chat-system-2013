@@ -18,7 +18,6 @@ public class Network {
                 udpR = new UDPReceiver(c);
                 udpR.start();              
         }      
- 
         
 		public UDPReceiver getUdpR() {
 			return udpR;

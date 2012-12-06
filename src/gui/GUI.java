@@ -7,11 +7,13 @@ import javax.swing.border.Border;
 
 import model.LocalUserModel;
 import model.RemoteUser;
+import model.TalkUserModel;
 
 import java.awt.event.*;  
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -48,7 +50,7 @@ public class GUI extends JFrame{
         JButton buttonConversion;
         JTextArea textMiddleTop;
         JTextArea msg;
-        JList participates;
+        JTextArea participates;
         JLabel labelParticipates;
         JButton buttonSend;
         JButton buttonBrowse;
@@ -96,6 +98,7 @@ public class GUI extends JFrame{
                 userPanel=new JList();
                 jScrollPane1 = new JScrollPane();
                 jScrollPane2 = new JScrollPane();
+               
 //                userPanel.setModel(new AbstractListModel() {
 //					private static final long serialVersionUID = 1234L;
 //					String[] strings = {  };
@@ -106,13 +109,13 @@ public class GUI extends JFrame{
                 buttonConversion.setEnabled(false);
                 textMiddleTop=new JTextArea();
                 msg=new JTextArea();
-                participates=new JList();
-                
-                participates.setModel(new AbstractListModel() {
-					private static final long serialVersionUID = 1234L;
-					String[] strings = {  };
-                    public int getSize() { return strings.length; }
-                    public Object getElementAt(int i) { return strings[i]; }});
+                participates=new JTextArea();
+ //               this.participates.setModel(localUser.getParticipeUsers());
+//                participates.setModel(new AbstractListModel() {
+//					private static final long serialVersionUID = 1234L;
+//					String[] strings = {  };
+//                    public int getSize() { return strings.length; }
+//                    public Object getElementAt(int i) { return strings[i]; }});
                 jScrollPane2.setViewportView(participates);
                 
                 buttonSend=new JButton("Send");
@@ -222,24 +225,20 @@ public class GUI extends JFrame{
          
         class AddToConversionListener implements ActionListener{
         	public void actionPerformed(ActionEvent a){
-        		Object[] o=userPanel.getSelectedValues();
-        		for(int i=0;i<o.length;i++){
-        			listeP.add((String) o[i]);
-        		}	
-        		participates.setListData(listeP);
+                ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+                Object[] o=userPanel.getSelectedValues();
+                for(int i=0;i<o.length;i++)
+                {
+                    r.add((RemoteUser)o[i]);
+                }
+                participates.setText(r.toString());
         	}
         }
-        
-//         
-//         public void deleteUserFromUserPanel(){
-//             this.liste.remove(c.getLocalUser().getUsername()); 
-//             userPanel.setListData(this.liste);
+  
+//         public void deleteUserFromParticipates(){
+//             this.listeP.remove(c.getLocalUser().getUsername()); 
+//             participates.setListData(this.listeP);
 //         }
-//         
-         public void deleteUserFromParticipates(){
-             this.listeP.remove(c.getLocalUser().getUsername()); 
-             participates.setListData(this.listeP);
-         }
          
         public void displayMsg(String message){
                 textMiddleTop.append(message); 
