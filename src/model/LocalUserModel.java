@@ -43,17 +43,17 @@ public class LocalUserModel {
     /**
      * @param connected the connected to set
      */
-//    public void setConnected(boolean connected) {
-//        if(connected)
-//        {
-//            view.connectedMode();
-//        }
-//        else
-//        {
-//            view.disconnectedMode();
-//        }
-//        this.connected = connected;
-//    }
+    public void setConnected(boolean connected) {
+        if(connected)
+        {
+            view.connectedMode();
+        }
+        else
+        {
+            view.disconnectedMode();
+        }
+        this.connected = connected;
+    }
 
     /**
      * @return the username

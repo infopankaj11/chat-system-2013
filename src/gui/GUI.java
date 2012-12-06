@@ -22,8 +22,13 @@ public class GUI extends JFrame{
         private static final long serialVersionUID = 1234L;
         private Vector<String> liste=new Vector<String>();
         private Vector<String> listeP=new Vector<String>();
+        private boolean connected;
         
-        JPanel panelPrinciple;
+        public boolean isConnected() {
+			return connected;
+		}
+
+		JPanel panelPrinciple;
         JPanel panelLeft;
         JPanel panelMiddle;
         JPanel panelRight;
@@ -175,35 +180,33 @@ public class GUI extends JFrame{
        
          class DixconnexionListener implements ActionListener{
                  public void actionPerformed(ActionEvent a){ 
-                	 	 c.logout();
-                         textUser.setText(" ");
-                         buttonConnect.setEnabled(true);
-                         buttonDisconnect.setEnabled(false); 
-                   
-                         buttonConversion.setEnabled(false);
-                         buttonSend.setEnabled(false);
-                         buttonBrowse.setEnabled(false);
- //                        c.controllerCloseThread();
-                         System.out.println("test 99 ");
-  //                       textMiddleTop.setText(" ");
-                         
+                	 	 c.logout();                         
                  }    
         }
          
          class ConnexionListener implements ActionListener{
                  public void actionPerformed(ActionEvent a){
-                         c.setUser(new RemoteUser(textUser.getText()));
-                         c.login();
-                         System.out.println("c 3 " + c);
-                         userPanel.setEnabled(true);
-                         buttonConnect.setEnabled(false);
-                         buttonDisconnect.setEnabled(true);
-                         buttonConversion.setEnabled(true);
-                         buttonSend.setEnabled(true);
-                         buttonBrowse.setEnabled(true);
-         //                addUser();
+                         c.login(textUser.getText());
                  }    
         }
+         
+         public void connectedMode(){
+             userPanel.setEnabled(true);
+             buttonConnect.setEnabled(false);
+             buttonDisconnect.setEnabled(true);
+             buttonConversion.setEnabled(true);
+             buttonSend.setEnabled(true);
+             buttonBrowse.setEnabled(true);
+         }
+         
+         public void disconnectedMode(){
+        	 textUser.setText(" ");
+             buttonConnect.setEnabled(true);
+             buttonDisconnect.setEnabled(false);    
+             buttonConversion.setEnabled(false);
+             buttonSend.setEnabled(false);
+             buttonBrowse.setEnabled(false);
+         }
          
          class SendListener implements ActionListener{
         	 public void actionPerformed(ActionEvent a){
