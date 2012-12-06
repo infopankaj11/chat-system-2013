@@ -32,14 +32,14 @@ public class Network {
                 }
         }
        
-//        public void signal_Bye(){
-//                Signal signalBye=new GoodBye();
-//                try {
-//                        udpS.sendSignal(InetAddress.getByName("255.255.255.255"),signalBye,portDest);
-//                } catch (UnknownHostException e) {
-//                        e.printStackTrace();
-//                }
-//        }
+        public void signal_Bye(){
+                Signal signalBye=new GoodBye();
+                try {
+                        udpS.sendSignal(InetAddress.getByName("255.255.255.255"),signalBye,portDest);
+                } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                }
+        }
 //       
 //        public void signal_Hello_Reply(String address){
 //                Signal signalHelloReply=new HelloReply(c.getLocalUser().getUsername());     

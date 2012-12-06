@@ -52,33 +52,30 @@ public class ChatController {
         
         
        
-//        public void controlDisconnexion(){
-//        	network.signal_Bye();
-//        }
+        public void logout(){
+        	network.signal_Bye();
+        }
        
         public LocalUserModel getLocalUser() {
 			return localUser;
 		}
 
-		public void controlDisplayHello(Hello h){
+		public void controlDisplayHello(Hello h,String userName){
         	Date d = new Date();
-        	String s = h.getUsername() +" : "+ " says Hello to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-        	gui.setLocalUser(localUser);
-        //	gui.addUser();
-        	System.out.println("test 100 : " +user.getUsername());
-        	System.out.println("test 100 : " +user.getAddressIP());
+        	String s = h.getUsername() +" ( "+ userName + ") :  says Hello to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
+ //       	gui.setLocalUser(localUser);
         	System.out.println("test 100 : " +this);
         	gui.displayMsg(s);
         }
        
-//        public void controlDisplayBye(GoodBye b){
-//        	Date d = new Date();
-//        	String s = this.getLocalUser().getUsername() +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-//        	gui.displayMsg(s);
+        public void controlDisplayBye(GoodBye b,String userName){
+        	Date d = new Date();
+        	String s = userName +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	gui.displayMsg(s);
 //        	gui.deleteUserFromUserPanel();
-//        	gui.deleteUserFromParticipates();
-//        	
-//        }
+        	gui.deleteUserFromParticipates();
+        	
+        }
         
 //        public void controlDisplayText(SendText t){
 //        	Date d = new Date();
