@@ -48,8 +48,13 @@ public class ChatController {
             this.gui = g;
         }
        
+        
 
-        public void login(String username){
+        public Network getNetwork() {
+			return network;
+		}
+
+		public void login(String username){
         	 if(!localUser.isConnected()){
                  localUser.setConnected(true);
                  localUser.setUsername(username);
