@@ -99,7 +99,9 @@ public class UDPReceiver extends Thread{
                         
                         if(sigal instanceof SendText){
                         	c.controlDisplayText((SendText)sigal,adr.getHostName());
+                        	c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
                         }
+                        
                         if (sigal instanceof HelloReply){
                         	c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
                         	c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
