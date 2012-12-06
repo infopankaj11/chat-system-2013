@@ -207,7 +207,7 @@ public class GUI extends JFrame{
              buttonConversion.setEnabled(false);
              buttonSend.setEnabled(false);
              buttonBrowse.setEnabled(false);
-             c.getNetwork().getUdpR().setActive(true);
+             c.getNetwork().getUdpR().setActive(false);
          }
          
          class SendListener implements ActionListener{
