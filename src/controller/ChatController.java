@@ -98,15 +98,16 @@ public class ChatController {
         	String s = userName +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
         	gui.displayMsg(s);
 //        	gui.deleteUserFromUserPanel();
-//        	gui.deleteUserFromParticipates();
+ //       	gui.deleteUserFromParticipates(userName);
         	
         }
         
-//        public void controlDisplayText(SendText t){
-//        	Date d = new Date();
-//        	String s = this.getLocalUser().getUserName() +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
-//        	gui.displayMsg(s);
-//        }
+        
+        public void controlDisplayText(SendText t,String username){
+        	Date d = new Date();
+        	String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	gui.displayMsg(s);
+        }
         
         public void controlDisplayHelloReply(HelloReply hr,String userName){
         	Date d = new Date();
@@ -122,6 +123,10 @@ public class ChatController {
 			} catch (UnknownHostException e) {
 				System.out.println("failed to send hello back !");
 			}
+        }
+        
+        public void controlSendText(String message,InetAddress[] users){
+        	network.signal_Send_Text(users, message);
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {

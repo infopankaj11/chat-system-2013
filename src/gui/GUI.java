@@ -23,7 +23,7 @@ public class GUI extends JFrame{
        
         private static final long serialVersionUID = 1234L;
         private Vector<String> liste=new Vector<String>();
-        private Vector<String> listeP=new Vector<String>();
+        private InetAddress[] listP;
         private boolean connected;
         
         public boolean isConnected() {
@@ -75,7 +75,9 @@ public class GUI extends JFrame{
             this.userPanel.setModel(localUser.getRemoteUsers());
         }
 
-       
+        
+     
+        
         public void intComponents(){
                 Border blueline = BorderFactory.createLineBorder(Color.blue,1);
                
@@ -219,7 +221,7 @@ public class GUI extends JFrame{
         		 String s = msg.getText()+" , at " +DateFormat.getTimeInstance().format(d) + "\n";
         		 textMiddleTop.append("You say : " + s);
         		 msg.setText(" ");
-        		
+        		 c.controlSendText(s, listP);
         	 }
          }
          
@@ -230,6 +232,9 @@ public class GUI extends JFrame{
                 for(int i=0;i<o.length;i++)
                 {
                     r.add((RemoteUser)o[i]);
+                }
+                for(int j=0;j<r.size();j++){
+                	listP[j]=r.get(j).getAddressIP();
                 }
                 participates.setText(r.toString());
         	}
