@@ -40,16 +40,16 @@ public class Network {
                         e.printStackTrace();
                 }
         }
-//       
-//        public void signal_Hello_Reply(String address){
-//                Signal signalHelloReply=new HelloReply(c.getLocalUser().getUsername());     
-//                System.out.println("test HelloReply: " + c.getLocalUser().getUsername());
-//                try {
-//					udpS.sendSignal(InetAddress.getByName(address), signalHelloReply, portDest);
-//				} catch (UnknownHostException e) {
-//					e.printStackTrace();
-//				}            
-//        }
+       
+        public void signal_Hello_Reply(String address){
+                Signal signalHelloReply=new HelloReply(c.getLocalUser().getUsername());   
+                System.out.println("test HelloReply: " + c.getLocalUser().getUsername());
+                try {
+					udpS.sendSignal(InetAddress.getByName(address), signalHelloReply, portDest);
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}            
+        }
 //
 //       
 //      public void signal_Send_Text(InetAddress[] UserIp, String msg){

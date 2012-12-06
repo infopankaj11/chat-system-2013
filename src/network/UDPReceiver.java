@@ -71,6 +71,7 @@ public class UDPReceiver extends Thread{
                         if (sigal instanceof Hello){  
                                 c.controlDisplayHello((Hello)sigal,adr.getHostName()); 
                                 c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
+                                c.controlSendHelloReply(adr.getHostAddress());
                                 System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
                             	System.out.println("test Hello  !!" + adr.getHostName());
                             	System.out.println("test Hello  !!" + InetAddress.getByName(adr.getHostAddress()));
@@ -90,9 +91,11 @@ public class UDPReceiver extends Thread{
 //                        if(sigal instanceof SendText){
 //                        	c.controlDisplayText((SendText)sigal);
 //                        }
-//                        if (sigal instanceof HelloReply){
-//                        	c.controlDisplayHelloReply((HelloReply)sigal);
-//                        }
+                        if (sigal instanceof HelloReply){
+                        	c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
+                        	c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
+                        	      	
+                        }
 //                        
                         } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
