@@ -23,7 +23,7 @@ public class GUI extends JFrame{
        
         private static final long serialVersionUID = 1234L;
         private Vector<String> liste=new Vector<String>();
-        private InetAddress[] listP=new InetAddress[100] ;
+        private InetAddress[] listP;
         private boolean connected;
         
         public boolean isConnected() {
@@ -229,14 +229,17 @@ public class GUI extends JFrame{
         	public void actionPerformed(ActionEvent a){
                 ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
                 Object[] o=userPanel.getSelectedValues();
+                listP=new InetAddress[o.length];
                 for(int i=0;i<o.length;i++)
                 {
                     r.add((RemoteUser)o[i]);
                 }
                 for(int j=0;j<r.size();j++){
                 	listP[j]=r.get(j).getAddressIP();
+                	 System.out.println("Test of send message : " +listP[j]);
                 }
                 participates.setText(r.toString());
+               
         	}
         }
   
