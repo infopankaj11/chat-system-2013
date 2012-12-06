@@ -83,21 +83,21 @@ public class ChatController {
 //        	gui.displayMsg(s);
 //        }
         
-//        public void controlDisplayHelloReply(HelloReply hr){
-//        	Date d = new Date();
-//        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
-//        	gui.displayMsg(s);
-//        	gui.addUser();
-//        }
+        public void controlDisplayHelloReply(HelloReply hr,String userName){
+        	Date d = new Date();
+        	System.out.println("User name of hello reply : "+hr.getUsername());
+        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	gui.displayMsg(s);
+        }
         
-//        public void controlSendHelloReply(String adress){
-//        	try {
-//				network.signal_Hello_Reply(adress);
-//				System.out.println("Test : "+ InetAddress.getByName(adress));
-//			} catch (UnknownHostException e) {
-//				System.out.println("failed to send hello back !");
-//			}
-//        }
+        public void controlSendHelloReply(String adress){
+        	try {
+				network.signal_Hello_Reply(adress);
+				System.out.println("Test : "+ InetAddress.getByName(adress));
+			} catch (UnknownHostException e) {
+				System.out.println("failed to send hello back !");
+			}
+        }
 //        
 //        public void controllerCloseThread(){       	
 //        	network.signal_Bye();
