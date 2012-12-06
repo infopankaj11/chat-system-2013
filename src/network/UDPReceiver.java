@@ -97,9 +97,9 @@ public class UDPReceiver extends Thread{
                         	System.out.println("test goodbye  !!" + InetAddress.getByName(adr.getHostAddress()));
                         }
                         
-//                        if(sigal instanceof SendText){
-//                        	c.controlDisplayText((SendText)sigal);
-//                        }
+                        if(sigal instanceof SendText){
+                        	c.controlDisplayText((SendText)sigal,adr.getHostName());
+                        }
                         if (sigal instanceof HelloReply){
                         	c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
                         	c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());

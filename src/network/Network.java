@@ -55,24 +55,24 @@ public class Network {
 					e.printStackTrace();
 				}            
         }
-//
-//       
-//      public void signal_Send_Text(InetAddress[] UserIp, String msg){
-//          try {
-//                 if(UserIp.length==0){
-//                         Signal sendText= new SendText(msg,UserIp);
-//                         udpS.sendSignal(InetAddress.getByName("255.255.255.255"),sendText,portDest);
-//                 }
-//                 else{
-//                         int i;
-//                         Signal sendText= new SendText(msg,UserIp);
-//                         for(i=0;i<UserIp.length;i++){
-//                                 udpS.sendSignal(UserIp[i],sendText,portDest);
-//                         }
-//                 }
-//          } catch (UnknownHostException e) {
-//                        e.printStackTrace();
-//          }  
-//      }      
+
+       
+      public void signal_Send_Text(InetAddress[] UserIp, String msg){
+          try {
+                 if(UserIp==null){
+                         Signal sendText= new SendText(msg,UserIp);
+                         udpS.sendSignal(InetAddress.getByName("255.255.255.255"),sendText,portDest);
+                 }
+                 else{
+                         int i;
+                         Signal sendText= new SendText(msg,UserIp);
+                         for(i=0;i<UserIp.length;i++){
+                                 udpS.sendSignal(UserIp[i],sendText,portDest);
+                         }
+                 }
+          } catch (UnknownHostException e) {
+                        e.printStackTrace();
+          }  
+      }      
 }
 
