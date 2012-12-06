@@ -130,7 +130,7 @@ public class GUI extends JFrame{
 
                 userPanel.setBorder(blueline);
                 textUser.setBorder(blueline);
-                tabMiddleTop.setBorder(blueline);
+        //        tabMiddleTop.setBorder(blueline);
                 participates.setBorder(blueline);
                 jScrollPane1.setPreferredSize(new Dimension(150,425));
                 jScrollPane2.setPreferredSize(new Dimension(150,200));
