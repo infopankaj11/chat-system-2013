@@ -103,7 +103,7 @@ public class ChatController {
         public void controlDisplayHelloReply(HelloReply hr,String userName){
         	Date d = new Date();
         	System.out.println("User name of hello reply : "+hr.getUsername());
-        	String s = hr.getUsername() +" : "+ " says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	String s = hr.getUsername() +" ( "+ userName + ") :  says helloReply to you , at " +DateFormat.getTimeInstance().format(d) + "\n";
         	gui.displayMsg(s);
         }
         
