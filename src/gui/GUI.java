@@ -197,6 +197,7 @@ public class GUI extends JFrame{
              buttonConversion.setEnabled(true);
              buttonSend.setEnabled(true);
              buttonBrowse.setEnabled(true);
+             c.getNetwork().getUdpR().setActive(true);
          }
          
          public void disconnectedMode(){
@@ -206,6 +207,7 @@ public class GUI extends JFrame{
              buttonConversion.setEnabled(false);
              buttonSend.setEnabled(false);
              buttonBrowse.setEnabled(false);
+             c.getNetwork().getUdpR().setActive(true);
          }
          
          class SendListener implements ActionListener{
