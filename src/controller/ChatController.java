@@ -3,6 +3,7 @@ package controller;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
@@ -13,6 +14,7 @@ import signals.HelloReply;
 import signals.SendText;
 import model.LocalUserModel;
 import model.RemoteUser;
+import model.TalkUserModel;
 import network.Network;
 import gui.GUI;
 
@@ -96,7 +98,7 @@ public class ChatController {
         	String s = userName +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
         	gui.displayMsg(s);
 //        	gui.deleteUserFromUserPanel();
-        	gui.deleteUserFromParticipates();
+//        	gui.deleteUserFromParticipates();
         	
         }
         
@@ -121,6 +123,29 @@ public class ChatController {
 				System.out.println("failed to send hello back !");
 			}
         }
+        
+//        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {
+//            //Création d'une nouvelle discussion
+//            localUser.addToTalk(r);
+//            
+//            ArrayList<RemoteUser> participants=localUser.getTalk().g
+//            String[] contributorsIps=new String[participants.size()+1];
+//            //On ajoute au participant de la discussion les utilisateurs sélectionnés
+//            for(int i=0;i<participants.size();i++)
+//            {
+//                contributorsIps[i]=participants.get(i).getAddressIP().getHostAddress();
+//            }
+//            //On ajoute s'ajoute à la discussion
+//            contributorsIps[participants.size()]=NetworkInterface.getLocalHost().getHostAddress();
+//
+//            
+//            for(RemoteUser participant:localUser.getDiscussion(talkId).getParticipants())
+//            {
+//                logger.info("Envoi d'un NewTalk à "+participant.getUsername());
+//                networkInterface.sendSignal(participant.getAddressIP(),new NewTalk(talkId,contributorsIps));
+//            }
+//
+//        }
 //        
 //        public void controllerCloseThread(){       	
 //        	network.signal_Bye();

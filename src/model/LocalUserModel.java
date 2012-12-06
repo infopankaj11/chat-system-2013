@@ -15,6 +15,7 @@ public class LocalUserModel {
     private String username;
     // Liste d'utilisateurs distants
     private DefaultListModel remoteUsers;
+    private TalkUserModel talk;
 
     public LocalUserModel()
     {
@@ -87,8 +88,9 @@ public class LocalUserModel {
     public DefaultListModel getRemoteUsers() {
         return remoteUsers;
     }
+    
 
-    /**
+	/**
      * Retourne l'utilisateur distant correspondant à
      * l'adresse IP passée en paramètre
      * @param address
@@ -127,4 +129,21 @@ public class LocalUserModel {
     public void removeAllRemoteUser(){
         remoteUsers.clear();
     }
+//    public void addToTalk(ArrayList<RemoteUser> remoteUsers) {
+//        TalkUserModel t=new TalkUserModel();
+//        for(RemoteUser r:remoteUsers)
+//        {
+//            t.addParticipant(r);
+//        }
+//        talk.add(t);
+//    }
+
+    public TalkUserModel getDiscussion()
+    {
+    	
+        	return talk;
+    }
+
+    
+    
 }
