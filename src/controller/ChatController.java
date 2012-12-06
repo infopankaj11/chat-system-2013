@@ -22,8 +22,11 @@ public class ChatController {
         private Network network;
         private LocalUserModel localUser; 
         private RemoteUser user;
+ 
        
-        public ChatController(){}      
+        public ChatController(){
+    
+        }      
        
         public RemoteUser getUser() {
 			return user;
@@ -46,14 +49,28 @@ public class ChatController {
         }
        
 
-        public void login(){
-        	network.signal_Hello();
+        public void login(String username){
+        	 if(!localUser.isConnected()){
+                 localUser.setConnected(true);
+                 localUser.setUsername(username);
+                 network.signal_Hello();
+             }
+        	 else{
+        		 System.out.println("User already connected !!");
+        	 }
         }
         
         
        
         public void logout(){
-        	network.signal_Bye();
+        	 if(localUser.isConnected()){
+                 localUser.setConnected(false);
+                 localUser.removeAllRemoteUser();
+                 network.signal_Bye();
+             }
+             else{
+            	 System.out.println("User already disconnected !!");
+             }        	
         }
        
         public LocalUserModel getLocalUser() {
