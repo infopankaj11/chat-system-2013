@@ -9,7 +9,7 @@ import javax.swing.DefaultListModel;
 public class LocalUserModel {
 
     private GUI view;
-    // Indique si l'utilisateur est connecté
+    // Indique si l'utilisateur est connectï¿½
     private boolean connected;
     // Nom d'utilisateur
     private String username;
@@ -73,13 +73,21 @@ public class LocalUserModel {
 
 
     /**
-     * Ajout d'un utilisateur distant à la liste d'utilisateurs
+     * Ajout d'un utilisateur distant ï¿½ la liste d'utilisateurs
      * @param remoteIP
      * @param userName
      */
     public void addRemoteUser(InetAddress remoteIP, String userName) {
+    	boolean existed=false;
         RemoteUser remoteUser=new RemoteUser(remoteIP,userName);
-        getRemoteUsers().addElement(remoteUser);
+        for(int i=0 ; i<remoteUsers.size();i++){
+        	if(remoteUser.equals(remoteUsers.get(i))){
+        		existed=true;
+        	}
+        }
+        if(existed==false){
+        	getRemoteUsers().addElement(remoteUser);
+        }
     }
 
     /**
@@ -91,8 +99,8 @@ public class LocalUserModel {
     
 
 	/**
-     * Retourne l'utilisateur distant correspondant à
-     * l'adresse IP passée en paramètre
+     * Retourne l'utilisateur distant correspondant ï¿½
+     * l'adresse IP passï¿½e en paramï¿½tre
      * @param address
      * @return
      */
@@ -113,7 +121,7 @@ public class LocalUserModel {
     }
 
     /**
-     *  Méthode permettant de supprimer un utilisateur de la liste
+     *  Mï¿½thode permettant de supprimer un utilisateur de la liste
      *  d'utilisateurs distants
      * @param remoteUser
      */
@@ -123,7 +131,7 @@ public class LocalUserModel {
     }
 
     /**
-     * Méthode permettant de supprimer tous les utilisateurs
+     * Mï¿½thode permettant de supprimer tous les utilisateurs
      * de la liste d'utilisateurs distants
      */
     public void removeAllRemoteUser(){
