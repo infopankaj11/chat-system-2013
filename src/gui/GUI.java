@@ -206,11 +206,13 @@ public class GUI extends JFrame{
              buttonConversion.setEnabled(true);
              buttonSend.setEnabled(true);
              buttonBrowse.setEnabled(true);
+             textUser.setEnabled(false);
              c.getNetwork().getUdpR().setActive(true);
          }
          
          public void disconnectedMode(){
         	 textUser.setText(" ");
+        	 textUser.setEnabled(true);
              buttonConnect.setEnabled(true);
              buttonDisconnect.setEnabled(false);    
              buttonConversion.setEnabled(false);
