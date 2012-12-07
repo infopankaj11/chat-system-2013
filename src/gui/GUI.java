@@ -113,7 +113,7 @@ public class GUI extends JFrame{
                 tabMiddleTop=new JTabbedPane(JTabbedPane.TOP);
                 textMiddleTop=new JTextArea();
  //               tabMiddleTop.add(textMiddleTop);
-                tabMiddleTop.addTab("Talk1", textMiddleTop);
+                tabMiddleTop.addTab("Talk", textMiddleTop);
                 msg=new JTextArea();
                 participates=new JTextArea();
  //               this.participates.setModel(localUser.getParticipeUsers());
@@ -227,7 +227,7 @@ public class GUI extends JFrame{
          class SendListener implements ActionListener{
         	 public void actionPerformed(ActionEvent a){
         		 Date d = new Date();
-        		 String s = msg.getText()+" , at " +DateFormat.getTimeInstance().format(d) + "\n";
+        		 String s = msg.getText();
         		 textMiddleTop.append("You say : " + s);
         		 msg.setText(" ");
         		 c.controlSendText(s, listP);
@@ -257,6 +257,10 @@ public class GUI extends JFrame{
 //         }
          
         public void displayMsg(String message){
-                textMiddleTop.append(message); 
+             textMiddleTop.append(message); 
+        }
+        
+        public void addNewTalk(){
+        	textMiddleTop.add(tabMiddleTop);
         }
 }
