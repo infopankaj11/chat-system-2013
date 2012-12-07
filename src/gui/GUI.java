@@ -189,12 +189,15 @@ public class GUI extends JFrame{
        
          class DixconnexionListener implements ActionListener{
                  public void actionPerformed(ActionEvent a){ 
-                	 	 c.logout();                         
+                	 	 c.logout();    
+                	 	textUser.setText(" ");
+                	 	textMiddleTop.setText(" ");                	 	 
                  }    
         }
          
          class ConnexionListener implements ActionListener{
-                 public void actionPerformed(ActionEvent a){
+                 public void actionPerformed(ActionEvent a){                        
+                         c.getNetwork().getUdpR().start();
                          c.login(textUser.getText());
                  }    
         }
@@ -207,7 +210,7 @@ public class GUI extends JFrame{
              buttonSend.setEnabled(true);
              buttonBrowse.setEnabled(true);
              textUser.setEnabled(false);
-             c.getNetwork().getUdpR().setActive(true);
+             c.getNetwork().getUdpR().setActive(true);         
          }
          
          public void disconnectedMode(){

@@ -16,7 +16,7 @@ public class Network {
        
         public Network (ChatController c){
                 udpR = new UDPReceiver(c);
-                udpR.start();              
+ //               udpR.start();              
         }      
         
 		public UDPReceiver getUdpR() {
