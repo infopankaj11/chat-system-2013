@@ -69,8 +69,10 @@ public class UDPReceiver extends Thread{
                     try {
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){  
-                        	String a=adr.getHostName();
-                        	String b=InetAddress.getLocalHost().getHostName();
+                        	String a=adr.getHostAddress();
+                        	String b=InetAddress.getLocalHost().getHostAddress();
+//                        	String a=adr.getHostName();
+//                        	String b=InetAddress.getLocalHost().getHostName();
                         	 System.out.println("test ================ : "+ a);
                         	 System.out.println("test ================ : "+ b);
                         	if(a.equals(b)){
@@ -99,7 +101,7 @@ public class UDPReceiver extends Thread{
                         
                         if(sigal instanceof SendText){
                         	c.controlDisplayText((SendText)sigal,adr.getHostName());
-                        	c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
+//                        	c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
                         }
                         
                         if (sigal instanceof HelloReply){

@@ -30,6 +30,7 @@ public class Network {
 		
 		public void signal_Hello(){
                 Signal signalHello=new Hello(c.getLocalUser().getUsername());
+                System.out.println("tester user : " +c.getLocalUser().getUsername());
                 try {
                 	udpS.sendSignal(InetAddress.getByName("255.255.255.255"),signalHello,portDest);
                 } catch (UnknownHostException e) {
