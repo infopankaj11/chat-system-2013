@@ -22,7 +22,7 @@ public class UDPReceiver extends Thread{
      private boolean active;
      
      public UDPReceiver(ChatController c){
-    	 active=true;
+         active=true;
          this.c=c;
          
      }
@@ -67,54 +67,54 @@ public class UDPReceiver extends Thread{
                 // Conversion into an object
                 ObjectInputStream received = new ObjectInputStream(bis);    
                     try {
-                    	String a=adr.getHostAddress();
-                    	String b=InetAddress.getLocalHost().getHostAddress();
+                        String a=adr.getHostAddress();
+                        String b=InetAddress.getLocalHost().getHostAddress();
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){  
                         
-//                        	String a=adr.getHostName();
-//                        	String b=InetAddress.getLocalHost().getHostName();
-                        	 System.out.println("test ================ : "+ a);
-                        	 System.out.println("test ================ : "+ b);
-                        	if(a.equals(b)){
-                        		System.out.println("*****************************");
-                        	}
-                        	else{
-                                c.controlDisplayHello((Hello)sigal,adr.getHostName()); 
+//                            String a=adr.getHostName();
+//                            String b=InetAddress.getLocalHost().getHostName();
+                             System.out.println("test ================ : "+ a);
+                             System.out.println("test ================ : "+ b);
+                            if(a.equals(b)){
+                                System.out.println("*****************************");
+                            }
+                            else{
+                                c.controlDisplayHello((Hello)sigal,adr.getHostName());
                               //  c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
                                 c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((Hello) sigal).getUsername());
                                 c.controlSendHelloReply(adr.getHostAddress());
                                 System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
-                            	System.out.println("test Hello  !!" + adr.getHostName());
-                            	System.out.println("test Hello  !!" + InetAddress.getByName(adr.getHostAddress()));
-                              	System.out.println("test hello UDP Receiver !!");
-                              	System.out.println("controlleur dans UDP "+ c);
-                        	}
+                                System.out.println("test Hello  !!" + adr.getHostName());
+                                System.out.println("test Hello  !!" + InetAddress.getByName(adr.getHostAddress()));
+                                  System.out.println("test hello UDP Receiver !!");
+                                  System.out.println("controlleur dans UDP "+ c);
+                            }
 //                              c.controlSendHelloReply(adr.getHostAddress());;                                                
                         }
                         
                         if(sigal instanceof GoodBye){
-                        	if(a.equals(b)){
-                        	}
-                        	else{
-                        	RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
-                        	c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
-                        	c.getLocalUser().removeRemoteUser(c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()))); 
-                        	System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
-                        	System.out.println("test goodbye  !!" + adr.getHostName());
-                        	System.out.println("test goodbye  !!" + InetAddress.getByName(adr.getHostAddress()));
-                        	}
+                            if(a.equals(b)){
+                            }
+                            else{
+                            RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
+                            c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
+                            c.getLocalUser().removeRemoteUser(c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress())));
+                            System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
+                            System.out.println("test goodbye  !!" + adr.getHostName());
+                            System.out.println("test goodbye  !!" + InetAddress.getByName(adr.getHostAddress()));
+                            }
                         }
                         
                         if(sigal instanceof SendText){
-                        	c.controlDisplayText((SendText)sigal,adr.getHostName());
-//                        	c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
+                            c.controlDisplayText((SendText)sigal,adr.getHostName());
+//                            c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
                         }
                         
                         if (sigal instanceof HelloReply){
-                        	c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((HelloReply) sigal).getUsername());
-                        	c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
-                        	      	
+                            c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((HelloReply) sigal).getUsername());
+                            c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
+                                      
                         }
 //                        
                         } catch (ClassNotFoundException e) {
@@ -132,4 +132,3 @@ public class UDPReceiver extends Thread{
         }
     
 }
-
