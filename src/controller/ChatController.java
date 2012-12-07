@@ -104,8 +104,10 @@ public class ChatController {
         
         
         public void controlDisplayText(SendText t,String username){
+        	
         	Date d = new Date();
         	String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
+        	gui.addNewTalk();
         	gui.displayMsg(s);
         	
         }
@@ -131,23 +133,23 @@ public class ChatController {
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {
-//            //Création d'une nouvelle discussion
+//            //Crï¿½ation d'une nouvelle discussion
 //            localUser.addToTalk(r);
 //            
 //            ArrayList<RemoteUser> participants=localUser.getTalk().g
 //            String[] contributorsIps=new String[participants.size()+1];
-//            //On ajoute au participant de la discussion les utilisateurs sélectionnés
+//            //On ajoute au participant de la discussion les utilisateurs sï¿½lectionnï¿½s
 //            for(int i=0;i<participants.size();i++)
 //            {
 //                contributorsIps[i]=participants.get(i).getAddressIP().getHostAddress();
 //            }
-//            //On ajoute s'ajoute à la discussion
+//            //On ajoute s'ajoute ï¿½ la discussion
 //            contributorsIps[participants.size()]=NetworkInterface.getLocalHost().getHostAddress();
 //
 //            
 //            for(RemoteUser participant:localUser.getDiscussion(talkId).getParticipants())
 //            {
-//                logger.info("Envoi d'un NewTalk à "+participant.getUsername());
+//                logger.info("Envoi d'un NewTalk ï¿½ "+participant.getUsername());
 //                networkInterface.sendSignal(participant.getAddressIP(),new NewTalk(talkId,contributorsIps));
 //            }
 //
