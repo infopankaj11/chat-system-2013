@@ -213,6 +213,7 @@ public class ChatController {
         
         
         public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
+        	network.siganl_accept_file(id, accepted, now, user);
         	if(fileAccept.isRefuse()==false && now==false){
         		fileRefuse=new RefuseFile();
         	}
