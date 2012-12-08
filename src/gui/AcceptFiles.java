@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import controller.ChatController;
+
 public class AcceptFiles extends JFrame{
 	
 	private JPanel mainPanel;
@@ -27,6 +29,8 @@ public class AcceptFiles extends JFrame{
 	private JLabel labelFileFrom;
 	private JPanel panelButton;
 	private JPanel panelText;
+	
+	private ChatController c;
 	
 	public AcceptFiles(String file,long fileSize,int id, String username){
 		System.out.println("File name 4: "+file);
@@ -67,6 +71,7 @@ public class AcceptFiles extends JFrame{
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);
+			 c.setRefuse(true);
 		 }
 	}
 	
