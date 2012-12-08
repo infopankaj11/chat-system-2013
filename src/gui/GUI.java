@@ -206,7 +206,8 @@ public class GUI extends JFrame{
                  public void actionPerformed(ActionEvent a){ 
                 	 	 c.logout();    
                 	 	textUser.setText(" ");
-                	 	textMiddleTop.setText(" ");                	 	 
+                	 	textMiddleTop.setText(" ");  
+                	 	c.getNetwork().getUdpR().setActive(false);
                  }    
         }
          
