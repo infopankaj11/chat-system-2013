@@ -126,8 +126,10 @@ public class UDPReceiver extends Thread{
                         if(sigal instanceof PropFile){
                         	RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                         	c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername());
-                        	c.controlAcceptFile(((PropFile) sigal).getFileID(), true, true, adr.getHostAddress());
-
+                        }
+                        
+                        if(sigal instanceof AcceptFile){
+                        	c.controlAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), adr.getHostAddress());
                         }
 //                        
                         } catch (ClassNotFoundException e) {

@@ -19,6 +19,7 @@ import model.TalkUserModel;
 import network.Network;
 import gui.AcceptFiles;
 import gui.GUI;
+import gui.RefuseFile;
 
 public class ChatController {
        
@@ -27,6 +28,7 @@ public class ChatController {
         private LocalUserModel localUser; 
         private RemoteUser user;
         private AcceptFiles fileAccept;
+        private RefuseFile fileRefuse;
         private String file;
         
  
@@ -165,6 +167,9 @@ public class ChatController {
         }
         
         public void controlAcceptFile(int fId, boolean acc, boolean now,String address){
+        	if(acc==false){
+        		fileRefuse=new RefuseFile();
+        	}
         	network.siganl_accept_file(fId, acc, now, address);
         }
         
