@@ -49,7 +49,7 @@ public class AcceptFiles extends JFrame{
 		this.id=id;
 		filename=file;
 		this.username=username;
-		this.setVisible(false);
+		this.setVisible(true);
 		pack();
 		setSize(400,200);
 		this.c=c;
