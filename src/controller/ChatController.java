@@ -27,13 +27,15 @@ public class ChatController {
         private LocalUserModel localUser; 
         private RemoteUser user;
         private AcceptFiles fileAccept;
+        private String file;
+        
  
        
         public ChatController(){
     
         }      
        
-        public RemoteUser getUser() {
+		public RemoteUser getUser() {
 			return user;
 		}
 
@@ -137,7 +139,12 @@ public class ChatController {
         
         public void controlPropFile(String filename, long filesize, int file_id,String address){
         	network.signal_Propo_File(filename, filesize, file_id, address);
-        	fileAccept=new AcceptFiles(filename);
+        	this.file=filename;
+
+        }
+        
+        public void dialogAcceptFile(){
+        	fileAccept=new AcceptFiles(file);
         }
         
         public void controlAcceptFile(int fId, boolean acc, boolean now,String address){

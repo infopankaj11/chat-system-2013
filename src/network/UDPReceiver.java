@@ -1,5 +1,7 @@
 package network;
 
+import gui.AcceptFiles;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -120,6 +122,7 @@ public class UDPReceiver extends Thread{
                         }
                         
                         if(sigal instanceof PropFile){
+                        	c.dialogAcceptFile();
                         	c.controlAcceptFile(((PropFile) sigal).getFileID(), true, true, adr.getHostAddress());
 
                         }

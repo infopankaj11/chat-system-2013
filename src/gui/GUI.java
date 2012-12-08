@@ -286,8 +286,8 @@ public class GUI extends JFrame{
 	        		System.out.println("path: "+path);  
 	        	}
 	        	Object o=userPanel.getSelectedValues();
-	        	user=(RemoteUser)o;
-	        	userToSendFile=user.getAddressIP().toString();
+	        	//user=(RemoteUser)o;
+	        	userToSendFile="192.168.1.17";
 	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 	        	id++;
             }  

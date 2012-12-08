@@ -39,9 +39,8 @@ public class AcceptFiles extends JFrame{
 		mainPanel.add(labelAcceptFile,BorderLayout.NORTH);
 		mainPanel.add(panelButton,BorderLayout.SOUTH);
 		
-		
-		
-		
+		getContentPane().add(mainPanel);
+
 	}
 
 }
