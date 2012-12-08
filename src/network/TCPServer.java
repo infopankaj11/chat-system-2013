@@ -1,3 +1,5 @@
+//package network;
+//
 //import java.io.BufferedReader;
 //import java.io.File;
 //import java.io.FileWriter;
@@ -67,7 +69,7 @@
 //          System.out.println("Serveur En attente de connexion\n");
 //          //Etape 1 : attente d'une connexion
 //          waitConnect();
-//          System.out.println("Connexion au serveur réussie port  : "+socket);
+//          System.out.println("Connexion au serveur reussie port  : "+socket);
 //
 //          //etape 2 : Recuperation des flux de la connexion
 //          openFlux();
@@ -84,7 +86,7 @@
 //
 //    
 //    /**
-//     * Création du ServeurSocket
+//     * Creation du ServeurSocket
 //     * @throws IOException
 //     * 
 //     */
@@ -122,7 +124,7 @@
 //    
 //    
 //     /**
-//     * Ouverture des flux d'entrée et sortie
+//     * Ouverture des flux d'entree et sortie
 //     */
 //    private void openFlux()
 //    {
@@ -144,7 +146,7 @@
 //    }
 //
 //     /**
-//     * Reception des données
+//     * Reception des donnees
 //     * @throws IOException
 //     */
 //    private void receptionData() throws IOException{
@@ -162,7 +164,7 @@
 //        {
 //              recu = new char[size]; // Création d'un nouveau tableau
 //              octectLu= entree.read(recu,0, size);
-//              if(octectLu>0) // Si on a lu des données
+//              if(octectLu>0) // Si on a lu des donnees
 //              {
 //                    sortie.write(recu);
 //                    sortie.flush();
@@ -183,7 +185,7 @@
 //    {
 //	try{
 //	    if( entree!=null )
-//		entree.close();      // Fermeture du flux d'entrée
+//		entree.close();      // Fermeture du flux d'entree
 //	    if( sortie!=null )
 //		sortie.close();     // Fermeture du flux de sortie
 //	    if( socket!=null)

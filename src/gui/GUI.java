@@ -4,12 +4,14 @@ import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileSystemView;
 
 import model.LocalUserModel;
 import model.RemoteUser;
 import model.TalkUserModel;
 
 import java.awt.event.*;  
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
@@ -24,6 +26,7 @@ public class GUI extends JFrame{
         private static final long serialVersionUID = 1234L;
         private Vector<String> liste=new Vector<String>();
         private InetAddress[] listP;
+        private String userToSendFile;
         private boolean connected;
         
         public boolean isConnected() {
@@ -55,9 +58,15 @@ public class GUI extends JFrame{
         JLabel labelParticipates;
         JButton buttonSend;
         JButton buttonBrowse;
+  //      JButton buttonAddToFile;
+        
+   		private File file = null;  
+		private String path = null; 
        
         private ChatController c;
         private LocalUserModel localUser;
+        
+        
         
         public GUI(){
                 pack();
@@ -75,11 +84,12 @@ public class GUI extends JFrame{
             localUser=l;
             this.userPanel.setModel(localUser.getRemoteUsers());
         }
-
-        
      
-        
-        public void intComponents(){
+        public String getPath() {
+			return path;
+		}
+
+		public void intComponents(){
                 Border blueline = BorderFactory.createLineBorder(Color.blue,1);
                
                 panelPrinciple=new JPanel(new BorderLayout(10,10));
@@ -101,6 +111,7 @@ public class GUI extends JFrame{
                 userPanel=new JList();
                 jScrollPane1 = new JScrollPane();
                 jScrollPane2 = new JScrollPane();
+ //               buttonAddToFile = new JButton();
                
 //                userPanel.setModel(new AbstractListModel() {
 //					private static final long serialVersionUID = 1234L;
@@ -137,6 +148,7 @@ public class GUI extends JFrame{
                 buttonSend.setPreferredSize(new Dimension(130,30));
                 buttonBrowse.setPreferredSize(new Dimension(130,30));
                 labelParticipates.setPreferredSize(new Dimension(100,30));
+                
             //    participates.setPreferredSize(new Dimension(230,200));
                 textMiddleTop.setEnabled(false);
                 buttonSend.setEnabled(false);
@@ -148,12 +160,14 @@ public class GUI extends JFrame{
                 buttonConnect.setPreferredSize(new Dimension(130,30));
                 buttonDisconnect.setPreferredSize(new Dimension(130,30));
                 userPanel.setPreferredSize(new Dimension(260,430));
+                buttonConversion.setPreferredSize(new Dimension(260,30));
                
                 buttonSend.addActionListener(new SendListener());
                 buttonConnect.addActionListener(new ConnexionListener());
                 buttonDisconnect.addActionListener(new DixconnexionListener());
                 buttonConversion.addActionListener(new AddToConversionListener());
-               
+                buttonBrowse.addActionListener(new BrowseListener());
+                
                 panelLeftTop.add(labelUser);
                 panelLeftTop.add(textUser);
                
@@ -164,6 +178,7 @@ public class GUI extends JFrame{
               //  panelLeftBottom.add(userPanel,BorderLayout.CENTER);
                 panelLeftBottom.add(jScrollPane1,BorderLayout.CENTER);
                 panelLeftBottom.add(buttonConversion,BorderLayout.SOUTH);
+    //           panelLeftBottom.add(buttonAddToFile,BorderLayout.SOUTH);
                
                 panelLeft.add(panelLeftTop,BorderLayout.NORTH);
                 panelLeft.add(panelLeftMiddle,BorderLayout.CENTER);
@@ -249,6 +264,31 @@ public class GUI extends JFrame{
                 }
                 participates.setText(r.toString());
         	}
+        }
+        
+        class BrowseListener implements ActionListener{
+        	public void actionPerformed(ActionEvent a){
+        		int result=0;
+        		int lengthFile=0;
+        		int id =0;
+        		JFileChooser fileChooser = new JFileChooser();  
+        		FileSystemView fsv = FileSystemView.getFileSystemView();  
+        		System.out.println(fsv.getHomeDirectory());              
+	        	fileChooser.setCurrentDirectory(fsv.getHomeDirectory());  
+	        	fileChooser.setDialogTitle("Select the file to upload...");  
+	        	fileChooser.setApproveButtonText("OK");  
+	        	fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);  
+	        	result = fileChooser.showOpenDialog(panelPrinciple);  
+	        	if (JFileChooser.APPROVE_OPTION == result) {  
+	        		file=fileChooser.getSelectedFile();
+	        		path=fileChooser.getSelectedFile().getPath();  
+	        		System.out.println("path: "+path);  
+	        	}
+	        	Object o=userPanel.getSelectedValues();
+	        	userToSendFile=((RemoteUser) o).getAddressIP().toString();
+	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
+	        	id++;
+            }  
         }
   
 //         public void deleteUserFromParticipates(){
