@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -37,29 +39,20 @@ public class AcceptFiles extends JFrame{
 	
 	public void initComponents(String file,long fileSize,int id, String username){
 		mainPanel=new JPanel(new BorderLayout());
+		mainPanel.setBackground(Color.WHITE);
 		panelButton=new JPanel(new FlowLayout());
 		buttonAcceptNow=new JButton("Accept Now !");
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
-//		panelText=new JPanel(new BoxLayout(panelText,BoxLayout.Y_AXIS));
 		textAcceptFile=new JTextArea("Do you want to accept this file ? \n" + "Name : " +file +"\n" + "Size : "+fileSize+"\n"+"ID : "+ id +"\n"+ "From: "+username);
 		textAcceptFile.setEnabled(false);
-		textAcceptFile.setBackground(Color.lightGray);
-								
-//		labelFileName=new JLabel("Name : " + file);
-//		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
-//		labelFileID=new JLabel("ID : "+ id);
-//		labelFileFrom=new JLabel("From : " + username);
-		
+
 		System.out.println("File name 3: "+file);
 		
-//		
-//		panelText.add(labelAcceptFile);
-//		panelText.add(labelFileName);
-//		panelText.add(labelFileSize);
-//		panelText.add(labelFileID);
-//		panelText.add(labelFileFrom);
-				
+		buttonAcceptNow.addActionListener(new acceptNowListener());
+		buttonRefuse.addActionListener(new refuseListener());
+		buttonAcceptLater.addActionListener(new acceptLatertListener());
+		
 		panelButton.add(buttonRefuse);
 		panelButton.add(buttonAcceptLater);
 		panelButton.add(buttonAcceptNow);
@@ -71,4 +64,21 @@ public class AcceptFiles extends JFrame{
 
 	}
 
+	class refuseListener implements ActionListener{
+		 public void actionPerformed(ActionEvent a){ 
+			 setVisible(false);
+		 }
+	}
+	
+	class acceptNowListener implements ActionListener{
+		 public void actionPerformed(ActionEvent a){ 
+			 
+		 }
+	}
+	
+	class acceptLatertListener implements ActionListener{
+		 public void actionPerformed(ActionEvent a){ 
+			 
+		 }
+	}
 }
