@@ -207,9 +207,8 @@ public class ChatController {
 //
 //        }
         
-        public void controlAcceptFile(int id, boolean accept, boolean now, String username){
-        	System.out.println("refuse = " + refuse);
-        	if(refuse==true){
+        public void controlAcceptFile(int id, boolean accept, boolean now, String username){	
+        	if(fileAccept.isRefuse()==false){
         		fileRefuse=new RefuseFile();
         	}
         }

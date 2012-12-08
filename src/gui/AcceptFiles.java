@@ -81,9 +81,7 @@ public class AcceptFiles extends JFrame{
 
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
-			 setVisible(false);
-			 bar.getF().setVisible(false);
-			 
+			 setVisible(false);		 
 		 }
 	}
 	
