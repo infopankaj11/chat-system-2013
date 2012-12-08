@@ -19,6 +19,7 @@ import model.TalkUserModel;
 import network.Network;
 import gui.AcceptFiles;
 import gui.GUI;
+import gui.ProgressBar;
 import gui.RefuseFile;
 
 public class ChatController {
@@ -29,6 +30,7 @@ public class ChatController {
         private RemoteUser user;
         private AcceptFiles fileAccept;
         private RefuseFile fileRefuse;
+        private ProgressBar bar;
         private String file;
         private boolean refuse;
         private boolean acceptNow;
@@ -193,6 +195,10 @@ public class ChatController {
         public void dialogAcceptFile(String file,long fileSize,int id,String username){
         	fileAccept=new AcceptFiles(file,fileSize,id,username);
         	System.out.println("File name 5: "+file);
+        }
+        
+        public void controlsendPropFile(){
+        	bar=new ProgressBar();
         }
         
 //        public void controlRefuseFile(){
