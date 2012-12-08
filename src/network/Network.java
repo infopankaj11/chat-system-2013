@@ -13,6 +13,7 @@ public class Network {
         private  UDPSender udpS= new UDPSender(8000);
         private ChatController c;
         private UDPReceiver udpR;
+        private TCPClient tcpClient;
        
         public Network (ChatController c){
                 udpR = new UDPReceiver(c);
@@ -75,6 +76,24 @@ public class Network {
           } catch (UnknownHostException e) {
                         e.printStackTrace();
           }  
-      }      
+      } 
+      
+      public void signal_Propo_File(String filename, long filesize, int file_id, String address){
+    	  Signal PropFile=new PropFile(filename,filesize,file_id);
+    	  try {
+			udpS.sendSignal(InetAddress.getByName(address), PropFile, portDest);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+      }
+      
+      public void siganl_accept_file(int fId, boolean acc, boolean now,String address){
+    	  Signal AcceptFile=new AcceptFile(fId,acc,now);
+    	  try {
+			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, fId);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+      }	  
 }
 

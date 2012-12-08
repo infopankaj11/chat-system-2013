@@ -11,11 +11,13 @@ import javax.swing.DefaultListModel;
 import signals.GoodBye;
 import signals.Hello;
 import signals.HelloReply;
+import signals.PropFile;
 import signals.SendText;
 import model.LocalUserModel;
 import model.RemoteUser;
 import model.TalkUserModel;
 import network.Network;
+import gui.AcceptFiles;
 import gui.GUI;
 
 public class ChatController {
@@ -24,6 +26,7 @@ public class ChatController {
         private Network network;
         private LocalUserModel localUser; 
         private RemoteUser user;
+        private AcceptFiles fileAccept;
  
        
         public ChatController(){
@@ -130,6 +133,15 @@ public class ChatController {
         
         public void controlSendText(String message,InetAddress[] users){
         	network.signal_Send_Text(users, message);
+        }
+        
+        public void controlPropFile(String filename, long filesize, int file_id,String address){
+        	network.signal_Propo_File(filename, filesize, file_id, address);
+        	fileAccept=new AcceptFiles(filename);
+        }
+        
+        public void controlAcceptFile(int fId, boolean acc, boolean now,String address){
+        	network.siganl_accept_file(fId, acc, now, address);
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {

@@ -117,6 +117,11 @@ public class UDPReceiver extends Thread{
                             c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
                                       
                         }
+                        
+                        if(sigal instanceof PropFile){
+                        	c.controlAcceptFile(((PropFile) sigal).getFileID(), true, true, adr.getHostAddress());
+
+                        }
 //                        
                         } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
