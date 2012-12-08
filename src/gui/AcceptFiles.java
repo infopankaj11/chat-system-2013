@@ -17,7 +17,7 @@ public class AcceptFiles extends JFrame{
 	private JButton buttonAcceptNow;
 	private JButton buttonAcceptLater;
 	private JButton buttonRefuse;
-	private JLabel labelAcceptFile;
+	private JTextArea textAcceptFile;
 	private JLabel labelFileName;
 	private JLabel labelFileSize;
 	private JLabel labelFileID;
@@ -41,7 +41,8 @@ public class AcceptFiles extends JFrame{
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
 //		panelText=new JPanel(new BoxLayout(panelText,BoxLayout.Y_AXIS));
-		labelAcceptFile=new JLabel("Do you want to accept this file ? \n" + "Name : " +file);
+		textAcceptFile=new JTextArea("Do you want to accept this file ? \n" + "Name : " +file);
+		textAcceptFile.setEnabled(false);
 								
 //		labelFileName=new JLabel("Name : " + file);
 //		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
@@ -50,7 +51,7 @@ public class AcceptFiles extends JFrame{
 		
 		System.out.println("File name 3: "+file);
 		
-		
+//		
 //		panelText.add(labelAcceptFile);
 //		panelText.add(labelFileName);
 //		panelText.add(labelFileSize);
@@ -61,7 +62,7 @@ public class AcceptFiles extends JFrame{
 		panelButton.add(buttonAcceptLater);
 		panelButton.add(buttonAcceptNow);
 		
-		mainPanel.add(labelAcceptFile,BorderLayout.NORTH);
+		mainPanel.add(textAcceptFile,BorderLayout.NORTH);
 		mainPanel.add(panelButton,BorderLayout.SOUTH);
 		
 		getContentPane().add(mainPanel);
