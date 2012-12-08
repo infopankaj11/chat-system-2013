@@ -218,9 +218,9 @@ public class ChatController {
         }
         
         public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, String user){
-          	if(accepted==false && now==false){
+          //	if(accepted==false && now==false){
         		fileRefuse=new RefuseFile();
-        	}
+        	//}
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {
