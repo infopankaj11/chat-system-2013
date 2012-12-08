@@ -30,8 +30,15 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	private JPanel panelText;
 	
-	private ChatController c=new ChatController();
+	private boolean refuse;
 	
+//	private ChatController c=new ChatController();
+	
+	
+	public boolean isRefuse() {
+		return refuse;
+	}
+
 	public AcceptFiles(String file,long fileSize,int id, String username){
 		System.out.println("File name 4: "+file);
 		initComponents(file,fileSize,id,username);
@@ -71,7 +78,7 @@ public class AcceptFiles extends JFrame{
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);
-			 c.setRefuse(true);
+			 refuse=true;
 			// c.controlRefuseFile();
 		 }
 	}
