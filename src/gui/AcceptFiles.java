@@ -39,7 +39,7 @@ public class AcceptFiles extends JFrame{
 		buttonAcceptNow=new JButton("Accept Now !");
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
-		panelText=new JPanel(new GridLayout(1,4));
+		panelText=new JPanel(new GridLayout(1,5));
 		labelAcceptFile=new JLabel("Do you want to accept this file ?");
 		labelFileName=new JLabel("Name : " + file);
 		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
