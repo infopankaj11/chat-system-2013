@@ -3,6 +3,7 @@ package chatSystem;
 import controller.ChatController;
 import model.LocalUserModel;
 import network.Network;
+import gui.AcceptFiles;
 import gui.GUI;
 
 public class ChatSystem {

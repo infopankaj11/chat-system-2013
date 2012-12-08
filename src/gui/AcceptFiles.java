@@ -35,7 +35,7 @@ public class AcceptFiles extends JFrame{
 	
 	private boolean refuse;
 	
-	private ChatController c=new ChatController();
+	private ChatController c;
 	
 	
 	public boolean isRefuse() {
@@ -43,15 +43,16 @@ public class AcceptFiles extends JFrame{
 	}
 	
 
-	public AcceptFiles(String file,long fileSize,int id, String username){
+	public AcceptFiles(String file,long fileSize,int id, String username,ChatController c){
 		System.out.println("File name 4: "+file);
 		initComponents(file,fileSize,id,username);
 		this.id=id;
 		filename=file;
 		this.username=username;
-		this.setVisible(true);
+		this.setVisible(false);
 		pack();
 		setSize(400,200);
+		this.c=c;
 		
 	}
 	
