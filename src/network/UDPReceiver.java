@@ -80,6 +80,7 @@ public class UDPReceiver extends Thread{
                                 System.out.println("*****************************");
                             }
                             else{
+                            	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
                                 c.controlDisplayHello((Hello)sigal,adr.getHostName());
                               //  c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
                                 c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((Hello) sigal).getUsername());

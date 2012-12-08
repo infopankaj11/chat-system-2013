@@ -271,6 +271,7 @@ public class GUI extends JFrame{
         		int result=0;
         		int lengthFile=0;
         		int id =0;
+        		RemoteUser user;
         		JFileChooser fileChooser = new JFileChooser();  
         		FileSystemView fsv = FileSystemView.getFileSystemView();  
         		System.out.println(fsv.getHomeDirectory());              
@@ -285,7 +286,8 @@ public class GUI extends JFrame{
 	        		System.out.println("path: "+path);  
 	        	}
 	        	Object o=userPanel.getSelectedValues();
-	        	userToSendFile=((RemoteUser) o).getAddressIP().toString();
+	        	user=(RemoteUser)o;
+	        	userToSendFile=user.getAddressIP().toString();
 	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 	        	id++;
             }  
