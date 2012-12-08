@@ -51,11 +51,11 @@ public class AcceptFiles extends JFrame{
 		System.out.println("File name 3: "+file);
 		
 		
-		panelText.add(labelAcceptFile);
-		panelText.add(labelFileName);
-		panelText.add(labelFileSize);
-		panelText.add(labelFileID);
-		panelText.add(labelFileFrom);
+//		panelText.add(labelAcceptFile);
+//		panelText.add(labelFileName);
+//		panelText.add(labelFileSize);
+//		panelText.add(labelFileID);
+//		panelText.add(labelFileFrom);
 				
 		panelButton.add(buttonRefuse);
 		panelButton.add(buttonAcceptLater);
