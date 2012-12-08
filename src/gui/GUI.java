@@ -303,7 +303,7 @@ public class GUI extends JFrame{
              textMiddleTop.append(message); 
         }
         
-        public void addNewTalk(){
-        	textMiddleTop.add(tabMiddleTop);
-        }
+//        public void addNewTalk(){
+//        	textMiddleTop.add(tabMiddleTop);
+//        }
 }
