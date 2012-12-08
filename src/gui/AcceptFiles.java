@@ -19,6 +19,7 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	
 	public AcceptFiles(String file){
+		System.out.println("File name 4: "+file);
 		initComponents(file);
 		this.setVisible(true);
 		pack();
