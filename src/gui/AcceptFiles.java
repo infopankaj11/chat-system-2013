@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -41,8 +42,9 @@ public class AcceptFiles extends JFrame{
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
 //		panelText=new JPanel(new BoxLayout(panelText,BoxLayout.Y_AXIS));
-		textAcceptFile=new JTextArea("Do you want to accept this file ? \n" + "Name : " +file);
+		textAcceptFile=new JTextArea("Do you want to accept this file ? \n" + "Name : " +file +"\n" + "Size : "+fileSize+"\n"+"ID : "+ id +"\n"+ "From: "+username);
 		textAcceptFile.setEnabled(false);
+		textAcceptFile.setBackground(Color.gray);
 								
 //		labelFileName=new JLabel("Name : " + file);
 //		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
