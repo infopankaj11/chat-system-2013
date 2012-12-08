@@ -102,7 +102,7 @@ public class UDPReceiver extends Thread{
                             else{
                             RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                             c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
-                            c.getLocalUser().removeRemoteUser(c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress())));
+                            c.getLocalUser().removeRemoteUser(remoteUser);
                             System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
                             System.out.println("test goodbye  !!" + adr.getHostName());
                             System.out.println("test goodbye  !!" + InetAddress.getByName(adr.getHostAddress()));
