@@ -97,6 +97,7 @@ public class UDPReceiver extends Thread{
                         }
                         
                         if(sigal instanceof GoodBye){
+                        	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                             if(a.equals(b)){
                             }
                             else{
