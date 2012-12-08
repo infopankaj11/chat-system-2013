@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,7 +40,7 @@ public class AcceptFiles extends JFrame{
 		buttonAcceptNow=new JButton("Accept Now !");
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
-		panelText=new JPanel(new GridLayout(1,5));
+		panelText=new JPanel(new BoxLayout(panelText,BoxLayout.Y_AXIS));
 		labelAcceptFile=new JLabel("Do you want to accept this file ?");
 		labelFileName=new JLabel("Name : " + file);
 		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
