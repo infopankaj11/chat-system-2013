@@ -28,6 +28,7 @@ public class GUI extends JFrame{
         private InetAddress[] listP;
         private String userToSendFile;
         private boolean connected;
+        private ProgressBar bar;
         
         public boolean isConnected() {
 			return connected;
@@ -292,7 +293,9 @@ public class GUI extends JFrame{
 	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 	        	System.out.println("File name : "+file.getName());
 	        	id++;
+	        	bar=new ProgressBar();
             }  
+        	
         }
   
 //         public void deleteUserFromParticipates(){
