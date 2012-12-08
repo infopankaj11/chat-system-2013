@@ -157,9 +157,9 @@ public class ChatController {
         	System.out.println("File name 2 : "+file);
 
         }
-        
-        public void dialogAcceptFile(){
-        	fileAccept=new AcceptFiles(this.getFile());
+              
+        public void dialogAcceptFile(String dialogAcceptFile){
+        	fileAccept=new AcceptFiles(dialogAcceptFile);
         	System.out.println("File name 5: "+file);
         }
         
