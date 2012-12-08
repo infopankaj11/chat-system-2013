@@ -33,12 +33,13 @@ public class AcceptFiles extends JFrame{
 	
 	private boolean refuse;
 	
-	private ChatController c=new ChatController();
+	private ChatController c;
 	
 	
 	public boolean isRefuse() {
 		return refuse;
 	}
+	
 
 	public AcceptFiles(String file,long fileSize,int id, String username){
 		System.out.println("File name 4: "+file);

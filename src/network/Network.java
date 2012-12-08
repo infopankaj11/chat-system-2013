@@ -91,6 +91,7 @@ public class Network {
     	  Signal AcceptFile=new AcceptFile(fId,acc,now);
     	  try {
 			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, fId);
+			c.controlsendPropFile();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
