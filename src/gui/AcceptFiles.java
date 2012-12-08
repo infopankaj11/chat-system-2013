@@ -30,11 +30,10 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	private JPanel panelText;
 	private int id;
-	private ProgressBar bar=new ProgressBar();
 	
 	private boolean refuse;
 	
-	private ChatController c;
+	private ChatController c=new ChatController();
 	
 	
 	public boolean isRefuse() {
@@ -81,7 +80,8 @@ public class AcceptFiles extends JFrame{
 
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
-			 setVisible(false);		 
+			 setVisible(false);	
+			 c.controlRefuseFile();
 		 }
 	}
 	

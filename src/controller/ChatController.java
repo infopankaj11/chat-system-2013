@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.swing.DefaultListModel;
 
+import signals.AcceptFile;
 import signals.GoodBye;
 import signals.Hello;
 import signals.HelloReply;
@@ -103,7 +104,10 @@ public class ChatController {
         }
        
         
-
+        public void setAcceptFile(AcceptFiles a){
+        	this.fileAccept=a;
+        }
+        
         public Network getNetwork() {
 			return network;
 		}
@@ -201,11 +205,11 @@ public class ChatController {
         	bar=new ProgressBar();
         }
         
-//        public void controlRefuseFile(){
-//  
-//        		fileRefuse=new RefuseFile();
-//
-//        }
+        public void controlRefuseFile(){
+  
+        		fileRefuse=new RefuseFile();
+
+        }
         
         public void controlAcceptFile(int id, boolean accept, boolean now, String username){	
         	if(fileAccept.isRefuse()==false){
