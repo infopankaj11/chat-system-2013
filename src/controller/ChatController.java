@@ -195,6 +195,12 @@ public class ChatController {
         	System.out.println("File name 5: "+file);
         }
         
+        public void controlRefuseFile(){
+  
+        		fileRefuse=new RefuseFile();
+
+        }
+        
         public void controlAcceptFile(int id, boolean accept, boolean now, String username){
         	System.out.println("refuse = " + refuse);
         	if(refuse==true){
