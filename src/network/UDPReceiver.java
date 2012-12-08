@@ -129,11 +129,8 @@ public class UDPReceiver extends Thread{
                         }
                         
                         if(sigal instanceof AcceptFile){
-                        	System.out.println("+++++++++++++++:"+((AcceptFile) sigal).accepted());
-                        	if(((AcceptFile) sigal).accepted()==false){
-                        		c.controlRefuseFile();
-                        	}
-                       // 	c.controlAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), adr.getHostAddress());
+                        	
+                        	c.controlAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), adr.getHostAddress());
                         }
 //                        
                         } catch (ClassNotFoundException e) {

@@ -29,10 +29,11 @@ public class AcceptFiles extends JFrame{
 	private JLabel labelFileFrom;
 	private JPanel panelButton;
 	private JPanel panelText;
+	private int id;
 	
 	private boolean refuse;
 	
-//	private ChatController c=new ChatController();
+	private ChatController c=new ChatController();
 	
 	
 	public boolean isRefuse() {
@@ -42,6 +43,7 @@ public class AcceptFiles extends JFrame{
 	public AcceptFiles(String file,long fileSize,int id, String username){
 		System.out.println("File name 4: "+file);
 		initComponents(file,fileSize,id,username);
+		this.id=id;
 		this.setVisible(true);
 		pack();
 		setSize(400,200);
@@ -79,6 +81,7 @@ public class AcceptFiles extends JFrame{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);
 			 refuse=true;
+			 c.controlAcceptFile(id, false, false, c.getLocalUser().getUsername());
 			// c.controlRefuseFile();
 		 }
 	}
