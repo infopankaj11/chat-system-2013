@@ -30,6 +30,8 @@ public class ChatController {
         private AcceptFiles fileAccept;
         private RefuseFile fileRefuse;
         private String file;
+        private boolean refuse;
+        private boolean acceptNow;
         
  
        
@@ -38,7 +40,34 @@ public class ChatController {
         }      
         
         
+        
        
+		public void setRefuse(boolean refuse) {
+			this.refuse = refuse;
+		}
+
+
+
+
+		public void setAcceptNow(boolean acceptNow) {
+			this.acceptNow = acceptNow;
+		}
+
+
+
+
+		public boolean isRefuse() {
+			return refuse;
+		}
+
+
+
+		public boolean isAcceptNow() {
+			return acceptNow;
+		}
+
+
+
 		public String getFile() {
 			return file;
 		}
@@ -166,11 +195,10 @@ public class ChatController {
         	System.out.println("File name 5: "+file);
         }
         
-        public void controlAcceptFile(int fId, boolean acc, boolean now,String address){
-        	if(acc==false){
+        public void controlAcceptFile(int id, boolean accept, boolean now, String username){
+        	if(refuse==true){
         		fileRefuse=new RefuseFile();
         	}
-        	network.siganl_accept_file(fId, acc, now, address);
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {
