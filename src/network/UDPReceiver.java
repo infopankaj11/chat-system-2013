@@ -99,8 +99,10 @@ public class UDPReceiver extends Thread{
                         if(sigal instanceof GoodBye){
                         	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
                             if(a.equals(b)){
+                            	System.out.println("$111111111111111111111111111111111111111111");
                             }
                             else{
+                            	System.out.println("$$$$$$$$$$$$$$$$$7777777777777777$$$$$$$$$$$");
                             RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                             c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
                             c.getLocalUser().removeRemoteUser(remoteUser);
