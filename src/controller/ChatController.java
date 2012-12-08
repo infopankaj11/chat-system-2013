@@ -91,9 +91,10 @@ public class ChatController {
        
         public void logout(){
         	 if(localUser.isConnected()){
+        		 network.signal_Bye();
                  localUser.setConnected(false);
                  localUser.removeAllRemoteUser();
-                 network.signal_Bye();
+                
              }
              else{
             	 System.out.println("User already disconnected !!");
