@@ -87,6 +87,7 @@ public class AcceptFiles extends JFrame{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);	
 			 c.controlAcceptFile(id,false,false,username);
+			 System.out.println("!!!!!!!!!!!!!!" + username);
 		 }
 	}
 	
