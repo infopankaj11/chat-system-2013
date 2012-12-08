@@ -211,8 +211,9 @@ public class ChatController {
 
         }
         
-        public void controlAcceptFile(int id, boolean accept, boolean now, String username){	
-        	if(fileAccept.isRefuse()==false){
+        
+        public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
+        	if(fileAccept.isRefuse()==false && now==false){
         		fileRefuse=new RefuseFile();
         	}
         }

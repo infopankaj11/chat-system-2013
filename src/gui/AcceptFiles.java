@@ -30,6 +30,8 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	private JPanel panelText;
 	private int id;
+	private String filename;
+	private String username;
 	
 	private boolean refuse;
 	
@@ -45,6 +47,8 @@ public class AcceptFiles extends JFrame{
 		System.out.println("File name 4: "+file);
 		initComponents(file,fileSize,id,username);
 		this.id=id;
+		filename=file;
+		this.username=username;
 		this.setVisible(true);
 		pack();
 		setSize(400,200);
@@ -81,7 +85,7 @@ public class AcceptFiles extends JFrame{
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);	
-			 c.controlRefuseFile();
+			 c.controlAcceptFile(id,false,false,username);
 		 }
 	}
 	
