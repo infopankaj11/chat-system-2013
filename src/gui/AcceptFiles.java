@@ -44,7 +44,7 @@ public class AcceptFiles extends JFrame{
 //		panelText=new JPanel(new BoxLayout(panelText,BoxLayout.Y_AXIS));
 		textAcceptFile=new JTextArea("Do you want to accept this file ? \n" + "Name : " +file +"\n" + "Size : "+fileSize+"\n"+"ID : "+ id +"\n"+ "From: "+username);
 		textAcceptFile.setEnabled(false);
-		textAcceptFile.setBackground(Color.gray);
+		textAcceptFile.setBackground(Color.lightGray);
 								
 //		labelFileName=new JLabel("Name : " + file);
 //		labelFileSize=new JLabel("Size : " + fileSize + " bytes");
