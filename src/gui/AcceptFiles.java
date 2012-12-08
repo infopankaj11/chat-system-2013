@@ -30,6 +30,7 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	private JPanel panelText;
 	private int id;
+	private ProgressBar bar=new ProgressBar();
 	
 	private boolean refuse;
 	
@@ -81,9 +82,8 @@ public class AcceptFiles extends JFrame{
 	class refuseListener implements ActionListener{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);
-			 refuse=true;
-			 c.controlAcceptFile(id, false, false, c.getLocalUser().getUsername());
-			// c.controlRefuseFile();
+			 bar.getF().setVisible(false);
+			 
 		 }
 	}
 	

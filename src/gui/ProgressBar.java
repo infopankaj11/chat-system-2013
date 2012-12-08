@@ -7,13 +7,18 @@ import javax.swing.border.*;
 import javax.swing.event.*;
 
 public class ProgressBar implements ActionListener,ChangeListener{
-	 JFrame f = null;
+	 private JFrame f = null;
 	 JProgressBar pro;
 	 JLabel lab;
 	 Timer timer;
 	 JButton b;
 	 
-	 public ProgressBar(){
+	 
+	 public JFrame getF() {
+		return f;
+	}
+
+	public ProgressBar(){
 	  f = new JFrame("Send Files ...");
 	  Container contentPane = f.getContentPane();
 	  lab = new JLabel("",JLabel.CENTER);
