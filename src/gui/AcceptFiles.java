@@ -21,6 +21,8 @@ public class AcceptFiles extends JFrame{
 	public AcceptFiles(String file){
 		initComponents(file);
 		this.setVisible(true);
+		pack();
+		setSize(400,200);
 		
 	}
 	

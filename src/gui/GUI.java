@@ -289,6 +289,7 @@ public class GUI extends JFrame{
 	        	//user=(RemoteUser)o;
 	        	userToSendFile="192.168.1.17";
 	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
+	        	System.out.println("File name : "+file.getName());
 	        	id++;
             }  
         }
