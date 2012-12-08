@@ -30,7 +30,7 @@ public class AcceptFiles extends JFrame{
 	private JPanel panelButton;
 	private JPanel panelText;
 	
-	private ChatController c;
+	private ChatController c=new ChatController();
 	
 	public AcceptFiles(String file,long fileSize,int id, String username){
 		System.out.println("File name 4: "+file);
