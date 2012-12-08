@@ -140,6 +140,7 @@ public class ChatController {
         public void controlPropFile(String filename, long filesize, int file_id,String address){
         	network.signal_Propo_File(filename, filesize, file_id, address);
         	this.file=filename;
+        	System.out.println("File name 2 : "+file);
 
         }
         
