@@ -34,7 +34,21 @@ public class ChatController {
         public ChatController(){
     
         }      
+        
+        
        
+		public String getFile() {
+			return file;
+		}
+
+
+
+		public void setFile(String file) {
+			this.file = file;
+		}
+
+
+
 		public RemoteUser getUser() {
 			return user;
 		}
@@ -139,13 +153,13 @@ public class ChatController {
         
         public void controlPropFile(String filename, long filesize, int file_id,String address){
         	network.signal_Propo_File(filename, filesize, file_id, address);
-        	this.file=filename;
+        	this.setFile(filename);
         	System.out.println("File name 2 : "+file);
 
         }
         
         public void dialogAcceptFile(){
-        	fileAccept=new AcceptFiles(file);
+        	fileAccept=new AcceptFiles(this.getFile());
         	System.out.println("File name 5: "+file);
         }
         
