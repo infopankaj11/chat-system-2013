@@ -18,22 +18,22 @@ public class AcceptFiles extends JFrame{
 	private JLabel labelAcceptFile;
 	private JPanel panelButton;
 	
-	public AcceptFiles(String file){
+	public AcceptFiles(String file,long fileSize,int id){
 		System.out.println("File name 4: "+file);
-		initComponents(file);
+		initComponents(file,fileSize,id);
 		this.setVisible(true);
 		pack();
 		setSize(400,200);
 		
 	}
 	
-	public void initComponents(String file){
+	public void initComponents(String file,long fileSize,int id){
 		mainPanel=new JPanel(new BorderLayout());
 		panelButton=new JPanel(new FlowLayout());
 		buttonAcceptNow=new JButton("Accept Now !");
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
-		labelAcceptFile=new JLabel("Do you want to accept this file : " + file );
+		labelAcceptFile=new JLabel("Do you want to accept this file : " + file +"\n size : "+ fileSize+ "\n id : " + id);
 		System.out.println("File name 3: "+file);
 		
 		panelButton.add(buttonRefuse);

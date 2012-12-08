@@ -124,7 +124,7 @@ public class UDPReceiver extends Thread{
                         }
                         
                         if(sigal instanceof PropFile){
-                        	c.dialogAcceptFile(((PropFile) sigal).getFileName());
+                        	c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID());
                         	c.controlAcceptFile(((PropFile) sigal).getFileID(), true, true, adr.getHostAddress());
 
                         }
