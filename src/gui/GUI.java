@@ -243,7 +243,7 @@ public class GUI extends JFrame{
         	 public void actionPerformed(ActionEvent a){
         		 Date d = new Date();
         		 String s = msg.getText();
-        		 textMiddleTop.append("You say : " + s +"\n");
+        		 textMiddleTop.append("You say : " + s);
         		 msg.setText(" ");
         		 c.controlSendText(s, listP);
         	 }
@@ -300,7 +300,7 @@ public class GUI extends JFrame{
 //         }
          
         public void displayMsg(String message){
-             textMiddleTop.append(message + "\n"); 
+             textMiddleTop.append(message); 
         }
         
 //        public void addNewTalk(){
