@@ -72,7 +72,7 @@ public class AcceptFiles extends JFrame{
 		 public void actionPerformed(ActionEvent a){ 
 			 setVisible(false);
 			 c.setRefuse(true);
-			 c.controlRefuseFile();
+			// c.controlRefuseFile();
 		 }
 	}
 	
