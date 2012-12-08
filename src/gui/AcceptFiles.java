@@ -33,6 +33,7 @@ public class AcceptFiles extends JFrame{
 		buttonAcceptLater=new JButton("Accept Later !");
 		buttonRefuse=new JButton("Refuse !");
 		labelAcceptFile=new JLabel("Do you want to accept this file : " + file );
+		System.out.println("File name 3: "+file);
 		
 		panelButton.add(buttonRefuse);
 		panelButton.add(buttonAcceptLater);
