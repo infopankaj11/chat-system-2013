@@ -159,8 +159,8 @@ public class ChatController {
 
         }
               
-        public void dialogAcceptFile(String dialogAcceptFile){
-        	fileAccept=new AcceptFiles(dialogAcceptFile);
+        public void dialogAcceptFile(String file){
+        	fileAccept=new AcceptFiles(file);
         	System.out.println("File name 5: "+file);
         }
         

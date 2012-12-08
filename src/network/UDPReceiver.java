@@ -69,12 +69,11 @@ public class UDPReceiver extends Thread{
                 // Conversion into an object
                 ObjectInputStream received = new ObjectInputStream(bis);    
                     try {
-                     
+                  	   String a=adr.getHostAddress();
+                       String b=InetAddress.getLocalHost().getHostAddress();
                         sigal = (Signal) received.readObject();
                         if (sigal instanceof Hello){  
-                        	   String a=adr.getHostAddress();
-                               String b=InetAddress.getLocalHost().getHostAddress();
-                        
+
 //                            String a=adr.getHostName();
 //                            String b=InetAddress.getLocalHost().getHostName();
                              System.out.println("test ================ : "+ a);
@@ -98,14 +97,11 @@ public class UDPReceiver extends Thread{
                         }
                         
                         if(sigal instanceof GoodBye){
-                        	   String a=adr.getHostAddress();
-                               String b=InetAddress.getLocalHost().getHostAddress();
-                        	System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
                             if(a.equals(b)){
-                            	System.out.println("$111111111111111111111111111111111111111111");
+            
                             }
                             else{
-                            	System.out.println("$$$$$$$$$$$$$$$$$7777777777777777$$$$$$$$$$$");
                             RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                             c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
                             c.getLocalUser().removeRemoteUser(remoteUser);
