@@ -347,7 +347,8 @@ public class GUI extends JFrame{
 	 */
 	 MouseListener monMouseListener = new MouseAdapter() {
 	     public void mouseClicked(MouseEvent e) {
-	    	 for(int i=0;i<1000;i++){
+	    	 int i = 0;
+	    	 while(i<1000){
 	    		 if (e.getClickCount() == 2) {
 	    			 RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
 	    			 addTab(o.getUsername(),i);
