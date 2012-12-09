@@ -1,7 +1,5 @@
 package network;
 
-import gui.AcceptFiles;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,34 +7,62 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.RemoteUser;
-
 import controller.ChatController;
-
 import signals.*;
 
+/**
+ * Cette classe permet de creer un socket UDP pour recevoir des sigaux
+ * @author yingqing
+ */
 public class UDPReceiver extends Thread{
+	private Signal sigal; 
+    private ChatController c=new ChatController();
+	/**
+	 * Definir le port d'ecoute de socket
+	 * @see portLocal
+	 */
      private final int portLocal=5500;
-     byte[] buf = new byte[1024];
-     Signal sigal;
-     private ChatController c=new ChatController();
+     
+     /**
+      * Buffert utilise pour stockets les byte
+      * @see buf
+      */
+     private byte[] buf = new byte[1024];
+     
+     /**
+      * Boolean permet d'active ou deactiver le thread
+      * @see active
+      */
      private boolean active;
      
+     /**
+      * Constructeur permet de construire un socket UDP pour 
+      * recevoir, qu'on on cree ce socket, on veux que le thread
+      * est en mode d'ecoute!
+      * @param c
+      */
      public UDPReceiver(ChatController c){
          active=true;
-         this.c=c;
-         
+         this.c=c;  
      }
      
-     public boolean isActive() {
-         return active;
-     }
-
+     /**setteur de active
+      * @param active
+      */
      public void setActive(boolean active) {
          this.active = active;
      }
      
+     /**
+      * Cette methode permet de deserialiser des bytes en objet pour qu'on puisse
+      * lire
+      * @param sigToRead
+      * @return sigal
+      */
      public static Signal deserializeSignal(byte[] sigToRead){
         Signal sigal=null;
         try {
@@ -44,116 +70,104 @@ public class UDPReceiver extends Thread{
             ObjectInputStream ois = new ObjectInputStream(bis);
             sigal = (Signal) ois.readObject();
         } catch (IOException e) {
-                System.out.println("Object non deserialized");
+        	Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Object no deserialized");
         } catch (ClassNotFoundException e) {
-                System.out.println("Object non deserialized");
+        	Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Object no deserialized");
         }
         return sigal;
     }
    
+     /**
+      * Methode permet d'activer le thread et on ecoute sur le reseau 
+      * pour recevoir le signal. thread est active si boolean active vaut 
+      * true, sinon, le thread est arrete, et on ne ecoute pas sur le reseau 
+      */
     public void run(){
         DatagramSocket socketUDPReceive=null;        
         try {
               socketUDPReceive=new DatagramSocket(portLocal);
             } catch (SocketException e1) {
-                 e1.printStackTrace();
+            	Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e1);
+                System.out.println("creation of socket UDP receiver failed !!");
             }
                  
          while(active){        
-                 DatagramPacket packet=new DatagramPacket(buf,buf.length);
-                 try {
-                socketUDPReceive.receive(packet);
-                InetAddress adr = packet.getAddress();
-                // Conversion of the packet from Bytes to Array data
-                ByteArrayInputStream bis = new ByteArrayInputStream(packet.getData());
-                // Conversion into an object
-                ObjectInputStream received = new ObjectInputStream(bis);    
-                    try {
-                  	   String a=adr.getHostAddress();
-                       String b=InetAddress.getLocalHost().getHostAddress();
-                        sigal = (Signal) received.readObject();
-                        if (sigal instanceof Hello){  
-
-//                            String a=adr.getHostName();
-//                            String b=InetAddress.getLocalHost().getHostName();
-                             System.out.println("test ================ : "+ a);
-                             System.out.println("test ================ : "+ b);
-                            if(a.equals(b)){
-                                System.out.println("*****************************");
-                            }
-                            else{
-                            	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                                c.controlDisplayHello((Hello)sigal,adr.getHostName());
-                              //  c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName());
-                                c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((Hello) sigal).getUsername());
-                                c.controlSendHelloReply(adr.getHostAddress());
-                                System.out.println("test goodbye  !!" +c.getLocalUser().getRemoteUsers());
-                                System.out.println("test Hello  !!" + adr.getHostName());
-                                System.out.println("test Hello  !!" + InetAddress.getByName(adr.getHostAddress()));
-                                  System.out.println("test hello UDP Receiver !!");
-                                  System.out.println("controlleur dans UDP "+ c);
-                            }
-//                              c.controlSendHelloReply(adr.getHostAddress());;                                                
-                        }
-                        
-                        if(sigal instanceof GoodBye){
-
-                            if(a.equals(b)){
-            
-                            }
-                            else{
-                            RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
-                            c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
-                            c.getLocalUser().removeRemoteUser(remoteUser);
-                            System.out.println("test goodbye  !!" + remoteUser.getUsername());
-                            System.out.println("test goodbye  !!" + adr.getHostName());
-                            System.out.println("test goodbye  !!" + InetAddress.getByName(adr.getHostAddress()));
-                            }
-                        }
-                        
-                        if(sigal instanceof SendText){
-                        	RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
-                            c.controlDisplayText((SendText)sigal,remoteUser.getUsername());
-//                            c.getLocalUser().getDiscussion().addParticipant(new RemoteUser(InetAddress.getByName(adr.getHostAddress()), adr.getHostName()));
-                        }
-                        
-                        if (sigal instanceof HelloReply){
-                            c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((HelloReply) sigal).getUsername());
-                            c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
-                                      
-                        }
-                        
-                        if(sigal instanceof PropFile){
-                        	RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
-                        	if(a.equals(b)){
-                        		c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername());
-                        		
-                        	}
-                        	else{
-                        	//	c.controlsendPropFile();
-                        		c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername());
-                        	}
-                        }
-                        
-                        if(sigal instanceof AcceptFile){
-                        	RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
-                       // 	c.controlAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getUsername());
-                        	c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getUsername());
-                        	System.out.println("Accepted  !! "+((AcceptFile) sigal).accepted());
-                        }
-//                        
-                        } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
-                        }   
-                        
-                        } catch (IOException e) {
-                                e.printStackTrace();
-                                System.out.println("Receive with socket UDP failed!!");
-                        }
-                 }
-         System.out.println("test 2 !!");
-         socketUDPReceive.close();
-         
-        }
-    
+        	 DatagramPacket packet=new DatagramPacket(buf,buf.length);
+             try {
+             socketUDPReceive.receive(packet);
+             InetAddress adr = packet.getAddress();
+             /**Conversion of the packet from Bytes to Array data*/
+             ByteArrayInputStream bis = new ByteArrayInputStream(packet.getData());
+             /**Conversion into an object*/
+             ObjectInputStream received = new ObjectInputStream(bis);    
+             try {
+            	 String userDistant=adr.getHostName();
+            	 String userLocal=InetAddress.getLocalHost().getHostName();
+            	 RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
+                 sigal = (Signal) received.readObject();
+                 
+                 /**
+                  * Pour le signal Hello, on distingue si ce Hello provient de l'utilisateur distant
+                  * ou celui local. si c'est local, on ne fait rien, sinon, on envoit un HelloReply 
+                  * a la personne si nous envoit Hello! Et on ajoute cette personne dans la liste
+                  * connecté! C'est pour ajouter des personnes qui se connectent avant moi ! 
+                  */
+                 if (sigal instanceof Hello){                  	                 	
+                     if(userDistant.equals(userLocal)){}
+                     else{
+                    	 c.controlDisplayHello((Hello)sigal,adr.getHostName());
+                    	 c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((Hello) sigal).getUsername());
+                    	 c.controlSendHelloReply(adr.getHostAddress());
+                     }                                              
+                  }  
+                 /**
+                  * Pour le signal GoodBye, on distingue si ce GoodBye provient de l'utilisateur distant
+                  * ou celui local. si c'est local, on ne fait rien, sinon, on la retire sur la liste !
+                  */
+                  if(sigal instanceof GoodBye){
+                	  if(userDistant.equals(userLocal)){}
+                	  else{
+                		  /**Permet de recuperer le login associe a cette address ip */       		  
+                		  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
+                          c.getLocalUser().removeRemoteUser(remoteUser);
+                      }
+                   }
+                  /**
+                   * Si on recoit un text provenant d'autre utilisateur, on l'affiche ! 
+                   */
+                  if(sigal instanceof SendText){
+                	  c.controlDisplayText((SendText)sigal,remoteUser.getUsername());
+                  }
+                  /**
+                   * Si on recoit un HelloReply provenant d'autre utilisateur, on l'ajoute dans
+                   * la liste, c'est pour ajouter les personnes qui se connectent apres moi ! 
+                   */
+                  if (sigal instanceof HelloReply){
+                	  c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((HelloReply) sigal).getUsername());
+                	  c.controlDisplayHelloReply((HelloReply)sigal,adr.getHostName());
+                  }
+                  /**
+                   * Si on recoit un PropreFile, il y aura un dialog qui va afficher      
+                   */
+                  if(sigal instanceof PropFile){
+                	  c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername());
+                  }
+                  /**
+                   * Pas encore fini !!!!!!!!!!!!!!!!!
+                   */
+                  if(sigal instanceof AcceptFile){
+                	  c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getUsername());
+                  }
+             } catch (ClassNotFoundException e) {
+            	 Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e);
+             }   
+             } catch (IOException e) {
+            	 Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e);
+            	 System.out.println("Receive with socket UDP failed!!");
+             }
+         }
+         socketUDPReceive.close(); /**On close le socket si on quitte le chat system*/
+    }   
 }

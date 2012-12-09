@@ -12,6 +12,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Ce
+ * @author yingqing
+ *
+ */
 public class TCPClient extends Thread{
 
     private int port = 6500;
