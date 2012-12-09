@@ -14,8 +14,20 @@ public class Network {
         private ChatController c;
         private UDPReceiver udpR;
         private TCPClient tcpClient;
+        private TCPServer tcpServer;
+        
+        
+        
        
-        public Network (ChatController c){
+        public TCPServer getTcpServer() {
+			return tcpServer;
+		}
+
+		public TCPClient getTcpClient() {
+			return tcpClient;
+		}
+
+		public Network (ChatController c){
                 udpR = new UDPReceiver(c);
  //               udpR.start();              
         }      

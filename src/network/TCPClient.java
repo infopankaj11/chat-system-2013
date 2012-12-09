@@ -71,11 +71,11 @@ import java.net.InetAddress;
 import java.net.Socket;  
 import java.net.UnknownHostException;  
   
-public class TCPClient implements Runnable {  
+public class TCPClient extends Thread {  
   
     private Socket socket = null;  
     private String path = null;    
-	private int portServer;
+	private static int portServer;
 	private Socket socketClient=null;
 	private File fileToSend;
 	
@@ -118,7 +118,6 @@ public class TCPClient implements Runnable {
 				read = new DataInputStream(new FileInputStream(  
 				        new File(getPath())));
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}  
   
