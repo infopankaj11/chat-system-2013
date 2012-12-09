@@ -6,15 +6,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileSystemView;
 
-import network.UDPSender;
-
 import java.awt.event.*;  
 import java.io.File;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import model.LocalUserModel;
 import model.RemoteUser;
@@ -330,7 +325,7 @@ public class GUI extends JFrame{
 			FileSystemView fsv = FileSystemView.getFileSystemView();  
 			System.out.println(fsv.getHomeDirectory());              
 			fileChooser.setCurrentDirectory(fsv.getHomeDirectory());  
-			fileChooser.setDialogTitle("Select the file to upload...");  
+			fileChooser.setDialogTitle("Select the file to send...");  
 			fileChooser.setApproveButtonText("OK");  
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);  
 			result = fileChooser.showOpenDialog(panelPrinciple);  
@@ -339,7 +334,8 @@ public class GUI extends JFrame{
 				path=fileChooser.getSelectedFile().getPath();  
 				System.out.println("path: "+path);  
 			}
-			userToSendFile="192.168.1.17";
+			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
+			userToSendFile=o.getAddressIP().toString();
 			c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 			System.out.println("File name : "+file.getName());
 			c.getTcpC().setFilepath(path);
@@ -420,10 +416,19 @@ public class GUI extends JFrame{
 		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
 	}
 	
+	/**
+	 * Verifier si le tab existe deja dans le GUI
+	 * @param name
+	 * @return
+	 */
 	public int getTabIndex(String name){
 		return tabMiddleTop.indexOfTab(name);
 	}
 
+	/**
+	 * Creation d'une couleur au hasard
+	 * @return
+	 */
     public Color createRandomColor() {  
         return new Color((new Double(Math.random() * 128)).intValue() + 128,  
                 (new Double(Math.random() * 128)).intValue() + 128,  
