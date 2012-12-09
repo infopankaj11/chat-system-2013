@@ -25,6 +25,7 @@ public class GUI extends JFrame{
 	private String userToSendFile;
 	private boolean connected;
 	private JTextArea textArea;
+	private int index=0;
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -114,6 +115,22 @@ public class GUI extends JFrame{
 	 */
 	public JTextArea getTextArea() {
 		return textArea;
+	}
+
+	/**
+	 * get Index
+	 * @return
+	 */
+	public int getIndex() {
+		return index;
+	}
+	
+	/**
+	 * Set Index
+	 * @param index
+	 */
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	/**
@@ -330,10 +347,12 @@ public class GUI extends JFrame{
 	 */
 	 MouseListener monMouseListener = new MouseAdapter() {
 	     public void mouseClicked(MouseEvent e) {
-	         if (e.getClickCount() == 2) {
-	        	 RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
-	        	 addTab(o.getUsername());
-	          }
+	    	 for(int i=0;i<1000;i++){
+	    		 if (e.getClickCount() == 2) {
+	    			 RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
+	    			 addTab(o.getUsername(),i);
+	    		 }
+	    	 }
 	     }
 	 };
         
@@ -387,8 +406,18 @@ public class GUI extends JFrame{
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
 	 * conversation
 	 */
-	public void addTab(String name){
+	public void addTab(String name,int index){
 		creatTextArea();
-		tabMiddleTop.addTab(name, textArea);
+		tabMiddleTop.insertTab(name, null,textArea,null,index);
+		this.index=index;
+		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
+	}
+	
+	public int getTabExiste(String name){
+		return tabMiddleTop.indexOfTab(name);
+	}
+	
+	public int getNumberTab(){
+		return tabMiddleTop.getTabCount();
 	}
 }
