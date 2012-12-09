@@ -300,7 +300,7 @@ public class GUI extends JFrame{
         public void optionFile(String file,String user,long size,int id){
         	 String path="";
              JFileChooser choose = new JFileChooser();
-             choose.setDialogTitle("Save this file: "+file+ "From: "+user+ " size : "+ size+" + id : "+id +"?");
+             choose.setDialogTitle("Save this file: "+file+ " From: "+user+ " size : "+ size+" id : "+id +" ?");
              int ret =choose.showOpenDialog(this);
              choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
              System.out.println("file selection : "+choose.getFileSelectionMode());
