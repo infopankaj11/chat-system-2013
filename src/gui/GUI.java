@@ -269,30 +269,10 @@ public class GUI extends JFrame{
 	 */     
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
-			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+//			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
 			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
-			Object[] o=userPanel.getSelectedValues();
-			listP=new InetAddress[o.length];
-			for(int i=0;i<o.length;i++){
-				r.add((RemoteUser)o[i]);
-             }
-			for(int j=0;j<r.size();j++){
-				listP[j]=r.get(j).getAddressIP();
-				addTab(r.get(j).getUsername());
-			}
-			
-			c.controlSendText(s, listP);
-		}
-    }
-     
-	/**
-	 * ActionListener sur la boutton addToConversion
-	 */ 
-//	class AddToConversionListener implements ActionListener{
-//		public void actionPerformed(ActionEvent a){
-//			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 //			Object[] o=userPanel.getSelectedValues();
 //			listP=new InetAddress[o.length];
 //			for(int i=0;i<o.length;i++){
@@ -300,11 +280,13 @@ public class GUI extends JFrame{
 //             }
 //			for(int j=0;j<r.size();j++){
 //				listP[j]=r.get(j).getAddressIP();
+//				addTab(r.get(j).getUsername());
 //			}
-//			participates.setText(r.toString());
-//		}
-//	}
-        
+//			
+			c.controlSendText(s, listP);
+		}
+    }
+       
 	/**
 	 * ActionListener sur la boutton browse
 	 */ 
