@@ -65,12 +65,12 @@ public class GUI extends JFrame{
 	/**
 	 * Construire le GUI
 	 */
-    public GUI(){
+    public GUI(){   
     	this.intComponents();
-        this.setSize(1000, 600);
+        this.setSize(550, 550);
         this.setVisible(true);
         this.setTitle("Welcome to chat system !!!");
-        pack();
+        pack(); 
     }
         
     /**
@@ -120,52 +120,52 @@ public class GUI extends JFrame{
 		panelLeftBottom=new JPanel(new BorderLayout());
     	panelMiddle=new JPanel(new BorderLayout(5,5));
     	panelRightBottom=new JPanel(new FlowLayout());     
-    	panelRight=new JPanel(new BorderLayout());
+//    	panelRight=new JPanel(new BorderLayout());
     	
     	labelUser=new JLabel("User : ");
     	userConnect=new JLabel("Connected users : ");
-    	labelParticipates=new JLabel("Participates : ");
+//    	labelParticipates=new JLabel("Participates : ");
     	
     	textUser=new JTextArea();    	
     	msg=new JTextArea();
-    	participates=new JTextArea();
+//    	participates=new JTextArea();
     	textMiddleTop=new JTextArea();
     	
     	buttonConnect=new JButton("Connect");
     	buttonDisconnect=new JButton("Disconnect");   	
-    	buttonConversion=new JButton("Add user(s) to conversion !");
+//    	buttonConversion=new JButton("Add user(s) to conversion !");
     	buttonSend=new JButton("Send");
     	buttonBrowse=new JButton("Browse");
     	   	
     	userPanel=new JList();
     	
     	jScrollPane1 = new JScrollPane();
-    	jScrollPane2 = new JScrollPane();
+ //   	jScrollPane2 = new JScrollPane();
     	jScrollPane1.setViewportView(userPanel);
-    	jScrollPane2.setViewportView(participates);
+ //   	jScrollPane2.setViewportView(participates);
     	
     	tabMiddleTop=new JTabbedPane(JTabbedPane.TOP);
     	tabMiddleTop.addTab("Talk", textMiddleTop);
     	
     	userPanel.setBorder(blueline);
     	textUser.setBorder(blueline);
-    	participates.setBorder(blueline);
+ //   	participates.setBorder(blueline);
     	msg.setBorder(blueline);
     	
-    	jScrollPane1.setPreferredSize(new Dimension(150,425));
-    	jScrollPane2.setPreferredSize(new Dimension(150,200));
-    	buttonSend.setPreferredSize(new Dimension(130,30));
-    	buttonBrowse.setPreferredSize(new Dimension(130,30));
-    	labelParticipates.setPreferredSize(new Dimension(100,30));
-    	tabMiddleTop.setPreferredSize(new Dimension(100,500));
-    	labelUser.setPreferredSize(new Dimension(60,30));
-    	textUser.setPreferredSize(new Dimension(200,30));
-    	buttonConnect.setPreferredSize(new Dimension(130,30));
-    	buttonDisconnect.setPreferredSize(new Dimension(130,30));
+    	jScrollPane1.setPreferredSize(new Dimension(200,400));
+//    	jScrollPane2.setPreferredSize(new Dimension(150,200));
+    	buttonSend.setPreferredSize(new Dimension(150,30));
+    	buttonBrowse.setPreferredSize(new Dimension(150,30));
+//    	labelParticipates.setPreferredSize(new Dimension(100,30));
+    	tabMiddleTop.setPreferredSize(new Dimension(350,400));
+    	labelUser.setPreferredSize(new Dimension(70,30));
+    	textUser.setPreferredSize(new Dimension(130,30));
+    	buttonConnect.setPreferredSize(new Dimension(100,30));
+    	buttonDisconnect.setPreferredSize(new Dimension(100,30));
     	userPanel.setPreferredSize(new Dimension(260,430));
-    	buttonConversion.setPreferredSize(new Dimension(260,30));
+//    	buttonConversion.setPreferredSize(new Dimension(260,30));
                 
-    	buttonConversion.setEnabled(false);
+//    	buttonConversion.setEnabled(false);
     	buttonDisconnect.setEnabled(false);
     	textMiddleTop.setEnabled(false);
     	buttonSend.setEnabled(false);
@@ -175,7 +175,7 @@ public class GUI extends JFrame{
     	buttonSend.addActionListener(new SendListener());
     	buttonConnect.addActionListener(new ConnexionListener());
     	buttonDisconnect.addActionListener(new DixconnexionListener());
-    	buttonConversion.addActionListener(new AddToConversionListener());
+//    	buttonConversion.addActionListener(new AddToConversionListener());
     	buttonBrowse.addActionListener(new BrowseListener());
                 
     	panelLeftTop.add(labelUser);
@@ -186,7 +186,7 @@ public class GUI extends JFrame{
                
     	panelLeftBottom.add(userConnect,BorderLayout.NORTH);
     	panelLeftBottom.add(jScrollPane1,BorderLayout.CENTER);
-    	panelLeftBottom.add(buttonConversion,BorderLayout.SOUTH);
+//    	panelLeftBottom.add(buttonConversion,BorderLayout.SOUTH);
                
     	panelLeft.add(panelLeftTop,BorderLayout.NORTH);
     	panelLeft.add(panelLeftMiddle,BorderLayout.CENTER);
@@ -194,17 +194,18 @@ public class GUI extends JFrame{
                
     	panelMiddle.add(tabMiddleTop,BorderLayout.NORTH);
     	panelMiddle.add(msg,BorderLayout.CENTER);
+    	panelMiddle.add(panelRightBottom,BorderLayout.SOUTH);
                
     	panelRightBottom.add(buttonSend);
     	panelRightBottom.add(buttonBrowse);
                        
-    	panelRight.add(labelParticipates,BorderLayout.NORTH);
-    	panelRight.add(jScrollPane2,BorderLayout.CENTER);
-    	panelRight.add(panelRightBottom,BorderLayout.SOUTH);
+//    	panelRight.add(labelParticipates,BorderLayout.NORTH);
+//    	panelRight.add(jScrollPane2,BorderLayout.CENTER);
+//    	panelRight.add(panelRightBottom,BorderLayout.SOUTH);
                
                
     	panelPrinciple.add(panelLeft,BorderLayout.WEST);
-    	panelPrinciple.add(panelRight,BorderLayout.EAST);
+//    	panelPrinciple.add(panelRight,BorderLayout.EAST);
     	panelPrinciple.add(panelMiddle,BorderLayout.CENTER);
     	getContentPane().add(panelPrinciple);
 
@@ -216,7 +217,7 @@ public class GUI extends JFrame{
 		userPanel.setEnabled(true);
 		buttonConnect.setEnabled(false);
 		buttonDisconnect.setEnabled(true);
-		buttonConversion.setEnabled(true);
+//		buttonConversion.setEnabled(true);
 		buttonSend.setEnabled(true);
 		buttonBrowse.setEnabled(true);
 		textUser.setEnabled(false);
@@ -229,7 +230,7 @@ public class GUI extends JFrame{
 		textUser.setEnabled(true);
 		buttonConnect.setEnabled(true);
 		buttonDisconnect.setEnabled(false);    
-		buttonConversion.setEnabled(false);
+//		buttonConversion.setEnabled(false);
 		buttonSend.setEnabled(false);
 		buttonBrowse.setEnabled(false);
 		c.getNetwork().getUdpR().setActive(false);
@@ -275,20 +276,20 @@ public class GUI extends JFrame{
 	/**
 	 * ActionListener sur la boutton addToConversion
 	 */ 
-	class AddToConversionListener implements ActionListener{
-		public void actionPerformed(ActionEvent a){
-			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
-			Object[] o=userPanel.getSelectedValues();
-			listP=new InetAddress[o.length];
-			for(int i=0;i<o.length;i++){
-				r.add((RemoteUser)o[i]);
-             }
-			for(int j=0;j<r.size();j++){
-				listP[j]=r.get(j).getAddressIP();
-			}
-			participates.setText(r.toString());
-		}
-	}
+//	class AddToConversionListener implements ActionListener{
+//		public void actionPerformed(ActionEvent a){
+//			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+//			Object[] o=userPanel.getSelectedValues();
+//			listP=new InetAddress[o.length];
+//			for(int i=0;i<o.length;i++){
+//				r.add((RemoteUser)o[i]);
+//             }
+//			for(int j=0;j<r.size();j++){
+//				listP[j]=r.get(j).getAddressIP();
+//			}
+//			participates.setText(r.toString());
+//		}
+//	}
         
 	/**
 	 * ActionListener sur la boutton browse
