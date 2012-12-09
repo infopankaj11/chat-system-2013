@@ -90,7 +90,7 @@ public class Network {
       public void siganl_accept_file(int fId, boolean acc, boolean now,String address){
     	  Signal AcceptFile=new AcceptFile(fId,acc,now);
     	  try {
-			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, fId);
+			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
 			 System.out.println("Send file refused 3 !!");
 			 System.out.println("Send file refused 4!!" +InetAddress.getByName(address));
 		} catch (UnknownHostException e) {
