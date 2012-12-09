@@ -91,7 +91,8 @@ public class Network {
     	  Signal AcceptFile=new AcceptFile(fId,acc,now);
     	  try {
 			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, fId);
-			c.controlsendPropFile();
+			 System.out.println("Send file refused 3 !!");
+			 System.out.println("Send file refused 4!!" +InetAddress.getByName(address));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
