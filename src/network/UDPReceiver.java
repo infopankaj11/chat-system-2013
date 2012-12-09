@@ -104,7 +104,9 @@ public class UDPReceiver extends Thread{
              ObjectInputStream received = new ObjectInputStream(bis);    
              try {
             	 String userDistant=adr.getHostName();
+            	 System.out.println("userDistant : " +userDistant);
             	 String userLocal=InetAddress.getLocalHost().getHostName();
+            	 System.out.println("userLocal : " +userLocal);
             	 RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                  sigal = (Signal) received.readObject();
                  
