@@ -124,6 +124,18 @@ public class Network {
 	} 
       
 	/**
+	 * Demander le login de utilisateur si on le connait pas avant!
+	 */
+	public void signal_ask_login(String name){
+		Signal AskLogin=new AskLogin();
+		try {
+			udpS.sendSignal(InetAddress.getByName(name),AskLogin,portDest);
+		} catch (UnknownHostException e) {
+			Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Unknown user for AskLogin!!");
+		}
+	}
+	/**
 	 * Definir le siganl propFile
 	 * @param filename
 	 * @param filesize
