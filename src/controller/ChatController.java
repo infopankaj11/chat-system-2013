@@ -35,9 +35,7 @@ public class ChatController {
         private String file;
         private boolean refuse;
         private boolean acceptNow;
-        
- 
-       
+              
         public ChatController(){
     
         }      
@@ -223,10 +221,12 @@ public class ChatController {
         		fileRefuse=new RefuseFile();
         	}
           	else{
-          		if(accepted==true && now==true){
-          			network.getTcpClient().start();
-          			network.getTcpServer().run();
-          		}
+          	if(accepted==true && now==true){
+          		try {
+					network.send_file(InetAddress.getByName(user), id);
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				}
           	}
         }
         
@@ -258,6 +258,7 @@ public class ChatController {
 //        	System.out.println("test cao ni ma1 : " + network.getUDPR());
 //        	network.getUDPR().setActive(false);
 //        }
+        }
 //       
 }
 
