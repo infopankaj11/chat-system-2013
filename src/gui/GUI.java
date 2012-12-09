@@ -292,8 +292,9 @@ public class GUI extends JFrame{
 	        	userToSendFile="192.168.1.17";
 	        	c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 	        	System.out.println("File name : "+file.getName());
+	        	c.getTcpC().setFilepath(path);
 	        	id++;
-	        	bar=new ProgressBar();
+	       // 	bar=new ProgressBar();
             }  	
         }
         

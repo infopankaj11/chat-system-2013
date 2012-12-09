@@ -47,6 +47,34 @@ public class ChatController {
         
         
        
+		public TCPClient getTcpC() {
+			return tcpC;
+		}
+
+
+
+
+		public void setTcpC(TCPClient tcpC) {
+			this.tcpC = tcpC;
+		}
+
+
+
+
+		public TCPServer getTcpS() {
+			return tcpS;
+		}
+
+
+
+
+		public void setTcpS(TCPServer tcpS) {
+			this.tcpS = tcpS;
+		}
+
+
+
+
 		public void setRefuse(boolean refuse) {
 			this.refuse = refuse;
 		}
