@@ -309,6 +309,7 @@ public class GUI extends JFrame{
                  path = choose.getSelectedFile().getAbsolutePath();
                  System.out.println("path : "+path);
                  c.controlAcceptFile(id,true,true,user);
+                 System.out.println("Send file accepted !!");
              }
              if(ret==JFileChooser.CANCEL_OPTION){
             	 c.controlAcceptFile(id,false,false,user);
