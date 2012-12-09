@@ -269,7 +269,6 @@ public class GUI extends JFrame{
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
-			tabMiddleTop.addTab("Talk2", textMiddleTop);
 			String s = msg.getText();
 			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
@@ -280,8 +279,9 @@ public class GUI extends JFrame{
              }
 			for(int j=0;j<r.size();j++){
 				listP[j]=r.get(j).getAddressIP();
+				addTab(r.get(j).getUsername());
 			}
-//			participates.setText(r.toString());
+			
 			c.controlSendText(s, listP);
 		}
     }
@@ -364,5 +364,15 @@ public class GUI extends JFrame{
 	 */
 	public void displayMsg(String message){
 		textMiddleTop.append(message); 
+	}
+	
+	/**
+	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
+	 * conversation
+	 */
+	public void addTab(String name){
+		JTextArea text=new JTextArea();
+		text.setBackground(Color.WHITE);
+		tabMiddleTop.addTab("name", text);
 	}
 }

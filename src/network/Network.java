@@ -93,7 +93,7 @@ public class Network {
 			udpS.sendSignal(InetAddress.getByName(address), signalHelloReply, portDest);
 		} catch (UnknownHostException e) {
 			Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, e);
-			System.out.println("Unknown user foe HelloReply!!");
+			System.out.println("Unknown user for HelloReply!!");
 		}            
 	}
 
