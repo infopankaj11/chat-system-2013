@@ -24,6 +24,7 @@ public class GUI extends JFrame{
 	private InetAddress[] listP;
 	private String userToSendFile;
 	private boolean connected;
+	private JTextArea textArea;
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -281,8 +282,7 @@ public class GUI extends JFrame{
 			for(int j=0;j<r.size();j++){
 				listP[j]=r.get(j).getAddressIP();
 			}
-			
-			c.controlSendText(s, listP);
+			c.controlSendText(s,listP);
 		}
     }
        
@@ -314,7 +314,10 @@ public class GUI extends JFrame{
 		}  	
 	}
 	
-	
+	/**
+	 * Double click sur une source de userPanel, un autre TabbedPane
+	 * affiche
+	 */
 	 MouseListener monMouseListener = new MouseAdapter() {
 	     public void mouseClicked(MouseEvent e) {
 	         if (e.getClickCount() == 2) {
@@ -358,6 +361,14 @@ public class GUI extends JFrame{
 	}
 	
 	/**
+	 * Display des messages sur differents TabPane selon differentes
+	 * personnes
+	 */
+	public void displayText(String message){
+		textArea.append(message);
+	}
+	
+	/**
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
 	 * conversation
 	 */
@@ -365,5 +376,6 @@ public class GUI extends JFrame{
 		JTextArea text=new JTextArea();
 		text.setBackground(Color.WHITE);
 		tabMiddleTop.addTab(name, text);
+		textArea=text;
 	}
 }
