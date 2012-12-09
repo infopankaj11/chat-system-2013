@@ -272,6 +272,7 @@ public class GUI extends JFrame{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
+			displayText("You say : " + s +"\n");
 //			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
 			Object[] o=userPanel.getSelectedValues();
@@ -281,8 +282,7 @@ public class GUI extends JFrame{
              }
 			for(int j=0;j<r.size();j++){
 				listP[j]=r.get(j).getAddressIP();
-				addTab(r.get(j).getUsername());
-				displayText("You say : " + s +"\n");
+//				addTab(r.get(j).getUsername());				
 			}
 			c.controlSendText(s,listP);
 		}
