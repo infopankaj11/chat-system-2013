@@ -59,7 +59,7 @@ public class TCPClient extends Thread{
 
         
         FileInputStream in = new FileInputStream(this.filepath);
-        System.out.println(this.filepath);
+        System.out.println("client paths : "+this.filepath);
 
         OutputStream os = socket.getOutputStream();
         DataOutputStream dos = new DataOutputStream(os);
