@@ -34,6 +34,7 @@ public class GUI extends JFrame{
 	JPanel panelLeftMiddle;
 	JPanel panelLeftBottom;
 	JPanel panelRightBottom;
+//	JPanel panelTab;
 	
 	JLabel labelUser;
 	JLabel userConnect;
@@ -119,7 +120,8 @@ public class GUI extends JFrame{
 		panelLeftMiddle=new JPanel(new FlowLayout());
 		panelLeftBottom=new JPanel(new BorderLayout());
     	panelMiddle=new JPanel(new BorderLayout(5,5));
-    	panelRightBottom=new JPanel(new FlowLayout());     
+    	panelRightBottom=new JPanel(new FlowLayout());
+ //   	panelTab=new JPanel();
 //    	panelRight=new JPanel(new BorderLayout());
     	
     	labelUser=new JLabel("User : ");
@@ -267,7 +269,7 @@ public class GUI extends JFrame{
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
-			tabMiddleTop.addTab("Talk2", panelPrinciple);
+			tabMiddleTop.addTab("Talk2", textMiddleTop);
 			String s = msg.getText();
 			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
