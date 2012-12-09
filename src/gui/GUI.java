@@ -373,6 +373,6 @@ public class GUI extends JFrame{
 	public void addTab(String name){
 		JTextArea text=new JTextArea();
 		text.setBackground(Color.WHITE);
-		tabMiddleTop.addTab("name", text);
+		tabMiddleTop.addTab(name, text);
 	}
 }
