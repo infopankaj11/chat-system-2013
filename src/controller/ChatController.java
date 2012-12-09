@@ -222,9 +222,11 @@ public class ChatController {
           	if(accepted==false && now==false){
         		fileRefuse=new RefuseFile();
         	}
-          	if(accepted==true && now==true){
-          		network.getTcpClient().start();
-          		network.getTcpServer().run();
+          	else{
+          		if(accepted==true && now==true){
+          			network.getTcpClient().start();
+          			network.getTcpServer().run();
+          		}
           	}
         }
         
