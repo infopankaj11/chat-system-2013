@@ -22,12 +22,12 @@ public class TCPServer implements Runnable{
     private PrintWriter sortie ;     //Ecriture dans un fichier
     private boolean     isStart ;
     private int         port;
-    private PropFile fileToReceive ;
+    private int fileToReceive ;
     private long     sizeFileToReceive;
     private static File   defaultDirectory;
      
      
-    public TCPServer(short port ,PropFile file, long taille)
+    public TCPServer(int port ,int file, long taille)
     {
           
           this.setPort(port);
@@ -47,7 +47,7 @@ public class TCPServer implements Runnable{
 //   public final void setFile(PropFile file){
 //        this.fileToReceive=new PropFile(file);
 //    }
-    public final void setPort(short port){
+    public final void setPort(int port){
          if(port>1024) this.port=port;
     }
     
@@ -131,7 +131,7 @@ public class TCPServer implements Runnable{
 	try{
 	     //Recuperation des flux
             entree       = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            sortie = new PrintWriter(new FileWriter( new File(defaultDirectory+"/"+fileToReceive.getFileName())),true);
+            sortie = new PrintWriter(new FileWriter( new File(defaultDirectory+"/"+fileToReceive)),true);
 
 
 	}catch (java.io.IOException ex){

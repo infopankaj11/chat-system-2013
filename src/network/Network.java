@@ -1,5 +1,6 @@
 package network;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -10,22 +11,12 @@ import signals.*;
 
 public class Network {
         final static  int portDest=5500;
+        final static int portDestTCP=6500;
         private  UDPSender udpS= new UDPSender(8000);
         private ChatController c;
         private UDPReceiver udpR;
         private TCPClient tcpClient;
         private TCPServer tcpServer;
-        
-        
-        
-       
-        public TCPServer getTcpServer() {
-			return tcpServer;
-		}
-
-		public TCPClient getTcpClient() {
-			return tcpClient;
-		}
 
 		public Network (ChatController c){
                 udpR = new UDPReceiver(c);
@@ -109,5 +100,15 @@ public class Network {
 			e.printStackTrace();
 		}
       }	  
+      
+      public void send_file(InetAddress addressServer,int fileToSend){
+    	  tcpClient=new TCPClient(addressServer,portDestTCP,fileToSend);
+    	  tcpClient.start();
+      }
+      
+      public void receive_file(int file, long taille){
+    	  tcpServer=new TCPServer(portDestTCP,file,taille);
+    	  tcpServer.run();
+      }
 }
 
