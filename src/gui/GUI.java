@@ -414,17 +414,18 @@ public class GUI extends JFrame{
 		creatTextArea();
 		tabMiddleTop.addTab(name,textArea);
 		this.index=getTabIndex(name);
+		tabMiddleTop.setBackgroundAt(index, Color.BLUE);		
 		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
 	}
 	
 	public int getTabIndex(String name){
 		return tabMiddleTop.indexOfTab(name);
 	}
-	
-	public String getTitleOfTab(int index){
-		return tabMiddleTop.getTitleAt(index);
-	}
-	public int getNumberTab(){
-		return tabMiddleTop.getTabCount();
-	}
+//	
+//	public String getTitleOfTab(int index){
+//		return tabMiddleTop.getTitleAt(index);
+//	}
+//	public int getNumberTab(){
+//		return tabMiddleTop.getTabCount();
+//	}
 }
