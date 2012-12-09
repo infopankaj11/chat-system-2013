@@ -173,12 +173,19 @@ public class ChatController {
 			if(username!=userList.get(i)){
 				userList.add(username);
 				gui.addTab(username);
+				Date d = new Date();
+				String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+				gui.displayText(s,gui.getTextArea());
+			}
+			else{
+				Date d = new Date();
+				String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+				gui.displayText(s,gui.getTextArea());
 			}
 		}
-		Date d = new Date();
-		String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
 		
-		gui.displayText(s,gui.getTextArea());
+		
+		
 	}
         
 	/**
