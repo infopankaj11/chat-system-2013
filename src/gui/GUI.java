@@ -266,9 +266,19 @@ public class GUI extends JFrame{
 	 */     
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
+			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
 			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
+			Object[] o=userPanel.getSelectedValues();
+			listP=new InetAddress[o.length];
+			for(int i=0;i<o.length;i++){
+				r.add((RemoteUser)o[i]);
+             }
+			for(int j=0;j<r.size();j++){
+				listP[j]=r.get(j).getAddressIP();
+			}
+//			participates.setText(r.toString());
 			c.controlSendText(s, listP);
 		}
     }
