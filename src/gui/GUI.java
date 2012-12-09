@@ -267,6 +267,7 @@ public class GUI extends JFrame{
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+			tabMiddleTop.addTab("Talk2", panelPrinciple);
 			String s = msg.getText();
 			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
