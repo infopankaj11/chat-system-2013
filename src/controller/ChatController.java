@@ -18,7 +18,6 @@ import model.RemoteUser;
 import network.Network;
 import network.TCPClient;
 import network.TCPServer;
-import network.UDPReceiver;
 
 import gui.GUI;
 import gui.RefuseFile;
@@ -33,6 +32,7 @@ public class ChatController {
 	private Network network;
 	private LocalUserModel localUser; 
 	private RemoteUser user;
+	@SuppressWarnings("unused")
 	private RefuseFile fileRefuse;
 	private String file;
 	private boolean refuse;
