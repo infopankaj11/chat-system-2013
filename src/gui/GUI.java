@@ -179,6 +179,7 @@ public class GUI extends JFrame{
     	buttonDisconnect.addActionListener(new DixconnexionListener());
 //    	buttonConversion.addActionListener(new AddToConversionListener());
     	buttonBrowse.addActionListener(new BrowseListener());
+    	userPanel.addMouseListener(monMouseListener);
                 
     	panelLeftTop.add(labelUser);
     	panelLeftTop.add(textUser);
@@ -331,6 +332,15 @@ public class GUI extends JFrame{
 			id++;
 		}  	
 	}
+	
+	
+	 MouseListener monMouseListener = new MouseAdapter() {
+	     public void mouseClicked(MouseEvent e) {
+	         if (e.getClickCount() == 2) {
+	        	 addTab(userPanel.getSelectedValue().toString());
+	          }
+	     }
+	 };
         
 	/**
 	 * Proposition d'enregistrement de fichier ou refuse de fichier
