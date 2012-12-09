@@ -294,8 +294,21 @@ public class GUI extends JFrame{
 	        	System.out.println("File name : "+file.getName());
 	        	id++;
 	        	bar=new ProgressBar();
-            }  
-        	
+            }  	
+        }
+        
+        public void optionFile(String nomFic,String user,long size){
+        	 String path="";
+             JFileChooser choose = new JFileChooser();
+             choose.setDialogTitle("Voulez vous enregistrer le fichier "+nomFic+ " venant de "+user+ " et de taille : "+ size+" ?");
+             int ret =choose.showOpenDialog(this);
+             choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+             System.out.println("file selection : "+choose.getFileSelectionMode());
+             if(ret == JFileChooser.APPROVE_OPTION)
+             {
+                 path = choose.getSelectedFile().getAbsolutePath();
+                 System.out.println("path : "+path);
+             }
         }
   
 //         public void deleteUserFromParticipates(){
