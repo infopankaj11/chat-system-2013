@@ -338,7 +338,7 @@ public class GUI extends JFrame{
 			userToSendFile=o.getAddressIP().toString();
 			c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
 			System.out.println("File name : "+file.getName());
-			c.getTcpC().setFilepath(path);
+	//		c.getTcpC().setFilepath(path);
 			id++;
 		}  	
 	}
