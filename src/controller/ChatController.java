@@ -227,7 +227,6 @@ public class ChatController {
           			System.out.println("*****************"+user);
           			//System.out.println("*****************"+InetAddress.getByName(user));
           		  tcpC=new TCPClient(InetAddress.getByName("192.168.1.17"));
-          		  
             	  tcpC.start();
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
