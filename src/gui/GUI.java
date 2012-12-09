@@ -348,14 +348,14 @@ public class GUI extends JFrame{
 	 MouseListener monMouseListener = new MouseAdapter() {
 	     public void mouseClicked(MouseEvent e) {
 	    	 int i = 0;
-	    	 while(i<1000){
-	    		 if (e.getClickCount() == 2) {
-	    			 RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
-	    			 addTab(o.getUsername(),i);
-	    		 }
-	    	 }
-	     }
-	 };
+	    	 if (e.getClickCount() == 2) {
+	    		RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
+	    		addTab(o.getUsername(),i);
+	    		i++;
+	    		System.out.println("Index= "+i);
+	    	}
+	    }
+	};
         
 	/**
 	 * Proposition d'enregistrement de fichier ou refuse de fichier
