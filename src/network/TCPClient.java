@@ -58,7 +58,7 @@ public class TCPClient extends Thread{
 	}
 
 
-    public void run() {
+    public void sendFile(String filename, InetAddress adr) {
 
         int data_size = 0;
 
