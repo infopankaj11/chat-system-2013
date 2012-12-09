@@ -224,8 +224,10 @@ public class ChatController {
           	else{
           	if(accepted==true && now==true){
           		try {
+          			System.out.println("*****************"+user);
+          			System.out.println("*****************"+InetAddress.getByName(user));
           		  tcpC=new TCPClient(InetAddress.getByName(user));
-          		  System.out.println("*****************"+InetAddress.getByName(user));
+          		  
             	  tcpC.start();
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
