@@ -5,10 +5,17 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileSystemView;
+
+import network.UDPSender;
+
 import java.awt.event.*;  
 import java.io.File;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import model.LocalUserModel;
 import model.RemoteUser;
 
@@ -295,19 +302,26 @@ public class GUI extends JFrame{
 	 */     
 	class SendListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
-			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+//			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
 			displayText("You say : " + s +"\n",textArea);
-//			textMiddleTop.append("You say : " + s +"\n");
+			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
-			Object[] o=userPanel.getSelectedValues();
-			listP=new InetAddress[o.length];
-			for(int i=0;i<o.length;i++){
-				r.add((RemoteUser)o[i]);
-             }
-			for(int j=0;j<r.size();j++){
-				listP[j]=r.get(j).getAddressIP();
-//				addTab(r.get(j).getUsername());				
+//			Object[] o=userPanel.getSelectedValues();
+//			listP=new InetAddress[o.length];
+//			for(int i=0;i<o.length;i++){
+//				r.add((RemoteUser)o[i]);
+//             }
+//			for(int j=0;j<r.size();j++){
+//				listP[j]=r.get(j).getAddressIP();			
+//			}
+			for(int j=0;j<getNumberTab();j++){
+				try {
+					listP[j]=InetAddress.getByName(getTitleOfTab(j));
+				} catch (UnknownHostException e) {
+					Logger.getLogger(UDPSender.class.getName()).log(Level.SEVERE, null, e);
+					System.out.println("UnKonwn Host User in GUI");
+				}			
 			}
 			c.controlSendText(s,listP);
 		}
@@ -415,7 +429,10 @@ public class GUI extends JFrame{
 		return tabMiddleTop.indexOfTab(name);
 	}
 	
-//	public int getNumberTab(){
-//		return tabMiddleTop.getTabCount();
-//	}
+	public String getTitleOfTab(int index){
+		return tabMiddleTop.getTitleAt(index);
+	}
+	public int getNumberTab(){
+		return tabMiddleTop.getTabCount();
+	}
 }
