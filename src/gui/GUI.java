@@ -347,12 +347,9 @@ public class GUI extends JFrame{
 	 */
 	 MouseListener monMouseListener = new MouseAdapter() {
 	     public void mouseClicked(MouseEvent e) {
-	    	 int i = 0;
 	    	 if (e.getClickCount() == 2) {
 	    		RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
-	    		addTab(o.getUsername(),i);
-	    		i++;
-	    		System.out.println("Index= "+i);
+	    		addTab(o.getUsername());
 	    	}
 	    }
 	};
@@ -407,18 +404,18 @@ public class GUI extends JFrame{
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
 	 * conversation
 	 */
-	public void addTab(String name,int index){
+	public void addTab(String name){
 		creatTextArea();
-		tabMiddleTop.insertTab(name, null,textArea,null,index);
-		this.index=index;
+		tabMiddleTop.addTab(name,textArea);
+		this.index=getTabIndex(name);
 		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
 	}
 	
-	public int getTabExiste(String name){
+	public int getTabIndex(String name){
 		return tabMiddleTop.indexOfTab(name);
 	}
 	
-	public int getNumberTab(){
-		return tabMiddleTop.getTabCount();
-	}
+//	public int getNumberTab(){
+//		return tabMiddleTop.getTabCount();
+//	}
 }
