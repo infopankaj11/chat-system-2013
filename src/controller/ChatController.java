@@ -19,6 +19,7 @@ import model.RemoteUser;
 import model.TalkUserModel;
 import network.Network;
 import network.TCPClient;
+import network.TCPServer;
 import gui.AcceptFiles;
 import gui.GUI;
 import gui.ProgressBar;
@@ -37,6 +38,7 @@ public class ChatController {
         private boolean refuse;
         private boolean acceptNow;
         private TCPClient tcpC;
+        private TCPServer tcpS;
               
         public ChatController(){
     
@@ -215,6 +217,8 @@ public class ChatController {
         
         public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
         	network.siganl_accept_file(id, accepted, now, user);
+        	tcpS=new TCPServer(this,"test.txt");
+        	tcpS.start();
         }
         
         public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, String user){
