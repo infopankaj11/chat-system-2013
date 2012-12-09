@@ -119,7 +119,7 @@ public class UDPReceiver extends Thread{
                  if (sigal instanceof Hello){                  	                 	
                      if(userDistant.equals(userLocal)){}
                      else{
-                    	 System.out.println("Test de Hello!!");
+                    	 System.out.println(userDistant+ " is online!!");
                     	 c.controlDisplayHello((Hello)sigal,adr.getHostName());
                     	 c.getLocalUser().addRemoteUser(InetAddress.getByName(adr.getHostAddress()), ((Hello) sigal).getUsername());
                     	 c.controlSendHelloReply(adr.getHostAddress());
