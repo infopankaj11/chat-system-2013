@@ -297,7 +297,7 @@ public class GUI extends JFrame{
             }  	
         }
         
-        public void optionFile(String nomFic,String user,long size){
+        public void optionFile(String nomFic,String user,long size,int id){
         	 String path="";
              JFileChooser choose = new JFileChooser();
              choose.setDialogTitle("Voulez vous enregistrer le fichier "+nomFic+ " venant de "+user+ " et de taille : "+ size+" ?");
@@ -308,6 +308,10 @@ public class GUI extends JFrame{
              {
                  path = choose.getSelectedFile().getAbsolutePath();
                  System.out.println("path : "+path);
+                 c.controlAcceptFile(id,true,true,user);
+             }
+             if(ret==JFileChooser.CANCEL_OPTION){
+            	 c.controlAcceptFile(id,false,false,user);
              }
         }
   
