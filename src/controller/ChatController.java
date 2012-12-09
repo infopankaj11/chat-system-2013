@@ -197,7 +197,7 @@ public class ChatController {
         }
               
         public void dialogAcceptFile(String file,long fileSize,int id,String username){
-        	gui.optionFile(file, username, fileSize);
+        	gui.optionFile(file, username, fileSize,id);
 //        	fileAccept=new AcceptFiles(file,fileSize,id,username,this);
 //        	System.out.println("File name 5: "+file);
         }
@@ -215,13 +215,12 @@ public class ChatController {
         
         public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
         	network.siganl_accept_file(id, accepted, now, user);
-      
         }
         
         public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, String user){
-          //	if(accepted==false && now==false){
+          	if(accepted==false && now==false){
         		fileRefuse=new RefuseFile();
-        	//}
+        	}
         }
         
 //        public void controlGetUserToTalk(ArrayList<RemoteUser> r) {
