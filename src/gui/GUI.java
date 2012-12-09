@@ -109,6 +109,14 @@ public class GUI extends JFrame{
 	}
 
 	/**
+	 * get TextArea
+	 * @return
+	 */
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+
+	/**
 	 * Dessigner le GUI
 	 */
 	public void intComponents(){
@@ -272,7 +280,7 @@ public class GUI extends JFrame{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
-			displayText("You say : " + s +"\n");
+			displayText("You say : " + s +"\n",textArea);
 //			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
 			Object[] o=userPanel.getSelectedValues();
@@ -367,18 +375,20 @@ public class GUI extends JFrame{
 	 * Display des messages sur differents TabPane selon differentes
 	 * personnes
 	 */
-	public void displayText(String message){
-		textArea.append(message);
+	public void displayText(String message,JTextArea text){
+		text.append(message);
 	}
 	
+	public void creatTextArea(){
+		this.textArea=new JTextArea();
+		textArea.setBackground(Color.WHITE);
+	}
 	/**
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
 	 * conversation
 	 */
 	public void addTab(String name){
-		JTextArea text=new JTextArea();
-		text.setBackground(Color.WHITE);
-		tabMiddleTop.addTab(name, text);
-		textArea=text;
+		creatTextArea();
+		tabMiddleTop.addTab(name, textArea);
 	}
 }

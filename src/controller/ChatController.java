@@ -3,6 +3,7 @@ package controller;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -167,10 +168,17 @@ public class ChatController {
 	 * @param username
 	 */
 	public void controlDisplayText(SendText t,String username){
+		ArrayList<String> userList=new ArrayList<String>();
+		for(int i=0;i<userList.size();i++){
+			if(username!=userList.get(i)){
+				userList.add(username);
+				gui.addTab(username);
+			}
+		}
 		Date d = new Date();
 		String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";
-		gui.addTab(username);
-		gui.displayText(s);
+		
+		gui.displayText(s,gui.getTextArea());
 	}
         
 	/**
