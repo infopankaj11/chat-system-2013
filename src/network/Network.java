@@ -102,12 +102,12 @@ public class Network {
       }	  
       
       public void send_file(InetAddress addressServer,int fileToSend){
-    	  tcpClient=new TCPClient(addressServer,portDestTCP,fileToSend);
+    	  tcpClient=new TCPClient(addressServer);
     	  tcpClient.start();
       }
       
       public void receive_file(int file, long taille){
-    	  tcpServer=new TCPServer(portDestTCP,file,taille);
+    	  tcpServer=new TCPServer(c,file);
     	  tcpServer.run();
       }
 }

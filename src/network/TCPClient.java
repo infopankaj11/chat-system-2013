@@ -1,120 +1,83 @@
 package network;
 
-import java.io.DataInputStream;  
-import java.io.DataOutputStream;  
-import java.io.File;  
-import java.io.FileInputStream;  
-import java.io.FileNotFoundException;
-import java.io.IOException;  
+import gui.GUI;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetAddress;
-import java.net.Socket;  
-import java.net.UnknownHostException;  
-  
-public class TCPClient extends Thread {  
-  
-    private Socket socket = null;  
-    private String path = null;    
-	private static int portServer;
-	private Socket socketClient=null;
-	private int fileToSend;
-	
-	public TCPClient(InetAddress addressServer,int portServer,int fileToSend){
-		this.portServer=portServer;
-		this.fileToSend=fileToSend;
-		try {
-			socketClient=new Socket(addressServer,portServer);
-		} catch (IOException e) {
-			System.out.println("Can not create socketClient!!");
-		}
-		this.start();
-	}
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class TCPClient extends Thread{
+
+    private int port = 6500;
+    private byte[] buffer = new byte[2560];
+    private long senddatasize;
+    private long filesize;
+    private GUI mon_gui;
+    private Socket socket;
     
-    private DataOutputStream getDataOutputStream() throws IOException {  
-        return new DataOutputStream(socket.getOutputStream());  
-    }  
-  
-    private DataInputStream getDataInputStream() throws IOException {   
-        return new DataInputStream(socket.getInputStream());  
-    }  
-  
-    private String getPath() {  
-        return path;  
-    }  
-  
-    public void setPath(String path) {  
-        this.path = path;  
-    }  
-  
-    public void run() {  
-        try {   
-        	DataInputStream read = null;
-			try {
-				read = new DataInputStream(new FileInputStream(new File(getPath())));
-			} catch (FileNotFoundException e1) {
-			}   
-            System.out.println(read.available());    
-            DataOutputStream os = getDataOutputStream();   
-            DataInputStream in = getDataInputStream();   
-            String fileName = path.substring(path.lastIndexOf("//") + 1);  
-            System.out.println(fileName);   
-            os.write((fileName + ";" + read.available()).getBytes("utf-8")); 
-            byte[] data = new byte[1024];   
-            int len = in.read(data);    
-            String start = new String(data, 0, len);   
-            int sendCountLen = 0;  
-  
-//            if (start.equals("start")) {  
-//  
-//                new Thread(bar).start();
-//  
-//                while ((len = read.read(data)) != -1) {  
-//  
-//                    os.write(data, 0, len);  
-//  
-//                    sendCountLen += len;  
-//  
-//                    bar.setSendSize(sendCountLen);  
-//  
-//                }  
-  
-                try {
-					os.flush();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}  
-  
-                try {
-					os.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}  
-  
-                try {
-					read.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}  
-  
-//            }  
-//  
-//        } catch (IOException e) {  
-//  
-//            e.printStackTrace();  
-        } catch (IOException e) {
-			// TODO Auto-generated catch block
+    private int idFilesent;
+    private String filepath;
+
+    public TCPClient(InetAddress adr){
+    	try {
+			socket = new Socket(adr, port);
+		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {  
-  
-            try {  
-                socket.close();  
-            } catch (IOException e) {  
-                e.printStackTrace();  
-            }  
-  
-        }  
-  
-    }  
-}  
+		}
+    }
+
+    @SuppressWarnings("empty-statement")
+    	public long getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(long filesize) {
+		this.filesize = filesize;
+	}
+
+	public GUI getMon_gui() {
+		return mon_gui;
+	}
+
+	public String getFilepath() {
+		return filepath;
+	}
+
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
+
+
+    public void run(int idFilename) throws UnknownHostException, IOException {
+
+        int data_size = 0;
+
+        
+        FileInputStream in = new FileInputStream(this.filepath);
+        System.out.println(this.filepath);
+
+        OutputStream os = socket.getOutputStream();
+        DataOutputStream dos = new DataOutputStream(os);
+
+        File myfile = new File(this.filepath);
+        filesize = myfile.length();
+
+        System.out.println(this.filepath);
+
+        // Fermeture du flux d'entree
+        in.close();
+
+        // Fermeture du flux de sortie
+        dos.close();
+
+        // Fermeture du socket
+        socket.close();
+    }
+
+
+}
