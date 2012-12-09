@@ -168,24 +168,17 @@ public class ChatController {
 	 * @param username
 	 */
 	public void controlDisplayText(SendText t,String username){
-		ArrayList<String> userList=new ArrayList<String>();
-		for(int i=0;i<userList.size();i++){
-			if(username!=userList.get(i)){
-				userList.add(username);
-				gui.addTab(username);
-				Date d = new Date();
-				String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
-				gui.displayText(s,gui.getTextArea());
-			}
-			else{
-				Date d = new Date();
-				String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
-				gui.displayText(s,gui.getTextArea());
-			}
+		if(gui.getTabExiste(username)==-1){
+			gui.addTab(username,gui.getNumberTab()+1);
+			Date d = new Date();
+			String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+			gui.displayText(s,gui.getTextArea());
 		}
-		
-		
-		
+		else{
+			Date d = new Date();
+			String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+			gui.displayText(s,gui.getTextArea());
+		}
 	}
         
 	/**
