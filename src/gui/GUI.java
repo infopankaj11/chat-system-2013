@@ -416,18 +416,17 @@ public class GUI extends JFrame{
 		creatTextArea();
 		tabMiddleTop.addTab(name,textArea);
 		this.index=getTabIndex(name);
-		tabMiddleTop.setBackgroundAt(index, Color.YELLOW);		
+		tabMiddleTop.setBackgroundAt(index, createRandomColor());		
 		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
 	}
 	
 	public int getTabIndex(String name){
 		return tabMiddleTop.indexOfTab(name);
 	}
-//	
-//	public String getTitleOfTab(int index){
-//		return tabMiddleTop.getTitleAt(index);
-//	}
-//	public int getNumberTab(){
-//		return tabMiddleTop.getTabCount();
-//	}
+
+    public Color createRandomColor() {  
+        return new Color((new Double(Math.random() * 128)).intValue() + 128,  
+                (new Double(Math.random() * 128)).intValue() + 128,  
+                (new Double(Math.random() * 128)).intValue() + 128);  
+    }  
 }
