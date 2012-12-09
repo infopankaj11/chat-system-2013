@@ -19,9 +19,9 @@ public class TCPServer extends Thread {
 
     private ChatController mon_controller;
     private boolean connecte;
-    private int filename;
+    private String filename;
 
-    TCPServer(ChatController aThis, int filename) {
+    public TCPServer(ChatController aThis, String filename) {
         this.mon_controller = aThis;
         this.filename = filename;
     }

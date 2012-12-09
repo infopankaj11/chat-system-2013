@@ -94,8 +94,6 @@ public class Network {
     	  Signal AcceptFile=new AcceptFile(fId,acc,now);
     	  try {
 			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
-			tcpServer=new TCPServer(c,fId);
-			tcpServer.start();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import gui.GUI;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -20,7 +21,7 @@ public class TCPClient extends Thread{
     private GUI mon_gui;
     private Socket socket;
     
-    private int idFilesent;
+    private String filesent;
     private String filepath;
 
     public TCPClient(InetAddress adr){
@@ -31,14 +32,18 @@ public class TCPClient extends Thread{
 		}
     }
 
-    @SuppressWarnings("empty-statement")
-    	public long getFilesize() {
-		return filesize;
+
+	public String getFilesent() {
+		return filesent;
 	}
 
-	public void setFilesize(long filesize) {
-		this.filesize = filesize;
+
+
+	public void setFilesent(String filesent) {
+		this.filesent = filesent;
 	}
+
+
 
 	public GUI getMon_gui() {
 		return mon_gui;
@@ -53,15 +58,27 @@ public class TCPClient extends Thread{
 	}
 
 
-    public void run(int idFilename) throws UnknownHostException, IOException {
+    public void run() {
 
         int data_size = 0;
 
         
-        FileInputStream in = new FileInputStream(this.filepath);
+        FileInputStream in = null;
+		try {
+			in = new FileInputStream(this.filepath);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         System.out.println("client paths : "+this.filepath);
 
-        OutputStream os = socket.getOutputStream();
+        OutputStream os = null;
+		try {
+			os = socket.getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         DataOutputStream dos = new DataOutputStream(os);
 
         File myfile = new File(this.filepath);
@@ -70,13 +87,28 @@ public class TCPClient extends Thread{
         System.out.println(this.filepath);
 
         // Fermeture du flux d'entree
-        in.close();
+        try {
+			in.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         // Fermeture du flux de sortie
-        dos.close();
+        try {
+			dos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         // Fermeture du socket
-        socket.close();
+        try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 
