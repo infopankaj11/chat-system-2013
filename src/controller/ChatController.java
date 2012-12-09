@@ -18,6 +18,7 @@ import model.LocalUserModel;
 import model.RemoteUser;
 import model.TalkUserModel;
 import network.Network;
+import network.TCPClient;
 import gui.AcceptFiles;
 import gui.GUI;
 import gui.ProgressBar;
@@ -35,6 +36,7 @@ public class ChatController {
         private String file;
         private boolean refuse;
         private boolean acceptNow;
+        private TCPClient tcpC;
               
         public ChatController(){
     
@@ -222,7 +224,8 @@ public class ChatController {
           	else{
           	if(accepted==true && now==true){
           		try {
-					network.send_file(InetAddress.getByName(user), id);
+          		  tcpC=new TCPClient(InetAddress.getByName(user));
+            	  tcpC.start();
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
 				}

@@ -99,10 +99,10 @@ public class Network {
 		}
       }	  
       
-      public void send_file(InetAddress addressServer,int fileToSend){
-    	  tcpClient=new TCPClient(addressServer);
-    	  tcpClient.start();
-      }
+//      public void send_file(InetAddress addressServer,int fileToSend){
+//    	  tcpClient=new TCPClient(addressServer);
+//    	  tcpClient.start();
+//      }
       
       public void receive_file(int file, long taille){
     	  tcpServer=new TCPServer(c,file);
