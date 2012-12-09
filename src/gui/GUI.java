@@ -414,7 +414,7 @@ public class GUI extends JFrame{
 		creatTextArea();
 		tabMiddleTop.addTab(name,textArea);
 		this.index=getTabIndex(name);
-		tabMiddleTop.setBackgroundAt(index, Color.BLUE);		
+		tabMiddleTop.setBackgroundAt(index, Color.YELLOW);		
 		textArea=(JTextArea) tabMiddleTop.getComponentAt(index);
 	}
 	
