@@ -215,6 +215,7 @@ public class ChatController {
         
         public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
         	network.siganl_accept_file(id, accepted, now, user);
+        	 System.out.println("Send file refused 2 !!");
         }
         
         public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, String user){
