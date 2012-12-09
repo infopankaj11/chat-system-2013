@@ -146,7 +146,7 @@ public class GUI extends JFrame{
 		panelLeft=new JPanel(new BorderLayout());
 		panelLeftTop=new JPanel(new FlowLayout());
 		panelLeftMiddle=new JPanel(new FlowLayout());
-		panelLeftBottom=new JPanel(new BorderLayout());
+		panelLeftBottom=new JPanel(new BorderLayout(5,5));
     	panelMiddle=new JPanel(new BorderLayout(5,5));
     	panelRightBottom=new JPanel(new FlowLayout());
  //   	panelTab=new JPanel();
@@ -192,7 +192,8 @@ public class GUI extends JFrame{
     	textUser.setPreferredSize(new Dimension(130,30));
     	buttonConnect.setPreferredSize(new Dimension(100,30));
     	buttonDisconnect.setPreferredSize(new Dimension(100,30));
-    	userPanel.setPreferredSize(new Dimension(260,430));
+    	userPanel.setPreferredSize(new Dimension(200,400));
+    	userConnect.setPreferredSize(new Dimension(150,30));
 //    	buttonConversion.setPreferredSize(new Dimension(260,30));
                 
 //    	buttonConversion.setEnabled(false);
