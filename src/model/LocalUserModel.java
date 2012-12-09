@@ -3,37 +3,52 @@ package model;
 import gui.GUI;
 
 import java.net.InetAddress;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
+/**
+ * Cette classe permet de creer une liste de remote user qui est connecte
+ * @author yingqing
+ */
 public class LocalUserModel {
-
-    private GUI view;
-    // Indique si l'utilisateur est connect�
+	
+	/**
+	 * @see gui
+	 */
+    private GUI gui;
+    
+    /**
+     * Indique si l'utilisateur est connecte
+     * @see connected
+     */
     private boolean connected;
-    // Nom d'utilisateur
+    
+    /**
+     * Nom d'utilisateur
+     */
     private String username;
-    // Liste d'utilisateurs distants
+    
+    /**
+     * Liste d'utilisateurs distants
+     */
     private DefaultListModel remoteUsers;
-    private TalkUserModel talk;
 
-    public LocalUserModel()
-    {
+    /**
+     * Construire un model user
+     */
+    public LocalUserModel(){
         connected=false;
         username=new String();
         remoteUsers = new DefaultListModel();
     }
 
     /**
-     * Creation du lien LocalUser <--> View
-     * @param v
+     * Creation du lien LocalUser <--> Gui
+     * @param gui
      */
-    public void setView(GUI v)
-    {
-        view=v;
+    public void setView(GUI gui){
+        this.gui=gui;
     }
-    
-    
+       
     /**
      * @return the connected
      */
@@ -45,13 +60,11 @@ public class LocalUserModel {
      * @param connected the connected to set
      */
     public void setConnected(boolean connected) {
-        if(connected)
-        {
-            view.connectedMode();
+        if(connected){
+            gui.connectedMode();
         }
-        else
-        {
-            view.disconnectedMode();
+        else{
+            gui.disconnectedMode();
         }
         this.connected = connected;
     }
@@ -70,10 +83,15 @@ public class LocalUserModel {
         this.username = username;
     }
 
-
+    /**
+     * @return the remoteUsers
+     */
+    public DefaultListModel getRemoteUsers() {
+        return remoteUsers;
+    }
 
     /**
-     * Ajout d'un utilisateur distant � la liste d'utilisateurs
+     * Ajout un utilisateur distant a la liste d'utilisateurs
      * @param remoteIP
      * @param userName
      */
@@ -90,44 +108,30 @@ public class LocalUserModel {
         }
     }
 
-    /**
-     * @return the remoteUsers
-     */
-    public DefaultListModel getRemoteUsers() {
-        return remoteUsers;
-    }
-    
-
 	/**
-     * Retourne l'utilisateur distant correspondant �
-     * l'adresse IP pass�e en param�tre
+     * Retourne l'utilisateur distant correspondant a
+     * l'adresse IP passee en parametre
      * @param address
-     * @return
+     * @return result
      */
-    public RemoteUser getRemoteUser(InetAddress address)
-    {
+    public RemoteUser getRemoteUser(InetAddress address){
         RemoteUser result=null;
-
-        for(int i=0;i<remoteUsers.size();i++)
-        {
+        for(int i=0;i<remoteUsers.size();i++){
             RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
-            if(r.getAddressIP().equals(address))
-            {
+            if(r.getAddressIP().equals(address)){
                 result=r;
             }
         }
-
         return result;
     }
 
     /**
-     *  M�thode permettant de supprimer un utilisateur de la liste
+     *  Methode permet de supprimer un utilisateur de la liste
      *  d'utilisateurs distants
      * @param remoteUser
      */
     public void removeRemoteUser(RemoteUser remoteUser) {
         remoteUsers.removeElement(remoteUser);
-        System.out.println("Tester Remote User \n");
     }
 
     /**
@@ -136,22 +140,5 @@ public class LocalUserModel {
      */
     public void removeAllRemoteUser(){
         remoteUsers.clear();
-    }
-//    public void addToTalk(ArrayList<RemoteUser> remoteUsers) {
-//        TalkUserModel t=new TalkUserModel();
-//        for(RemoteUser r:remoteUsers)
-//        {
-//            t.addParticipant(r);
-//        }
-//        talk.add(t);
-//    }
-
-    public TalkUserModel getDiscussion()
-    {
-    	
-        	return talk;
-    }
-
-    
-    
+    }     
 }

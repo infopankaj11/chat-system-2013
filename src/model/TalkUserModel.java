@@ -3,21 +3,25 @@ package model;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
+/**
+ * Cette classe permet de creer une liste de remote user qui participe
+ * la conversation
+ * @author yingqing
+ */
 public class TalkUserModel {
 
-    // Stockage d'une liste de participants à la discussion
+    /**
+     * Stocker une liste de participants à la discussion
+     * @see participants
+     */
     ArrayList<RemoteUser> participants;
     private DefaultListModel participantsListModel;
-
-
-    
+ 
     /**
      * Constructeur de la classe Discussion
-     * @param t
      */
-    public TalkUserModel()
-    {
-        participants=new ArrayList<RemoteUser>();
+    public TalkUserModel(){
+    	participants=new ArrayList<RemoteUser>();
         participantsListModel=new DefaultListModel();
     }
 

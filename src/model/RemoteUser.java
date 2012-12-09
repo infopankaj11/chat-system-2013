@@ -1,40 +1,47 @@
-/*
- * Classe RemoteUser
- * Modèle associé à un utilisateur distant
- */
-
 package model;
 
 import java.net.InetAddress;
 
-
+/**
+ * Classe RemoteUser
+ *  Modèle associé à un utilisateur distant
+ * @author yingqing
+ */
 public class RemoteUser {
+	/**
+	 * Adresse ip de remote user
+	 * @see addressIP
+	 */
+	private InetAddress addressIP;
+	
+	/**
+	 * Login de remote user
+	 * @see username
+	 */
+	private String username;
 
-        private InetAddress addressIP;
-        private String username;
-        
-        public RemoteUser(String username) {
-          this.username=username;
-      }
-
-        public RemoteUser(InetAddress addressIP,String username) {
-            this.addressIP=addressIP;
-            this.username=username;
-        }
-
-        /**
-         * Redéfinition de la méthode d'affichage d'un utilisateur
-         * distant (username/IP)
-         * @return
-         */
-    @Override
-        public String toString()
-        {
-            return getUsername()+"/"+getAddressIP().getHostAddress();
-        }
+	/**
+	 * Consteur permet de construire un remote user a partir
+	 * de son adresse ip et username
+	 * @param addressIP
+	 * @param username
+	 */
+    public RemoteUser(InetAddress addressIP,String username) {
+    	this.addressIP=addressIP;
+    	this.username=username;
+    }
 
     /**
-     * @return the addressIP
+     * Redéfinition de la méthode d'affichage d'un utilisateur
+     * distant (username/IP)
+     * @return
+     */
+    public String toString(){
+    	return getUsername()+"/"+getAddressIP().getHostAddress();
+    }
+
+    /**
+     * @return addressIP
      */
     public InetAddress getAddressIP() {
         return addressIP;
@@ -49,12 +56,16 @@ public class RemoteUser {
 
     /**
      * set the username
-     * @param u
+     * @param username
      */
-    public void setUsername(String u) {
-        username=u;
+    public void setUsername(String username) {
+        this.username=username;
     }
 
+    /**
+     * set the setAddressIP
+     * @param addressIP
+     */
 	public void setAddressIP(InetAddress addressIP) {
 		this.addressIP = addressIP;
 	}

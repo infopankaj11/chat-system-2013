@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class RefuseFile extends JFrame{
+	private static final long serialVersionUID = 1234L;
 	private JPanel mainPanel;
 	private JLabel msg;
 	
