@@ -148,6 +148,12 @@ public class GUI extends JFrame{
 	public int getIdFile() {
 		return idFile;
 	}
+	
+	
+
+	public String getPathOpen() {
+		return pathOpen;
+	}
 
 	/**
 	 * Dessigner le GUI

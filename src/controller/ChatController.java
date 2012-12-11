@@ -277,5 +277,9 @@ public class ChatController {
 	public String getFilePath(){
 		return gui.getPathSave();
 	}
+	
+	public String getFilePathOpen(){
+		return gui.getPathOpen();
+	}
 }
 
