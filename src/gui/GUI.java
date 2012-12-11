@@ -65,7 +65,8 @@ public class GUI extends JFrame{
 	JTabbedPane tabMiddleTop;
 
 	private File file = null;  
-	private String path = null; 
+	private String pathOpen = null; 
+	private String pathSave=null;
 	private ChatController c;
 	private LocalUserModel localUser;
 	
@@ -105,12 +106,9 @@ public class GUI extends JFrame{
 		this.userPanel.setModel(localUser.getRemoteUsers());
 	}
      
-	/**
-	 * get Path de fichier
-	 * @return
-	 */
-	public String getPath() {
-		return path;
+	
+	public String getPathSave() {
+		return pathSave;
 	}
 
 	/**
@@ -348,8 +346,8 @@ public class GUI extends JFrame{
 			result = fileChooser.showOpenDialog(panelPrinciple);  
 			if (JFileChooser.APPROVE_OPTION == result){  
 				fileToSend=fileChooser.getSelectedFile();
-				path=fileChooser.getSelectedFile().getPath();  
-				System.out.println("path of file selected: "+path);  				
+				pathOpen=fileChooser.getSelectedFile().getPath();  
+				System.out.println("path of file selected: "+pathOpen);  				
 			}
 			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
@@ -391,7 +389,7 @@ public class GUI extends JFrame{
 		choose.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		System.out.println("file selection : "+choose.getFileSelectionMode());
 		if(ret == JFileChooser.APPROVE_OPTION){
-			path = choose.getSelectedFile().getAbsolutePath();
+			pathSave = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
 			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");

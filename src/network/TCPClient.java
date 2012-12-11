@@ -29,6 +29,15 @@ public class TCPClient extends Thread {
     private File fileToSend;
     @SuppressWarnings("unused")
 	private ChatController controller;
+//    private String filePath;
+//    
+//	public String getFilepath() {
+//		return filePath;
+//	}
+//
+//	public void setFilepath(String filepath) {
+//		this.filePath = filepath;
+//	}
 
     /**
      * Constructeur pour construire un socket TCP client, on lui passe en parametre
@@ -61,7 +70,7 @@ public class TCPClient extends Thread {
             while ((buf = bis.read(buffer, 0, buffer.length)) > 0){
                 os.write(buffer, 0, buf);
                 os.flush();
-            }           
+            }          
             System.out.println("Send has benn sent successfully!!");
         }
         catch (UnknownHostException e){

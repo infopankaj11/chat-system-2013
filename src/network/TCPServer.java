@@ -5,8 +5,10 @@ import java.util.logging.Logger;
 import java.io.BufferedOutputStream;
 import java.io.EOFException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,6 +27,7 @@ public class TCPServer extends Thread {
     @SuppressWarnings("unused")
 	private ChatController controller;
     private static int serverPort=6500;
+    private PrintWriter PrintWriterOut;
 
     public TCPServer(String filename,ChatController c) {
         try {
@@ -42,11 +45,15 @@ public class TCPServer extends Thread {
     public void run() {
         int buf;
         byte[] buffer = new byte[2056];
+        String path;
         try {
             clientSocket = listenSocket.accept();          
             InputStream is = clientSocket.getInputStream();
             FileOutputStream fos = new FileOutputStream(filename);
             BufferedOutputStream bos = new BufferedOutputStream(fos);
+            path=controller.getFilePath();
+            System.out.println("Path of save file : "+path);
+            PrintWriterOut=new PrintWriter(new FileWriter(path), true);
          
             while ((buf = is.read(buffer, 0, buffer.length)) > 0){
                 bos.write(buffer, 0, buf);
