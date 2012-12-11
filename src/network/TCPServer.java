@@ -1,83 +1,73 @@
 package network;
 
-import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.BufferedOutputStream;
+import java.io.EOFException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import signals.Signal;
 
 import controller.ChatController;
 
-// Un objet de cette classe sera crée pour recevoir un unique fichier
-// Le nom de ce fichier est donné en argument du constructeur
+/**
+ * Cette classe permet de creer un socket TCP serveur
+ * @author yingqing
+ */
 public class TCPServer extends Thread {
 
-    private ChatController mon_controller;
-    private boolean connecte;
+    private ServerSocket listenSocket;
+    private Socket clientSocket;
     private String filename;
+    @SuppressWarnings("unused")
+	private ChatController controller;
+    private static int serverPort=6500;
 
-    public TCPServer(ChatController aThis, String filename) {
-        this.mon_controller = aThis;
-        this.filename = filename;
+    public TCPServer(String filename,ChatController c) {
+        try {
+            this.filename = filename;
+            controller = c;
+            listenSocket = new ServerSocket(serverPort);
+            System.out.println("server start listening... ... ...");         
+            this.start();
+        } catch (IOException e) {
+        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Failed to create et start the server socket !!");
+        }
     }
 
-    public void setconnecte(boolean b) {
-        this.connecte = b;
-    }
-
-    @Override
-    // Méthode de réception d'un ficheir
     public void run() {
-
-        // Sockets utilisés lors de la réception TCP
-        ServerSocket socket = null;
-        Socket socketClient = null;
-        InputStream in = null;
-        FileOutputStream out = null;
-        int data_size = 0;
-
-        byte[] buf = new byte[2560];
-        Signal message;
-
-        // Partie Initialisation des flux et mise en attente
+        int buf;
+        byte[] buffer = new byte[2056];
         try {
-            // Création du socket d'écoute (serveur) sur le port 2234
-            socket = new ServerSocket(6500);
-            // Affectation du socket client (contenant entre autre l'adresse de l'hote distant)
-            socketClient = socket.accept();
-            // Création du flux d'entrée (Flux TCP)
-            in = socketClient.getInputStream();
-            // Création du flux de sortie (Vers un fichier)
- //           out = new java.io.FileOutputStream(this.filename);
-        } catch (IOException ex) {
-            System.out.println("Probleme dans le processus d'attente de fichiers de ReceiveTCP !");
-        }
-       
-        // Partie réception du fichier
-        try {
-            while ((data_size = in.read(buf)) != -1) {
-                System.out.println("reception");
-             out.write(buf, 0, data_size);          
+            clientSocket = listenSocket.accept();          
+            InputStream is = clientSocket.getInputStream();
+            FileOutputStream fos = new FileOutputStream(filename);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+         
+            while ((buf = is.read(buffer, 0, buffer.length)) > 0){
+                bos.write(buffer, 0, buf);
+            }          
+            bos.close();
+            System.out.println("TCPServer received !!");
+        } catch (EOFException e) {
+        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("EOF problem !!");
+        } catch (IOException e) {
+        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("I/O problem !!");
+        } finally {
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+            	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("Fail to close server socket !!");
             }
-        } catch (IOException ex) {
-            System.out.println("Probleme dans le processus de reception du fichier !");
         }
-           
-        // Partie fermeture des flux/sockets
-        try {
-            socket.close();
-            socketClient.close();
-            in.close();
-            out.close();
-        } catch (IOException ex) {
-            System.out.println("Probleme dans la fermeture des flux/sockets !");
-        }
-
     }
 }
+
 

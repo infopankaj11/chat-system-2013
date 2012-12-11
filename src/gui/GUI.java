@@ -29,6 +29,7 @@ public class GUI extends JFrame{
 	private JTextArea textArea;
 	private int index=0;
 	private int idFile=0;
+	private File fileToSend=null;
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -134,6 +135,14 @@ public class GUI extends JFrame{
 	 */
 	public void setIndex(int index) {
 		this.index = index;
+	}
+	
+	/**
+	 * get file
+	 * @return
+	 */
+	public File getFile() {
+		return file;
 	}
 
 	/**
