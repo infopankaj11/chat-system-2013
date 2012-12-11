@@ -165,7 +165,7 @@ public class Network {
 			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
 		} catch (UnknownHostException e) {
 			Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, e);
-			System.out.println("Unknown user foe AcceptFiles!!");
+			System.out.println("Unknown user for AcceptFiles!!");
 		}
     }	  
 }
