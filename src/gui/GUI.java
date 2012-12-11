@@ -353,13 +353,13 @@ public class GUI extends JFrame{
 			if (JFileChooser.APPROVE_OPTION == result){  
 				fileToSend=fileChooser.getSelectedFile();
 				path=fileChooser.getSelectedFile().getPath();  
-				System.out.println("path of file selected: "+path);  
-				listFile.add(fileToSend);
+				System.out.println("path of file selected: "+path);  				
 			}
 			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
 			System.out.println("Fichier sent to : "+userToSendFile);
 			c.controlPropFile(fileToSend.getName(), fileToSend.length(), idFile, userToSendFile);
+			listFile.add(fileToSend);
 			System.out.println("File name : "+fileToSend.getName());
 			System.out.println("File id : "+idFile);
 	//		c.getTcpC().setFilepath(path);
