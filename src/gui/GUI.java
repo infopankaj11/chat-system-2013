@@ -80,6 +80,13 @@ public class GUI extends JFrame{
         this.setVisible(true);
         this.setTitle("Welcome to chat system !!!");
         pack(); 
+        
+        this.addWindowListener(new WindowAdapter(){
+     	   public void windowClosing(WindowEvent we){
+     		   c.logout();
+     		   System.exit(0);
+     	   }
+     });
     }
         
     /**
@@ -403,7 +410,7 @@ public class GUI extends JFrame{
 				RemoteUser users=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
 				addressUser=users.getAddressIP().toString().substring(1,users.getAddressIP().toString().length());
 			} catch (UnknownHostException e1) {
-				System.out.println("Unkonwn User in optin file");
+				System.out.println("Unkonwn User in option file");
 			}			
 			c.controlAcceptFile(id,true,true,addressUser,file);
 			System.out.println("Send file accepted !!");
