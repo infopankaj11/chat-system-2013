@@ -464,6 +464,6 @@ public class GUI extends JFrame{
      * @return
      */
     public File getFileFromId(int id){
-    	return listFile.get(id);
+    	return listFile.get(id-1);
     }
 }
