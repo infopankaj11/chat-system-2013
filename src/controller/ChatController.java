@@ -265,8 +265,7 @@ public class ChatController {
 		}
 		else{
 			if(accepted==true && now==true){
-				try {
-					System.out.println("User to send file : "+InetAddress.getByName(user));
+				try {					
 					/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
@@ -275,6 +274,12 @@ public class ChatController {
 				} catch (UnknownHostException e) {
 					Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
 					System.out.println("UnKnown user for AcceptFile !");
+					try {
+						System.out.println("User to send file : "+InetAddress.getByName(user));
+					} catch (UnknownHostException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
           	}
         }
