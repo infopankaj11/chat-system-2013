@@ -67,7 +67,7 @@ public class TCPServer extends Thread {
         } finally {
             try {
                 clientSocket.close();
-                listenSocket.close();
+           //     listenSocket.close();
             } catch (IOException e) {
             	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
                 System.out.println("Fail to close server socket !!");
