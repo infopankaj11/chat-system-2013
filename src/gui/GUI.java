@@ -349,8 +349,8 @@ public class GUI extends JFrame{
 			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
 			System.out.println("Fichier sent to : "+userToSendFile);
-			c.controlPropFile(file.getName(), file.length(), idFile, userToSendFile);
-			System.out.println("File name : "+file.getName());
+			c.controlPropFile(fileToSend.getName(), fileToSend.length(), idFile, userToSendFile);
+			System.out.println("File name : "+fileToSend.getName());
 			System.out.println("File id : "+idFile);
 	//		c.getTcpC().setFilepath(path);
 		}  	
