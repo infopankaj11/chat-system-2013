@@ -62,7 +62,6 @@ public class TCPClient extends Thread {
                 os.write(buffer, 0, buf);
                 os.flush();
             }           
-//            controller.controllerDisplayFileArrived(fileToSend.getName());
             System.out.println("Send has benn sent successfully!!");
         }
         catch (UnknownHostException e){
