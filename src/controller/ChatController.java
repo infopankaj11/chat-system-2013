@@ -265,11 +265,11 @@ public class ChatController {
 		else{
 			if(accepted==true && now==true){
 				try {
+					System.out.println("User to send file : "+InetAddress.getByName(user));
 					/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
-          		  tcpC=new TCPClient(InetAddress.getByName(user),gui.getFile(),this);
-          		  System.out.println("User to send file : "+InetAddress.getByName(user));
+          		  tcpC=new TCPClient(InetAddress.getByName(user),gui.getFile(),this);        		  
  //           	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
 				} catch (UnknownHostException e) {
 					Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
