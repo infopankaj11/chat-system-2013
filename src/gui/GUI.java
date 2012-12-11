@@ -29,7 +29,6 @@ public class GUI extends JFrame{
 	private JTextArea textArea;
 	private int index=0;
 	private int idFile=0;
-	@SuppressWarnings("unused")
 	private File fileToSend=null;
 	private ArrayList<String> listFile=new ArrayList<String>();
 //	private ProgressBar bar;

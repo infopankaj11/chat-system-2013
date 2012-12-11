@@ -144,7 +144,6 @@ public class Network {
 	 */
 	public void signal_Propo_File(String filename, long filesize, int file_id, String address){
 		Signal PropFile=new PropFile(filename,filesize,file_id);
-		System.out.println("Test 3 :" +file_id);
 		try {
 			udpS.sendSignal(InetAddress.getByName(address), PropFile, portDest);
 		} catch (UnknownHostException e) {
