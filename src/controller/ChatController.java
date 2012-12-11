@@ -248,7 +248,7 @@ public class ChatController {
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */
-		tcpS=new TCPServer(gui.getFileFromId(id).getName(),this);
+		tcpS=new TCPServer(gui.getFileFromId(id),this);
 	}
         
 	/**

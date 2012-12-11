@@ -31,7 +31,7 @@ public class GUI extends JFrame{
 	private int idFile=0;
 	@SuppressWarnings("unused")
 	private File fileToSend=null;
-	private ArrayList<File> listFile=new ArrayList<File>();
+	private ArrayList<String> listFile=new ArrayList<String>();
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -359,7 +359,7 @@ public class GUI extends JFrame{
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
 			System.out.println("Fichier sent to : "+userToSendFile);
 			c.controlPropFile(fileToSend.getName(), fileToSend.length(), idFile, userToSendFile);
-			listFile.add(fileToSend);
+			listFile.add(fileToSend.getName());
 			System.out.println("Number file : "+listFile.size());
 			System.out.println("File name : "+fileToSend.getName());
 			System.out.println("File id : "+idFile);
@@ -400,7 +400,9 @@ public class GUI extends JFrame{
 			path = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
 			c.controlAcceptFile(id,true,true,user);
+			listFile.add(file);
 			System.out.println("Send file accepted !!");
+			System.out.println("Number file 2 : "+listFile.size());
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
 			c.controlAcceptFile(id,false,false,user);
@@ -464,7 +466,7 @@ public class GUI extends JFrame{
      * @param id
      * @return
      */
-    public File getFileFromId(int id){
+    public String getFileFromId(int id){
     	System.out.println("Number of files in the liste : "+listFile.size());
     	return listFile.get(id-1);
     }
