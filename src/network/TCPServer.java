@@ -47,16 +47,14 @@ public class TCPServer extends Thread {
         byte[] buffer = new byte[2056];
         String path;
         try {
+        	path=controller.getFilePath();
             clientSocket = listenSocket.accept();          
             InputStream is = clientSocket.getInputStream();
-            FileOutputStream fos = new FileOutputStream(filename);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            path=controller.getFilePath();
-            System.out.println("Path of save file : "+path);
-            PrintWriterOut=new PrintWriter(new FileWriter(path), true);
-         
+            FileOutputStream fos = new FileOutputStream(path);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);            
+            System.out.println("Path of save file : "+path);       
             while ((buf = is.read(buffer, 0, buffer.length)) > 0){
-                bos.write(buffer, 0, buf);
+               bos.write(buffer, 0, buf);
             }          
             bos.close();
             System.out.println("TCPServer received !!");
