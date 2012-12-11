@@ -162,6 +162,7 @@ public class UDPReceiver extends Thread{
                    */
                   if(sigal instanceof AcceptFile){
                 	  c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getUsername());
+                	  System.out.println("User : "+remoteUser.getUsername());
                   }
              } catch (ClassNotFoundException e) {
             	 Logger.getLogger(UDPReceiver.class.getName()).log(Level.SEVERE, null, e);
