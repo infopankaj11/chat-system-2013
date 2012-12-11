@@ -248,8 +248,8 @@ public class ChatController {
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */
-		tcpS=new TCPServer("test.txt",this);
-//		tcpS=new TCPServer(gui.getFileFromId(id),this);
+//		tcpS=new TCPServer("test.txt",this);
+		tcpS=new TCPServer(gui.getFileFromId(id),this);
 	}
         
 	/**
@@ -268,7 +268,8 @@ public class ChatController {
 				/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
-          		  tcpC=new TCPClient(ip,gui.getFile(),this);        		  
+					  tcpC=new TCPClient(ip,gui.getFile(),this);   
+ //         		  tcpC=new TCPClient(ip,gui.getFile(),this);        		  
  //           	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
           	}
         }

@@ -341,7 +341,7 @@ public class GUI extends JFrame{
 	class BrowseListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
 			int result=0;
-			idFile++; /**Identifiant de fichier, unique pour chaque fichier**/
+			idFile=idFile+1; /**Identifiant de fichier, unique pour chaque fichier**/
 			JFileChooser fileChooser = new JFileChooser();  
 			FileSystemView fsv = FileSystemView.getFileSystemView();  
 			System.out.println(fsv.getHomeDirectory());              
@@ -402,6 +402,7 @@ public class GUI extends JFrame{
 			c.controlAcceptFile(id,true,true,user);
 			listFile.add(file);
 			System.out.println("Send file accepted !!");
+			System.out.println("test id 2 : "+id);
 			System.out.println("Number file 2 : "+listFile.size());
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
