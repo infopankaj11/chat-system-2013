@@ -399,11 +399,12 @@ public class GUI extends JFrame{
 			pathSave = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
 			try {
-				System.out.println("**************************"+InetAddress.getByName(user));
-			} catch (UnknownHostException e) {
+				RemoteUser usero=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
+				System.out.println("++++++++++++++++++++++++++++++ !!"+usero.getAddressIP());
+			} catch (UnknownHostException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				e1.printStackTrace();
+			}			
 			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
