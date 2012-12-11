@@ -464,6 +464,7 @@ public class GUI extends JFrame{
      * @return
      */
     public File getFileFromId(int id){
+    	System.out.println("Number of files in the liste : "+listFile.size());
     	return listFile.get(id-1);
     }
 }
