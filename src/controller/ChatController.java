@@ -268,6 +268,7 @@ public class ChatController {
 				/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
+					  System.out.println("File accepted!!!");
 					  tcpC=new TCPClient(ip,gui.getFile(),this);   
  //         		  tcpC=new TCPClient(ip,gui.getFile(),this);        		  
  //           	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
