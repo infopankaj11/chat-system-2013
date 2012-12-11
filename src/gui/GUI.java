@@ -29,6 +29,7 @@ public class GUI extends JFrame{
 	private JTextArea textArea;
 	private int index=0;
 	private int idFile=0;
+	@SuppressWarnings("unused")
 	private File fileToSend=null;
 //	private ProgressBar bar;
 
@@ -341,7 +342,7 @@ public class GUI extends JFrame{
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);  
 			result = fileChooser.showOpenDialog(panelPrinciple);  
 			if (JFileChooser.APPROVE_OPTION == result){  
-				file=fileChooser.getSelectedFile();
+				fileToSend=fileChooser.getSelectedFile();
 				path=fileChooser.getSelectedFile().getPath();  
 				System.out.println("path of file selected: "+path);  
 			}
