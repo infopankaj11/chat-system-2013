@@ -161,7 +161,7 @@ public class UDPReceiver extends Thread{
                    * Pas encore fini !!!!!!!!!!!!!!!!!
                    */
                   if(sigal instanceof AcceptFile){
-                	  c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getUsername());
+                	  c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getAddressIP());
                 	  System.out.println("User name for accept file : " +remoteUser.getAddressIP());
                   }
              } catch (ClassNotFoundException e) {
