@@ -390,6 +390,7 @@ public class GUI extends JFrame{
 	 */
 	public void optionFile(String file,String user,long size,int id){
 		String path="";
+		String addressUser = null;
 		JFileChooser choose = new JFileChooser();
 		choose.setDialogTitle("Save this file: "+file+ " From: "+user+ " size : "+ size+" id : "+id +" ?");
 		int ret =choose.showOpenDialog(this);
@@ -399,18 +400,17 @@ public class GUI extends JFrame{
 			pathSave = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
 			try {
-				RemoteUser usero=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
-				System.out.println("++++++++++++++++++++++++++++++ !!"+usero.getAddressIP());
+				RemoteUser users=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
+				addressUser=users.getAddressIP().toString().substring(1,users.getAddressIP().toString().length());
 			} catch (UnknownHostException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Unkonwn User in optin file");
 			}			
-			c.controlAcceptFile(id,true,true,user,file);
+			c.controlAcceptFile(id,true,true,addressUser,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
-			c.controlAcceptFile(id,false,false,user,file);
+			c.controlAcceptFile(id,false,false,addressUser,file);
 			System.out.println("Send file refused !!");
 		}
 	}
