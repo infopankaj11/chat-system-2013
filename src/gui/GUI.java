@@ -28,6 +28,7 @@ public class GUI extends JFrame{
 	private boolean connected;
 	private JTextArea textArea;
 	private int index=0;
+	private int idFile=0;
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -321,7 +322,7 @@ public class GUI extends JFrame{
 	class BrowseListener implements ActionListener{
 		public void actionPerformed(ActionEvent a){
 			int result=0;
-			int id =0;
+			idFile++; /**Identifiant de fichier, unique pour chaque fichier**/
 			JFileChooser fileChooser = new JFileChooser();  
 			FileSystemView fsv = FileSystemView.getFileSystemView();  
 			System.out.println(fsv.getHomeDirectory());              
@@ -333,14 +334,15 @@ public class GUI extends JFrame{
 			if (JFileChooser.APPROVE_OPTION == result){  
 				file=fileChooser.getSelectedFile();
 				path=fileChooser.getSelectedFile().getPath();  
-				System.out.println("path: "+path);  
+				System.out.println("path of file selected: "+path);  
 			}
-			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();
+			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString();
-			c.controlPropFile(file.getName(), file.length(), id, userToSendFile);
+			System.out.println("Fichier sent to : "+userToSendFile);
+			c.controlPropFile(file.getName(), file.length(), idFile, userToSendFile);
 			System.out.println("File name : "+file.getName());
+			System.out.println("File id : "+idFile);
 	//		c.getTcpC().setFilepath(path);
-			id++;
 		}  	
 	}
 	
