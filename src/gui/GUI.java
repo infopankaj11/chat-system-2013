@@ -30,7 +30,6 @@ public class GUI extends JFrame{
 	private int index=0;
 	private int idFile=0;
 	private File fileToSend=null;
-	private ArrayList<String> listFile=new ArrayList<String>();
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -138,14 +137,12 @@ public class GUI extends JFrame{
 		this.index = index;
 	}
 	
-	/**
-	 * get file
-	 * @return
-	 */
-	public File getFile() {
-		return file;
-	}
 	
+	
+	public File getFileToSend() {
+		return fileToSend;
+	}
+
 	/**
 	 * get idFile
 	 * @return
@@ -357,9 +354,7 @@ public class GUI extends JFrame{
 			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
 			System.out.println("Fichier sent to : "+userToSendFile);
-			listFile.add(fileToSend.getName());
 			c.controlPropFile(fileToSend.getName(), fileToSend.length(), idFile, userToSendFile);			
-			System.out.println("Number file : "+listFile.size());
 			System.out.println("File name : "+fileToSend.getName());
 			System.out.println("File id : "+idFile);
 	//		c.getTcpC().setFilepath(path);
@@ -401,13 +396,11 @@ public class GUI extends JFrame{
 			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
-			System.out.println("Number file 2 : "+listFile.size());
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
 			c.controlAcceptFile(id,false,false,user,file);
 			System.out.println("Send file refused !!");
 		}
-		System.out.println("Number file 3 : "+listFile.size());
 	}
      
 	/**
@@ -460,14 +453,4 @@ public class GUI extends JFrame{
                 (new Double(Math.random() * 128)).intValue() + 128,  
                 (new Double(Math.random() * 128)).intValue() + 128);  
     }  
-    
-    /**
-     * Ce methode permet de trouver le fichier a partir de son identifiant
-     * @param id
-     * @return
-     */
-    public String getFileFromId(int id){
-    	System.out.println("Number of files in the liste : "+listFile.size());
-    	return listFile.get(id-1);
-    }
 }
