@@ -245,6 +245,9 @@ public class ChatController {
 	 */
 	public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
 		network.siganl_accept_file(id, accepted, now, user);
+		/**
+		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
+		 */
 		tcpS=new TCPServer(this,"test.txt");
 		tcpS.start();
 	}
@@ -263,6 +266,9 @@ public class ChatController {
 		else{
 			if(accepted==true && now==true){
 				try {
+					/**
+					 * Ouvrir le socket client pour envoyer les fichiers
+					 */
           		  tcpC=new TCPClient(InetAddress.getByName("192.168.1.17"));
             	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
 				} catch (UnknownHostException e) {
