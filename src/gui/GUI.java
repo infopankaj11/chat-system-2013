@@ -398,14 +398,13 @@ public class GUI extends JFrame{
 		if(ret == JFileChooser.APPROVE_OPTION){
 			path = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
-			c.controlAcceptFile(id,true,true,user);
-			listFile.add(file);
+			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
 			System.out.println("Number file 2 : "+listFile.size());
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
-			c.controlAcceptFile(id,false,false,user);
+			c.controlAcceptFile(id,false,false,user,file);
 			System.out.println("Send file refused !!");
 		}
 		System.out.println("Number file 3 : "+listFile.size());
