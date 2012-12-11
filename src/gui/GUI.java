@@ -31,6 +31,7 @@ public class GUI extends JFrame{
 	private int idFile=0;
 	@SuppressWarnings("unused")
 	private File fileToSend=null;
+	private ArrayList<File> listFile=new ArrayList<File>();
 //	private ProgressBar bar;
 
 	JPanel panelPrinciple;
@@ -144,6 +145,14 @@ public class GUI extends JFrame{
 	 */
 	public File getFile() {
 		return file;
+	}
+	
+	/**
+	 * get idFile
+	 * @return
+	 */
+	public int getIdFile() {
+		return idFile;
 	}
 
 	/**
@@ -345,6 +354,7 @@ public class GUI extends JFrame{
 				fileToSend=fileChooser.getSelectedFile();
 				path=fileChooser.getSelectedFile().getPath();  
 				System.out.println("path of file selected: "+path);  
+				listFile.add(fileToSend);
 			}
 			RemoteUser o=(RemoteUser) userPanel.getSelectedValue();/**On recupere le user pour envoyer un fichier**/
 			userToSendFile=o.getAddressIP().toString().substring(1,o.getAddressIP().toString().length());
@@ -447,4 +457,13 @@ public class GUI extends JFrame{
                 (new Double(Math.random() * 128)).intValue() + 128,  
                 (new Double(Math.random() * 128)).intValue() + 128);  
     }  
+    
+    /**
+     * Ce methode permet de trouver le fichier a partir de son identifiant
+     * @param id
+     * @return
+     */
+    public File getFileFromId(int id){
+    	return listFile.get(id);
+    }
 }

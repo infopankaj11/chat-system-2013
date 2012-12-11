@@ -245,11 +245,10 @@ public class ChatController {
 	 */
 	public void controlAcceptFile(int id, boolean accepted, boolean now, String user){	
 		network.siganl_accept_file(id, accepted, now, user);
-		System.out.println("File name :" +gui.getFile().getName());
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */
-		tcpS=new TCPServer(gui.getFile().getName(),this);
+		tcpS=new TCPServer(gui.getFileFromId(id).getName(),this);
 	}
         
 	/**
