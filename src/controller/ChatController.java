@@ -273,5 +273,9 @@ public class ChatController {
           	}
         }
 	} 
+	
+	public String getFilePath(){
+		return gui.getPathSave();
+	}
 }
 
