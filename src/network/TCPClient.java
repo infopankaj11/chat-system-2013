@@ -1,7 +1,6 @@
 package network;
 
 import gui.GUI;
-
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,15 +9,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
- * Ce
+ * Cette classe permet de creer un socket client pour envoyer des fichiers
  * @author yingqing
  *
  */
 public class TCPClient extends Thread{
 
+	/**
+	 * On definit le port d'ecoute 6500 pour le tcp
+	 */
     private int port = 6500;
     private byte[] buffer = new byte[2560];
     private long senddatasize;
