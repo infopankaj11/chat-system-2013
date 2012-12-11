@@ -161,6 +161,7 @@ public class Network {
 	 */
 	public void siganl_accept_file(int fId, boolean acc, boolean now,String address){
 		Signal AcceptFile=new AcceptFile(fId,acc,now);
+		System.out.println("Known user for AcceptFiles!!" + address);
 		try {
 			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
 		} catch (UnknownHostException e) {
