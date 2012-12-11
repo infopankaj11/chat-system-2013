@@ -243,8 +243,8 @@ public class ChatController {
 	 * @param now
 	 * @param user
 	 */
-	public void controlAcceptFile(int id, boolean accepted, boolean now, String user,String fileName){	
-		network.siganl_accept_file(id, accepted, now, user);
+	public void controlAcceptFile(int id, boolean accepted, boolean now, String adr,String fileName){	
+		network.siganl_accept_file(id, accepted, now, adr);
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */

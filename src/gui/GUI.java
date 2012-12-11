@@ -9,6 +9,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.event.*;  
 import java.io.File;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import model.LocalUserModel;
@@ -397,6 +398,12 @@ public class GUI extends JFrame{
 		if(ret == JFileChooser.APPROVE_OPTION){
 			pathSave = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
+			try {
+				System.out.println("**************************"+InetAddress.getByName(user));
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
