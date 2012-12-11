@@ -1,121 +1,94 @@
 package network;
 
-import gui.GUI;
-import java.io.DataOutputStream;
+import java.io.BufferedInputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import controller.ChatController;
 
 /**
  * Cette classe permet de creer un socket client pour envoyer des fichiers
  * @author yingqing
  *
  */
-public class TCPClient extends Thread{
+public class TCPClient extends Thread {
 
 	/**
-	 * On definit le port d'ecoute 6500 pour le tcp
+	 * On definit le port d'ecoute de tcp 6500
 	 */
-    private int port = 6500;
-    private byte[] buffer = new byte[2560];
-    private long senddatasize;
-    private long filesize;
-    private GUI mon_gui;
-    private Socket socket;
-    
-    private String filesent;
-    private String filepath;
+    private static int serverPort=6500;
+    private Socket socket = null;
+    private File fileToSend;
+    @SuppressWarnings("unused")
+	private ChatController controller;
 
-    public TCPClient(InetAddress adr){
+    /**
+     * Constructeur pour construire un socket TCP client, on lui passe en parametre
+     * adress ip de serveur, le fichier a envoye et le controlleur
+     * @param serverAddress
+     * @param fileToSend
+     * @param c
+     */
+    public TCPClient(InetAddress serverAddress, File fileToSend, ChatController c) {
     	try {
-			socket = new Socket(adr, port);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+            this.fileToSend = fileToSend;
+            this.controller = c;
+            socket = new Socket(serverAddress, serverPort);
+            this.start();
+        } catch (IOException ex) {
+        	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed to create et start un client socket !!");
+        }
     }
 
-
-	public String getFilesent() {
-		return filesent;
-	}
-
-
-
-	public void setFilesent(String filesent) {
-		this.filesent = filesent;
-	}
-
-
-
-	public GUI getMon_gui() {
-		return mon_gui;
-	}
-
-	public String getFilepath() {
-		return filepath;
-	}
-
-	public void setFilepath(String filepath) {
-		this.filepath = filepath;
-	}
-
-
-    public void sendFile(String filename, InetAddress adr) {
-
-        int data_size = 0;
-
-        
-        FileInputStream in = null;
-		try {
-			in = new FileInputStream(this.filepath);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        System.out.println("client paths : "+this.filepath);
-
-        OutputStream os = null;
-		try {
-			os = socket.getOutputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        DataOutputStream dos = new DataOutputStream(os);
-
-        File myfile = new File(this.filepath);
-        filesize = myfile.length();
-
-        System.out.println(this.filepath);
-
-        // Fermeture du flux d'entree
+    public void run() {  
+        int buf;
+        byte[] buffer = new byte[2056];
         try {
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        // Fermeture du flux de sortie
-        try {
-			dos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        // Fermeture du socket
-        try {
-			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            FileInputStream fis = new FileInputStream(fileToSend);
+            BufferedInputStream bis = new BufferedInputStream(fis);          
+            OutputStream os = socket.getOutputStream();
+            
+      
+            while ((buf = bis.read(buffer, 0, buffer.length)) > 0){
+                os.write(buffer, 0, buf);
+                os.flush();
+            }           
+//            controller.controllerDisplayFileArrived(fileToSend.getName());
+            System.out.println("Send has benn sent successfully!!");
+        }
+        catch (UnknownHostException e){
+        	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, e);
+        	System.out.println("Unkonwn user for socket client !!");
+        }
+        catch (EOFException e){
+        	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, e);
+        	System.out.println("EOF problem !!");
+        }
+        catch (IOException e){
+        	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, e);
+        	System.out.println("I/O problem !!");
+        }
+        finally {
+            if (socket != null) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, e);
+                	System.out.println("Close socket client failed !!");
+                }
+            }
+        }
     }
-
-
 }
+
+
+

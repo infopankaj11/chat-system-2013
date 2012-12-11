@@ -248,8 +248,7 @@ public class ChatController {
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */
-		tcpS=new TCPServer(this,"test.txt");
-		tcpS.start();
+		tcpS=new TCPServer(gui.getFile().getName(),this);
 	}
         
 	/**
@@ -269,8 +268,8 @@ public class ChatController {
 					/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
-          		  tcpC=new TCPClient(InetAddress.getByName("192.168.1.17"));
-            	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
+          		  tcpC=new TCPClient(InetAddress.getByName(user),gui.getFile(),this);
+ //           	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
 				} catch (UnknownHostException e) {
 					Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
 					System.out.println("UnKnown user for AcceptFile !");
