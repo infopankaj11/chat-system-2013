@@ -29,7 +29,7 @@ public class TCPClient extends Thread {
     private File fileToSend;
     @SuppressWarnings("unused")
 	private ChatController controller;
-//    private String filePath;
+    private String filePath;
 //    
 //	public String getFilepath() {
 //		return filePath;
@@ -62,7 +62,8 @@ public class TCPClient extends Thread {
         int buf;
         byte[] buffer = new byte[2056];
         try {
-            FileInputStream fis = new FileInputStream(fileToSend);
+        	String path=controller.getFilePathOpen();
+            FileInputStream fis = new FileInputStream(path);
             BufferedInputStream bis = new BufferedInputStream(fis);          
             OutputStream os = socket.getOutputStream();
             
