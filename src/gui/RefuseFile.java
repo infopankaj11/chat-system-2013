@@ -20,7 +20,7 @@ public class RefuseFile extends JFrame{
 	
 	public void initComponents(){
 		mainPanel=new JPanel(new BorderLayout());
-		msg=new JLabel("Send text refused !! You can send it later !! ;(");
+		msg=new JLabel("Send file refused !! You can send it later !! ;(");
 		
 		mainPanel.add(msg,BorderLayout.CENTER);
 		getContentPane().add(mainPanel);
