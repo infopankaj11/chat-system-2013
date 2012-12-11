@@ -41,7 +41,7 @@ public class GUI extends JFrame{
 	JPanel panelLeftMiddle;
 	JPanel panelLeftBottom;
 	JPanel panelRightBottom;
-//	JPanel panelTab;
+	JPanel panelTab;
 	
 	JLabel labelUser;
 	JLabel userConnect;
@@ -65,6 +65,7 @@ public class GUI extends JFrame{
 
 	JTabbedPane tabMiddleTop;
 
+	@SuppressWarnings("unused")
 	private File file = null;  
 	private String pathOpen = null; 
 	private String pathSave=null;
@@ -76,7 +77,7 @@ public class GUI extends JFrame{
 	 */
     public GUI(){   
     	this.intComponents();
-        this.setSize(550, 550);
+  //      this.setSize(550, 550);
         this.setVisible(true);
         this.setTitle("Welcome to chat system !!!");
         pack(); 
@@ -173,8 +174,10 @@ public class GUI extends JFrame{
 		panelPrinciple=new JPanel(new BorderLayout(10,10));
 		panelLeft=new JPanel(new BorderLayout());
 		panelLeftTop=new JPanel(new FlowLayout());
+//		panelLeftMiddle=new JPanel(new BorderLayout(5,5));
 		panelLeftMiddle=new JPanel(new FlowLayout());
-		panelLeftBottom=new JPanel(new BorderLayout(5,5));
+		panelLeftBottom=new JPanel(new BorderLayout());
+//		panelLeftBottom=new JPanel(new BorderLayout(5,5));
     	panelMiddle=new JPanel(new BorderLayout(5,5));
     	panelRightBottom=new JPanel(new FlowLayout());
  //   	panelTab=new JPanel();
@@ -197,7 +200,7 @@ public class GUI extends JFrame{
     	   	
     	userPanel=new JList();
     	
-    	jScrollPane1 = new JScrollPane();
+    	jScrollPane1 = new JScrollPane(userPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
  //   	jScrollPane2 = new JScrollPane();
     	jScrollPane1.setViewportView(userPanel);
  //   	jScrollPane2.setViewportView(participates);
@@ -222,6 +225,7 @@ public class GUI extends JFrame{
     	buttonDisconnect.setPreferredSize(new Dimension(100,30));
     	userPanel.setPreferredSize(new Dimension(200,400));
     	userConnect.setPreferredSize(new Dimension(150,30));
+ //   	panelLeftBottom.setPreferredSize(new Dimension(150,450));
 //    	buttonConversion.setPreferredSize(new Dimension(260,30));
                 
 //    	buttonConversion.setEnabled(false);
@@ -243,9 +247,11 @@ public class GUI extends JFrame{
                
     	panelLeftMiddle.add(buttonConnect);
     	panelLeftMiddle.add(buttonDisconnect);
+//    	panelLeftMiddle.add(buttonConnect,BorderLayout.EAST);
+//    	panelLeftMiddle.add(buttonDisconnect,BorderLayout.WEST);
                
     	panelLeftBottom.add(userConnect,BorderLayout.NORTH);
-    	panelLeftBottom.add(jScrollPane1,BorderLayout.CENTER);
+    	panelLeftBottom.add(jScrollPane1,BorderLayout.SOUTH);
 //    	panelLeftBottom.add(buttonConversion,BorderLayout.SOUTH);
                
     	panelLeft.add(panelLeftTop,BorderLayout.NORTH);
@@ -314,9 +320,14 @@ public class GUI extends JFrame{
 	 * on enoit un Hello a tout le monde
 	 */
 	class ConnexionListener implements ActionListener{
-		public void actionPerformed(ActionEvent a){                        
-			c.getNetwork().getUdpR().start();
-			c.login(textUser.getText());
+		public void actionPerformed(ActionEvent a){                        			
+			if(textUser.getText().equals("")){
+				System.out.println("You must enter a username !!");
+			}
+			else{
+				c.getNetwork().getUdpR().start();
+				c.login(textUser.getText());
+			}
 		}    
 	}
 
