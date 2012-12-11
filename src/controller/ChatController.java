@@ -259,31 +259,19 @@ public class ChatController {
 	 * @param now
 	 * @param user
 	 */
-	public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, String user){
+	public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, InetAddress ip){
 		if(accepted==false && now==false){
 			fileRefuse=new RefuseFile();
 		}
 		else{
 			if(accepted==true && now==true){
-				try {					
-					/**
+				/**
 					 * Ouvrir le socket client pour envoyer les fichiers
 					 */
-          		  tcpC=new TCPClient(InetAddress.getByName(user),gui.getFile(),this);        		  
+          		  tcpC=new TCPClient(ip,gui.getFile(),this);        		  
  //           	  tcpC.sendFile("test.txt", InetAddress.getByName("192.168.1.17"));
-				} catch (UnknownHostException e) {
-					Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
-					System.out.println("UnKnown user for AcceptFile !");
-					try {
-						System.out.println("User to send file : "+InetAddress.getByName(user));
-					} catch (UnknownHostException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
           	}
         }
-
 	} 
 }
 
