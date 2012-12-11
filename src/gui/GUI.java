@@ -360,6 +360,7 @@ public class GUI extends JFrame{
 			System.out.println("Fichier sent to : "+userToSendFile);
 			c.controlPropFile(fileToSend.getName(), fileToSend.length(), idFile, userToSendFile);
 			listFile.add(fileToSend);
+			System.out.println("Number file : "+listFile.size());
 			System.out.println("File name : "+fileToSend.getName());
 			System.out.println("File id : "+idFile);
 	//		c.getTcpC().setFilepath(path);
