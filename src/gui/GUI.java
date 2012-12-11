@@ -302,7 +302,7 @@ public class GUI extends JFrame{
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
 			displayText("You say : " + s +"\n",textArea);
-			textMiddleTop.append("You say : " + s +"\n");
+//			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
 			Object[] o=userPanel.getSelectedValues();
 			listP=new InetAddress[o.length];
