@@ -5,10 +5,8 @@ import java.util.logging.Logger;
 import java.io.BufferedOutputStream;
 import java.io.EOFException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -23,11 +21,10 @@ public class TCPServer extends Thread {
 
     private ServerSocket listenSocket;
     private Socket clientSocket;
-    private String filename;
     @SuppressWarnings("unused")
-	private ChatController controller;
+	private String filename;
+    private ChatController controller;
     private static int serverPort=6500;
-    private PrintWriter PrintWriterOut;
 
     public TCPServer(String filename,ChatController c) {
         try {

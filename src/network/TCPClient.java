@@ -26,10 +26,11 @@ public class TCPClient extends Thread {
 	 */
     private static int serverPort=6500;
     private Socket socket = null;
-    private File fileToSend;
     @SuppressWarnings("unused")
-	private ChatController controller;
-    private String filePath;
+	private File fileToSend;
+    private ChatController controller;
+    @SuppressWarnings("unused")
+	private String filePath;
 //    
 //	public String getFilepath() {
 //		return filePath;
