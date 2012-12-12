@@ -311,7 +311,6 @@ public class GUI extends JFrame{
 			textMiddleTop.setText(" ");  
 			c.getNetwork().getUdpR().setActive(false);
 			c.getNetwork().getUdpR().interrupt();
-			tabMiddleTop.removeAll();
 		}    
 	}
         
