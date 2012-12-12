@@ -168,7 +168,7 @@ public class ChatController {
 	 */
 	public void controlDisplayText(SendText t,String username){
 		Date d = new Date();
-		String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+		String s = username +" says : " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
 		if(gui.getTabIndex(username)==-1){
 			gui.addTab(username);			
 			gui.displayText(s,gui.getTextArea());
