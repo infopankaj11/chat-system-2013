@@ -1,5 +1,7 @@
 package network;
 
+import gui.ProgressBar;
+
 import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.File;
@@ -31,14 +33,14 @@ public class TCPClient extends Thread {
     private ChatController controller;
     @SuppressWarnings("unused")
 	private String filePath;
-//    
-//	public String getFilepath() {
-//		return filePath;
-//	}
-//
-//	public void setFilepath(String filepath) {
-//		this.filePath = filepath;
-//	}
+    private int sendDateSize=0;
+    private ProgressBar bar;
+    
+ // Methode renvoyant le % de progression de l'envoi d'un fichier
+    public int getProgress() {
+        return (int) (((float) sendDateSize / (float) fileToSend.length()) * 100);
+    }
+
 
     /**
      * Constructeur pour construire un socket TCP client, on lui passe en parametre
@@ -72,6 +74,11 @@ public class TCPClient extends Thread {
             while ((buf = bis.read(buffer, 0, buffer.length)) > 0){
                 os.write(buffer, 0, buf);
                 os.flush();
+                sendDateSize = sendDateSize + buf;
+                System.out.println("Progression : " + this.getProgress() + "%" + "\n");
+                // MAJ de la barre de progression du transfert
+                bar=new ProgressBar();
+                bar.getProgress(this.getProgress());
             }          
             System.out.println("Send has benn sent successfully!!");
         }
