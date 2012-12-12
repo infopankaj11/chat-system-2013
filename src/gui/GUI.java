@@ -213,7 +213,7 @@ public class GUI extends JFrame{
  //   	participates.setBorder(blueline);
     	msg.setBorder(blueline);
     	
-    	jScrollPane1.setPreferredSize(new Dimension(200,400));
+    	jScrollPane1.setPreferredSize(new Dimension(250,400));
 //    	jScrollPane2.setPreferredSize(new Dimension(150,200));
     	buttonSend.setPreferredSize(new Dimension(150,30));
     	buttonBrowse.setPreferredSize(new Dimension(150,30));
@@ -221,9 +221,9 @@ public class GUI extends JFrame{
     	tabMiddleTop.setPreferredSize(new Dimension(350,400));
     	labelUser.setPreferredSize(new Dimension(70,30));
     	textUser.setPreferredSize(new Dimension(130,30));
-    	buttonConnect.setPreferredSize(new Dimension(100,30));
-    	buttonDisconnect.setPreferredSize(new Dimension(100,30));
-    	userPanel.setPreferredSize(new Dimension(200,400));
+    	buttonConnect.setPreferredSize(new Dimension(115,30));
+    	buttonDisconnect.setPreferredSize(new Dimension(115,30));
+    	userPanel.setPreferredSize(new Dimension(250,400));
     	userConnect.setPreferredSize(new Dimension(150,30));
  //   	panelLeftBottom.setPreferredSize(new Dimension(150,450));
 //    	buttonConversion.setPreferredSize(new Dimension(260,30));
