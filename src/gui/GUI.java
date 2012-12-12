@@ -310,6 +310,8 @@ public class GUI extends JFrame{
 			textUser.setText(" ");
 			textMiddleTop.setText(" ");  
 			c.getNetwork().getUdpR().setActive(false);
+			c.getNetwork().getUdpR().interrupt();
+			tabMiddleTop.removeAll();
 		}    
 	}
         
