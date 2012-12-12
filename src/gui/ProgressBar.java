@@ -49,7 +49,6 @@ public class ProgressBar implements ActionListener,ChangeListener{
 	 public void stateChanged(ChangeEvent e) {
 	  // TODO Auto-generated method stub
 	  int v = pro.getValue();
-	  if(e.getSource() == pro)
 	   lab.setText("In progress:"+Integer.toString(v)+"% ");
 	 }
 	
