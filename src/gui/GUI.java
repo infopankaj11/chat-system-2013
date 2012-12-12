@@ -406,7 +406,7 @@ public class GUI extends JFrame{
 	 * @param size
 	 * @param id
 	 */
-	public void optionFile(String file,String user,long size,int id){
+	public void optionFile(String file,String user,long size,int id,String ip){
 		String path="";
 		String addressUser = null;
 		JFileChooser choose = new JFileChooser();
@@ -424,12 +424,12 @@ public class GUI extends JFrame{
 //				System.out.println("Unkonwn User in option file");
 //			}			
 			
-			c.controlAcceptFile(id,true,true,user,file);
+			c.controlAcceptFile(id,true,true,ip,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
-			c.controlAcceptFile(id,false,false,user,file);
+			c.controlAcceptFile(id,false,false,ip,file);
 			System.out.println("Send file refused !!");
 		}
 	}
