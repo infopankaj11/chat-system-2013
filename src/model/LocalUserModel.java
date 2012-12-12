@@ -134,13 +134,11 @@ public class LocalUserModel {
      */
     public void removeRemoteUser(RemoteUser remoteUser) {
     	boolean existed=true;
-        while(existed==true){
-        	for(int i=0 ; i<remoteUsers.size();i++){
-        		RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
-        		if(!remoteUser.getAddressIP().equals(r.getAddressIP())){
-        			existed=false;
-        			System.out.println("User didn't exist !!");
-        		}
+        for(int i=0 ; i<remoteUsers.size();i++){
+        	RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
+        	if(!remoteUser.getAddressIP().equals(r.getAddressIP())){
+        		existed=false;
+        		System.out.println("User didn't exist !!");
         	}
         }
         if(existed==true){
