@@ -337,21 +337,25 @@ public class GUI extends JFrame{
 		public void actionPerformed(ActionEvent a){
 			ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
 			String s = msg.getText();
-			displayText("You say : " + s +"\n",textArea);
+			
 //			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
 			Object[] o=userPanel.getSelectedValues();
 			if(o==null){
-				c.controlSendText(s,null);
+				displayText("You say : " + s +"\n",textMiddleTop);
+				c.controlSendText(s,null);			
 			}
-			listP=new InetAddress[o.length];
-			for(int i=0;i<o.length;i++){
-				r.add((RemoteUser)o[i]);
-             }
-			for(int j=0;j<r.size();j++){
-				listP[j]=r.get(j).getAddressIP();			
+			else{
+				displayText("You say : " + s +"\n",textArea);
+				listP=new InetAddress[o.length];
+				for(int i=0;i<o.length;i++){
+					r.add((RemoteUser)o[i]);
+				}
+				for(int j=0;j<r.size();j++){
+					listP[j]=r.get(j).getAddressIP();			
+				}
+				c.controlSendText(s,listP);
 			}
-			c.controlSendText(s,listP);
 		}
     }
        
