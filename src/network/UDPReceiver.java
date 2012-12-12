@@ -132,9 +132,9 @@ public class UDPReceiver extends Thread{
                   if(sigal instanceof GoodBye){
                 	  if(userDistant.equals(userLocal)){}
                 	  else{
-                		  /**Permet de recuperer le login associe a cette address ip */       		  
-                		  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
+                		  /**Permet de recuperer le login associe a cette address ip */ 
                 		  try{
+                			  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());               		  
                 			  c.getLocalUser().removeRemoteUser(remoteUser);
                 		  }
                 		  catch(NullPointerException e){
