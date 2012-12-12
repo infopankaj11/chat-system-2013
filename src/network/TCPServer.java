@@ -45,7 +45,6 @@ public class TCPServer extends Thread {
         String path;
         try {
         	path=controller.getFilePath();
-        	System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmm:"+path);
             clientSocket = listenSocket.accept();  
             System.out.println("Test 4 :  "+clientSocket);
             InputStream is = clientSocket.getInputStream();
