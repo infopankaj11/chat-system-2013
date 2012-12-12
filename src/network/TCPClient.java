@@ -33,7 +33,8 @@ public class TCPClient extends Thread {
     private ChatController controller;
     @SuppressWarnings("unused")
 	private String filePath;
-    private TransferSucceed t;
+    @SuppressWarnings("unused")
+	private TransferSucceed t;
 
 
     /**
