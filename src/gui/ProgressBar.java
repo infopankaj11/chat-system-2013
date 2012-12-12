@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class ProgressBar implements ChangeListener{
+public class ProgressBar implements ActionListener,ChangeListener{
 	 private JFrame f = null;
 	 JProgressBar pro;
 	 JLabel lab;
@@ -54,7 +54,7 @@ public class ProgressBar implements ChangeListener{
 	 }
 	
 	 public void getProgress(int speed){
-		 timer = new Timer(speed,(ActionListener) this);
+		 timer = new Timer(speed,this);
 		 timer.start();
 		   int v = pro.getValue();
 		   if(v < 100)
@@ -80,5 +80,11 @@ public class ProgressBar implements ChangeListener{
 //	   }
 //	  }
 //	 }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	}
