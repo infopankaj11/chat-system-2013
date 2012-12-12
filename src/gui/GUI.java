@@ -408,7 +408,6 @@ public class GUI extends JFrame{
 	 */
 	public void optionFile(String file,String user,long size,int id,String ip){
 		String path="";
-		String addressUser = null;
 		JFileChooser choose = new JFileChooser();
 		choose.setDialogTitle("Save this file: "+file+ " From: "+user+ " size : "+ size+" id : "+id +" ?");
 		int ret =choose.showOpenDialog(this);
@@ -416,14 +415,7 @@ public class GUI extends JFrame{
 		System.out.println("file selection : "+choose.getFileSelectionMode());
 		if(ret == JFileChooser.APPROVE_OPTION){
 			pathSave = choose.getSelectedFile().getAbsolutePath();
-			System.out.println("path : "+path);
-//			try {
-//				RemoteUser users=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
-//				addressUser=users.getAddressIP().toString().substring(1,users.getAddressIP().toString().length());
-//			} catch (UnknownHostException e1) {
-//				System.out.println("Unkonwn User in option file");
-//			}			
-			
+			System.out.println("path : "+path);					
 			c.controlAcceptFile(id,true,true,ip,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
