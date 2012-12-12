@@ -443,6 +443,10 @@ public class GUI extends JFrame{
 		text.append(message);
 	}
 	
+	public void displayTextBroadcast(String message){
+		textMiddleTop.append(message);
+	}
+	
 	public void creatTextArea(){
 		this.textArea=new JTextArea();
 		textArea.setBackground(Color.WHITE);
