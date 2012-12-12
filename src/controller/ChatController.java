@@ -172,12 +172,14 @@ public class ChatController {
 		if(username==null){
 			gui.displayTextBroadcast(s);
 		}
-		if(gui.getTabIndex(username)==-1){
-			gui.addTab(username);			
-			gui.displayText(s,gui.getTextArea());
-		}
 		else{
-			gui.displayText(s,gui.getTextArea());
+			if(gui.getTabIndex(username)==-1){
+				gui.addTab(username);			
+				gui.displayText(s,gui.getTextArea());
+			}
+			else{
+				gui.displayText(s,gui.getTextArea());
+			}
 		}
 	}
         
