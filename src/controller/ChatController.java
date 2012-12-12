@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
@@ -20,6 +21,7 @@ import network.TCPClient;
 import network.TCPServer;
 
 import gui.GUI;
+import gui.PlaySound;
 import gui.RefuseFile;
 
 /**
@@ -167,6 +169,13 @@ public class ChatController {
 	 * @param username
 	 */
 	public void controlDisplayText(SendText t,String username){
+	    PlaySound p =new PlaySound();
+	    try {
+			p.play("./src/msg.wav");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Date d = new Date();
 		String s = username +" says : " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
 		if(gui.getTabIndex(username)==-1){
