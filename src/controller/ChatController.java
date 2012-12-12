@@ -232,8 +232,8 @@ public class ChatController {
 	 * @param id
 	 * @param username
 	 */
-	public void dialogAcceptFile(String file,long fileSize,int id,String username){
-		gui.optionFile(file, username, fileSize,id);
+	public void dialogAcceptFile(String file,long fileSize,int id,String username,String ip){
+		gui.optionFile(file, username, fileSize,id,ip);
 	}
         
 	/**
@@ -243,9 +243,10 @@ public class ChatController {
 	 * @param now
 	 * @param user
 	 */
-	public void controlAcceptFile(int id, boolean accepted, boolean now, String user,String fileName){	
+	public void controlAcceptFile(int id, boolean accepted, boolean now, String ip,String fileName){	
 		tcpS=new TCPServer(fileName,this);
-		network.siganl_accept_file(id, accepted, now, user);
+		network.siganl_accept_file(id, accepted, now, ip);
+		System.out.println("שששששששששששששששששששששששששששששששש"+ip);
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */

@@ -155,7 +155,7 @@ public class UDPReceiver extends Thread{
                    * Si on recoit un PropreFile, il y aura un dialog qui va afficher      
                    */
                   if(sigal instanceof PropFile){
-                	  c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername());
+                	  c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername(),remoteUser.getAddressIP().toString());
                   }
                   /**
                    * Pas encore fini !!!!!!!!!!!!!!!!!
