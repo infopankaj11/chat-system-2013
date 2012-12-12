@@ -221,7 +221,7 @@ public class GUI extends JFrame{
     	tabMiddleTop.setPreferredSize(new Dimension(350,400));
     	labelUser.setPreferredSize(new Dimension(70,30));
     	textUser.setPreferredSize(new Dimension(130,30));
-    	buttonConnect.setPreferredSize(new Dimension(115,30));
+    	buttonConnect.setPreferredSize(new Dimension(110,30));
     	buttonDisconnect.setPreferredSize(new Dimension(115,30));
     	userPanel.setPreferredSize(new Dimension(250,400));
     	userConnect.setPreferredSize(new Dimension(150,30));
