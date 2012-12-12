@@ -167,15 +167,16 @@ public class ChatController {
 	 * @param username
 	 */
 	public void controlDisplayText(SendText t,String username){
+		Date d = new Date();
+		String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+		if(username==null){
+			gui.displayTextBroadcast(s);
+		}
 		if(gui.getTabIndex(username)==-1){
-			gui.addTab(username);
-			Date d = new Date();
-			String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
+			gui.addTab(username);			
 			gui.displayText(s,gui.getTextArea());
 		}
 		else{
-			Date d = new Date();
-			String s = username +" : "+ " says " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
 			gui.displayText(s,gui.getTextArea());
 		}
 	}
@@ -260,7 +261,6 @@ public class ChatController {
 	 * @param user
 	 */
 	public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, InetAddress ip){
-		System.out.println("*******************"+ip);
 		if(accepted==false && now==false){
 			fileRefuse=new RefuseFile();
 		}
