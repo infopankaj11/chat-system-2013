@@ -2,10 +2,11 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class ProgressBar implements ActionListener,ChangeListener{
+public class ProgressBar implements ChangeListener{
 	 private JFrame f = null;
 	 JProgressBar pro;
 	 JLabel lab;
@@ -30,10 +31,7 @@ public class ProgressBar implements ActionListener,ChangeListener{
 	  pro.addChangeListener(this);
 	  pro.setPreferredSize(new Dimension(200,30));
 	  JPanel pa = new JPanel();
-	  b = new JButton("Start");
-	  b.addActionListener(this);
-	  pa.add(b);
-	  timer = new Timer(500,this);
+	  
 	  contentPane.add(pa,BorderLayout.NORTH);
 	  contentPane.add(pro,BorderLayout.CENTER);
 	  contentPane.add(lab,BorderLayout.SOUTH);
@@ -55,21 +53,32 @@ public class ProgressBar implements ActionListener,ChangeListener{
 	   lab.setText("In progress:"+Integer.toString(v)+"% ");
 	 }
 	
-	 @Override
-	 public void actionPerformed(ActionEvent e) {
-	  // TODO Auto-generated method stub
-	  if(e.getSource() == b){
-	   timer.start();
-	  }
-	  if(e.getSource() == timer){
-	   int v = pro.getValue();
-	   if(v < 100)
-	    pro.setValue(++v);
-	   else{
-	    timer.stop();
-	    pro.setValue(0);
-	   }
-	  }
+	 public void getProgress(int speed){
+		 timer = new Timer(speed,(ActionListener) this);
+		 timer.start();
+		   int v = pro.getValue();
+		   if(v < 100)
+		    pro.setValue(++v);
+		   else{
+		    timer.stop();
+		    pro.setValue(0);
+		   }
 	 }
+//	 @Override
+//	 public void actionPerformed(ActionEvent e) {
+//	  // TODO Auto-generated method stub
+//	  if(e.getSource() == b){
+//	   timer.start();
+//	  }
+//	  if(e.getSource() == timer){
+//	   int v = pro.getValue();
+//	   if(v < 100)
+//	    pro.setValue(++v);
+//	   else{
+//	    timer.stop();
+//	    pro.setValue(0);
+//	   }
+//	  }
+//	 }
 	
 	}
