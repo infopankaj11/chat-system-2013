@@ -469,6 +469,9 @@ public class GUI extends JFrame{
 		return tabMiddleTop.indexOfTab(name);
 	}
 
+	public void removeTab(int index){
+		tabMiddleTop.remove(index);
+	}
 	/**
 	 * Creation d'une couleur au hasard
 	 * @return

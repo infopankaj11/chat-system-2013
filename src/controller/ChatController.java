@@ -159,8 +159,14 @@ public class ChatController {
 	 */
 	public void controlDisplayBye(GoodBye b,String userName){
 		Date d = new Date();
+		int index;
 		String s = userName +" : "+ " says Goodbye to everyone, at " +DateFormat.getTimeInstance().format(d) + "\n";
-		gui.displayMsg(s);      
+		gui.displayMsg(s);     
+		index=gui.getTabIndex(userName);
+		if(index==-1){}
+		else{
+			gui.removeTab(index);
+		}
 	}
     
 	/**
