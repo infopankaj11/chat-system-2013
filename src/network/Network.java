@@ -164,7 +164,8 @@ public class Network {
 		System.out.println("Known user for AcceptFiles!!" + address);
 		try {
 //			udpS.sendSignal(InetAddress.getByName("10.1.5.145"), AcceptFile, portDest);
-			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
+			String ip=address.substring(1,address.length());
+			udpS.sendSignal(InetAddress.getByName(ip), AcceptFile, portDest);
 		} catch (UnknownHostException e) {
 			Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, e);
 			System.out.println("Unknown user for AcceptFiles!!" + address);
