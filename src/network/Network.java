@@ -163,7 +163,7 @@ public class Network {
 		Signal AcceptFile=new AcceptFile(fId,acc,now);
 		System.out.println("Known user for AcceptFiles!!" + address);
 		try {
-			udpS.sendSignal(InetAddress.getByName("10.1.5.148"), AcceptFile, portDest);
+			udpS.sendSignal(InetAddress.getByName("10.1.5.145"), AcceptFile, portDest);
 //			udpS.sendSignal(InetAddress.getByName(address), AcceptFile, portDest);
 		} catch (UnknownHostException e) {
 			Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, e);
