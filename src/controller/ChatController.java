@@ -243,13 +243,14 @@ public class ChatController {
 	 * @param now
 	 * @param user
 	 */
-	public void controlAcceptFile(int id, boolean accepted, boolean now, String adr,String fileName){	
-		network.siganl_accept_file(id, accepted, now, adr);
+	public void controlAcceptFile(int id, boolean accepted, boolean now, String user,String fileName){	
+		tcpS=new TCPServer(fileName,this);
+		network.siganl_accept_file(id, accepted, now, user);
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
 		 */
 //		tcpS=new TCPServer("test.txt",this);
-		tcpS=new TCPServer(fileName,this);
+		
 	}
         
 	/**
@@ -260,6 +261,7 @@ public class ChatController {
 	 * @param user
 	 */
 	public void controlDisplayAcceptFile(int id, boolean accepted, boolean now, InetAddress ip){
+		System.out.println("*******************"+ip);
 		if(accepted==false && now==false){
 			fileRefuse=new RefuseFile();
 		}

@@ -417,18 +417,19 @@ public class GUI extends JFrame{
 		if(ret == JFileChooser.APPROVE_OPTION){
 			pathSave = choose.getSelectedFile().getAbsolutePath();
 			System.out.println("path : "+path);
-			try {
-				RemoteUser users=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
-				addressUser=users.getAddressIP().toString().substring(1,users.getAddressIP().toString().length());
-			} catch (UnknownHostException e1) {
-				System.out.println("Unkonwn User in option file");
-			}			
-			c.controlAcceptFile(id,true,true,addressUser,file);
+//			try {
+//				RemoteUser users=c.getLocalUser().getRemoteUser(InetAddress.getByName(user));
+//				addressUser=users.getAddressIP().toString().substring(1,users.getAddressIP().toString().length());
+//			} catch (UnknownHostException e1) {
+//				System.out.println("Unkonwn User in option file");
+//			}			
+			
+			c.controlAcceptFile(id,true,true,user,file);
 			System.out.println("Send file accepted !!");
 			System.out.println("test id 2 : "+id);
 		}
 		if(ret==JFileChooser.CANCEL_OPTION){
-			c.controlAcceptFile(id,false,false,addressUser,file);
+			c.controlAcceptFile(id,false,false,user,file);
 			System.out.println("Send file refused !!");
 		}
 	}
