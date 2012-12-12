@@ -30,8 +30,6 @@ public class GUI extends JFrame{
 	private int index=0;
 	private int idFile=0;
 	private File fileToSend=null;
-	private ProgressBar bar;
-//	private ProgressBar bar;
 
 	JPanel panelPrinciple;
 	JPanel panelLeft;
@@ -415,7 +413,6 @@ public class GUI extends JFrame{
 		System.out.println("file selection : "+choose.getFileSelectionMode());
 		if(ret == JFileChooser.APPROVE_OPTION){
 			pathSave = choose.getSelectedFile().getAbsolutePath();
-			bar=new ProgressBar();
 			System.out.println("path : "+path);					
 			c.controlAcceptFile(id,true,true,ip,file);
 			System.out.println("Send file accepted !!");

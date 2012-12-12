@@ -246,12 +246,10 @@ public class ChatController {
 	public void controlAcceptFile(int id, boolean accepted, boolean now, String ip,String fileName){	
 		tcpS=new TCPServer(fileName,this);
 		network.siganl_accept_file(id, accepted, now, ip);
-		System.out.println("שששששששששששששששששששששששששששששששש"+ip);
+
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
-		 */
-//		tcpS=new TCPServer("test.txt",this);
-		
+		 */		
 	}
         
 	/**
