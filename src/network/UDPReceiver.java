@@ -134,8 +134,13 @@ public class UDPReceiver extends Thread{
                 	  else{
                 		  /**Permet de recuperer le login associe a cette address ip */       		  
                 		  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());
-                          c.getLocalUser().removeRemoteUser(remoteUser);
-                      }
+                		  try{
+                			  c.getLocalUser().removeRemoteUser(remoteUser);
+                		  }
+                		  catch(NullPointerException e){
+                		  System.out.println("User doesn't exist !!");
+                		  }
+                	  }
                    }
                   /**
                    * Si on recoit un text provenant d'autre utilisateur, on l'affiche ! 
