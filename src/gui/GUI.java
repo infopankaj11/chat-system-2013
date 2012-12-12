@@ -341,6 +341,9 @@ public class GUI extends JFrame{
 //			textMiddleTop.append("You say : " + s +"\n");
 			msg.setText(" ");
 			Object[] o=userPanel.getSelectedValues();
+			if(o==null){
+				c.controlSendText(s,null);
+			}
 			listP=new InetAddress[o.length];
 			for(int i=0;i<o.length;i++){
 				r.add((RemoteUser)o[i]);
