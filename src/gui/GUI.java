@@ -465,6 +465,7 @@ public class GUI extends JFrame{
 	public void creatTextArea(){
 		this.textArea=new JTextArea();
 		textArea.setBackground(Color.WHITE);
+		textArea.setEnabled(false);
 	}
 	/**
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
