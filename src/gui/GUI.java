@@ -227,21 +227,21 @@ public class GUI extends JFrame{
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
-					ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
-					String s = msg.getText();
-					displayText("You say : " + s +"\n",textArea);
-					msg.setText(" ");
-					Object[] o=userPanel.getSelectedValues();
-					listP=new InetAddress[o.length];
-					for(int i=0;i<o.length;i++){
-						r.add((RemoteUser)o[i]);
-		             }
-					for(int j=0;j<r.size();j++){
-						listP[j]=r.get(j).getAddressIP();			
-					}
-					c.controlSendText(s,listP);
-				}				
+//				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+//					ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+//					String s = msg.getText();
+//					displayText("You say : " + s +"\n",textArea);
+//					msg.setText(" ");
+//					Object[] o=userPanel.getSelectedValues();
+//					listP=new InetAddress[o.length];
+//					for(int i=0;i<o.length;i++){
+//						r.add((RemoteUser)o[i]);
+//		             }
+//					for(int j=0;j<r.size();j++){
+//						listP[j]=r.get(j).getAddressIP();			
+//					}
+//					c.controlSendText(s,listP);
+//				}				
 			}
     		
     	});
@@ -280,7 +280,7 @@ public class GUI extends JFrame{
     	panelLeftMiddle.add(buttonDisconnect);
                
     	panelLeftBottom.add(userConnect,BorderLayout.NORTH);
-    	panelLeftBottom.add(jScrollPane1,BorderLayout                .SOUTH);
+    	panelLeftBottom.add(jScrollPane1,BorderLayout.SOUTH);
                
     	panelLeft.add(panelLeftTop,BorderLayout.NORTH);
     	panelLeft.add(panelLeftMiddle,BorderLayout.CENTER);
