@@ -58,7 +58,7 @@ public class GUI extends JFrame{
 	
 	JScrollPane jScrollPane1;
 	JScrollPane jScrollPane2;
-	
+    
 	JList userPanel;
 
 	JTabbedPane tabMiddleTop;
@@ -77,7 +77,7 @@ public class GUI extends JFrame{
     	this.intComponents();
   //      this.setSize(550, 550);
         this.setVisible(true);
-        this.setTitle("Welcome to chat system !!!");
+        this.setTitle("Welcome to chat system !!!");                
         pack(); 
         
         this.addWindowListener(new WindowAdapter(){
@@ -99,7 +99,7 @@ public class GUI extends JFrame{
     /**
      * set ChatControlleur
      * @param c
-     */
+     */                
     public void setController(ChatController c) {
     	this.c=c;
     }
@@ -122,7 +122,7 @@ public class GUI extends JFrame{
 	 * get TextArea
 	 * @return
 	 */
-	public JTextArea getTextArea() {
+	public JTextArea getTextArea() {                
 		return textArea;
 	}
 
@@ -144,7 +144,7 @@ public class GUI extends JFrame{
 	
 	
 	
-	public File getFileToSend() {
+	public File getFileToSend() {                
 		return fileToSend;
 	}
 
@@ -197,6 +197,55 @@ public class GUI extends JFrame{
     	tabMiddleTop=new JTabbedPane(JTabbedPane.TOP);
     	tabMiddleTop.addTab("Talk", textMiddleTop);
     	
+    	msg.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+					ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+					String s = msg.getText();
+					displayText("You say : " + s +"\n",textArea);
+					msg.setText(" ");
+					Object[] o=userPanel.getSelectedValues();
+					listP=new InetAddress[o.length];
+					for(int i=0;i<o.length;i++){
+						r.add((RemoteUser)o[i]);
+		             }
+					for(int j=0;j<r.size();j++){
+						listP[j]=r.get(j).getAddressIP();			
+					}
+					c.controlSendText(s,listP);
+				}
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
+					ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
+					String s = msg.getText();
+					displayText("You say : " + s +"\n",textArea);
+					msg.setText(" ");
+					Object[] o=userPanel.getSelectedValues();
+					listP=new InetAddress[o.length];
+					for(int i=0;i<o.length;i++){
+						r.add((RemoteUser)o[i]);
+		             }
+					for(int j=0;j<r.size();j++){
+						listP[j]=r.get(j).getAddressIP();			
+					}
+					c.controlSendText(s,listP);
+				}				
+			}
+    		
+    	});
+    	
     	userPanel.setBorder(blueline);
     	textUser.setBorder(blueline);
     	msg.setBorder(blueline);
@@ -231,7 +280,7 @@ public class GUI extends JFrame{
     	panelLeftMiddle.add(buttonDisconnect);
                
     	panelLeftBottom.add(userConnect,BorderLayout.NORTH);
-    	panelLeftBottom.add(jScrollPane1,BorderLayout.SOUTH);
+    	panelLeftBottom.add(jScrollPane1,BorderLayout                .SOUTH);
                
     	panelLeft.add(panelLeftTop,BorderLayout.NORTH);
     	panelLeft.add(panelLeftMiddle,BorderLayout.CENTER);
