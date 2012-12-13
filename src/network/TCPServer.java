@@ -31,10 +31,10 @@ public class TCPServer extends Thread {
             this.filename = filename;
             controller = c;
             listenSocket = new ServerSocket(serverPort);
-            System.out.println("server start listening... ... ...");         
+            System.out.println("server is listening... ...");         
             this.start();
         } catch (IOException e) {
-        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+        	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("Failed to create et start the server socket !!");
         }
     }
@@ -44,10 +44,15 @@ public class TCPServer extends Thread {
         byte[] buffer = new byte[2056];
         String path;
         try {
+        	/**
+        	 * On recupere le path de fichier
+        	 */
         	path=controller.getFilePath();
             clientSocket = listenSocket.accept();  
-            System.out.println("Test 4 :  "+clientSocket);
             InputStream is = clientSocket.getInputStream();
+            /**
+             * On met le sortie le chemin qu'on a recuperer
+             */
             FileOutputStream fos = new FileOutputStream(path);
             BufferedOutputStream bos = new BufferedOutputStream(fos);            
             System.out.println("Path of save file : "+path);       
@@ -57,17 +62,17 @@ public class TCPServer extends Thread {
             bos.close();
             System.out.println("TCPServer received !!");
         } catch (EOFException e) {
-        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+        	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("EOF problem !!");
         } catch (IOException e) {
-        	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+        	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("I/O problem !!");
         } finally {
             try {
                 clientSocket.close();
            //     listenSocket.close();
             } catch (IOException e) {
-            	Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, e);
+            	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
                 System.out.println("Fail to close server socket !!");
             }
         }
