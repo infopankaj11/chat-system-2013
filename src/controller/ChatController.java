@@ -179,8 +179,8 @@ public class ChatController {
 	    try {
 			p.play("./src/msg.wav");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("Problem of the sound !!");
 		}
 		Date d = new Date();
 		String s = username +" says : " + t.getMessage()+ ", at " +DateFormat.getTimeInstance().format(d) + "\n";		
@@ -266,7 +266,9 @@ public class ChatController {
 	}
         
 	/**
-	 * Marche pas !!!!!!!!!!!!
+	 * Marche pas !!!!!!!!!!!!"PulseAudio Eventloop Thread" java.lang.IllegalStateException: drain failed
+	at org.classpath.icedtea.pulseaudio.EventLoop.native_iterate(Native Method)
+	at org.classpath.icedtea.pulseaudio.EventLoop.run(EventLoop.java:133)
 	 * @param id
 	 * @param accepted
 	 * @param now
