@@ -104,9 +104,9 @@ public class UDPReceiver extends Thread{
              ObjectInputStream received = new ObjectInputStream(bis);    
              try {
             	 String userDistant=adr.getHostAddress();
-            	 System.out.println("userDistant : " +userDistant);
+ //           	 System.out.println("userDistant : " +userDistant);
             	 String userLocal=InetAddress.getLocalHost().getHostAddress();
-            	 System.out.println("userLocal : " +userLocal);
+ //           	 System.out.println("userLocal : " +userLocal);
             	 RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                  sigal = (Signal) received.readObject();
                  
@@ -114,7 +114,7 @@ public class UDPReceiver extends Thread{
                   * Pour le signal Hello, on distingue si ce Hello provient de l'utilisateur distant
                   * ou celui local. si c'est local, on ne fait rien, sinon, on envoit un HelloReply 
                   * a la personne si nous envoit Hello! Et on ajoute cette personne dans la liste
-                  * connecté! C'est pour ajouter des personnes qui se connectent avant moi ! 
+                  * connect! C'est pour ajouter des personnes qui se connectent avant moi ! 
                   */
                  if (sigal instanceof Hello){                  	                 	
                      if(userDistant.equals(userLocal)){}
@@ -133,13 +133,14 @@ public class UDPReceiver extends Thread{
                 	  if(userDistant.equals(userLocal)){}
                 	  else{
                 		  /**Permet de recuperer le login associe a cette address ip */ 
-                		  try{
+//                		  try{
                 			  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());               		  
                 			  c.getLocalUser().removeRemoteUser(remoteUser);
-                		  }
-                		  catch(NullPointerException e){
-                		  System.out.println("User doesn't exist !!");
-                		  }
+                			  System.out.println(userDistant+ " says goodbye to everybody!!");
+//                		  }
+//                		  catch(NullPointerException e){
+//                		  System.out.println("User doesn't exist !!");
+//                		  }
                 	  }
                    }
                   /**
