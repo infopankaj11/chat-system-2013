@@ -222,28 +222,11 @@ public class GUI extends JFrame{
 			}
 
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
+			public void keyReleased(KeyEvent arg0) {				
 			}
 
 			@Override
-			public void keyTyped(KeyEvent arg0) {
-//				if(arg0.getKeyCode()==KeyEvent.VK_ENTER){
-//					ArrayList<RemoteUser> r=new ArrayList<RemoteUser>();
-//					String s = msg.getText();
-//					displayText("You say : " + s +"\n",textArea);
-//					msg.setText(" ");
-//					Object[] o=userPanel.getSelectedValues();
-//					listP=new InetAddress[o.length];
-//					for(int i=0;i<o.length;i++){
-//						r.add((RemoteUser)o[i]);
-//		             }
-//					for(int j=0;j<r.size();j++){
-//						listP[j]=r.get(j).getAddressIP();			
-//					}
-//					c.controlSendText(s,listP);
-//				}				
+			public void keyTyped(KeyEvent arg0) {				
 			}
     		
     	});
@@ -451,7 +434,7 @@ public class GUI extends JFrame{
 	 */
 	public void displayMsg(String message){
 		textMiddleTop.append(message); 
-		textMiddleTop.setForeground(createRandomColor());
+		textMiddleTop.setForeground(Color.BLACK);
 	}
 	
 	/**
