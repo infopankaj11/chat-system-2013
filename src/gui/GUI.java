@@ -451,6 +451,7 @@ public class GUI extends JFrame{
 	 */
 	public void displayMsg(String message){
 		textMiddleTop.append(message); 
+		textMiddleTop.setForeground(createRandomColor());
 	}
 	
 	/**
@@ -459,6 +460,7 @@ public class GUI extends JFrame{
 	 */
 	public void displayText(String message,JTextArea text){
 		text.append(message);
+		text.setForeground(createRandomColor());
 	}
 
 	
@@ -466,6 +468,7 @@ public class GUI extends JFrame{
 		this.textArea=new JTextArea();
 		textArea.setBackground(Color.WHITE);
 		textArea.setEnabled(false);
+		textArea.setForeground(createRandomColor());
 	}
 	/**
 	 * Ajouter un autre JTabbedPane quand on veux lancer une autre
