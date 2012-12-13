@@ -319,7 +319,7 @@ public class GUI extends JFrame{
 		}    
 	}
         
-	/**
+	/** <-->
 	 * ActionListener sur la boutton connexion. Quand on clique,
 	 * on enoit un Hello a tout le monde
 	 */
