@@ -133,21 +133,21 @@ public class LocalUserModel {
      * @param remoteUser
      */
     public void removeRemoteUser(RemoteUser remoteUser) {
-    	boolean existed=true;
-        for(int i=0 ; i<remoteUsers.size();i++){
-        	RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
-        	if(!remoteUser.getAddressIP().equals(r.getAddressIP())){
-        		existed=false;
-        		System.out.println("User didn't exist !!");
-        	}
-        }
-        if(existed==true){
+//    	boolean existed=true;
+//        for(int i=0 ; i<remoteUsers.size();i++){
+//        	RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
+//        	if(!remoteUser.getAddressIP().equals(r.getAddressIP())){
+//        		existed=false;
+//        		System.out.println("User didn't exist !!");
+//        	}
+//        }
+//        if(existed==true){
         	remoteUsers.removeElement(remoteUser);
-        }       
+//        }       
     }
 
     /**
-     * M�thode permettant de supprimer tous les utilisateurs
+     * Methode permettant de supprimer tous les utilisateurs
      * de la liste d'utilisateurs distants
      */
     public void removeAllRemoteUser(){
