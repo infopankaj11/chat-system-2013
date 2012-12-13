@@ -215,8 +215,7 @@ public class GUI extends JFrame{
 						listP[j]=r.get(j).getAddressIP();			
 					}
 					c.controlSendText(s,listP);
-				}
-				
+				}				
 			}
 
 			@Override
