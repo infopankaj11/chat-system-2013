@@ -42,7 +42,7 @@ public class LocalUserModel {
     }
 
     /**
-     * Creation du lien LocalUser <--> Gui
+     * Creation du lien entre LocalUser et Gui
      * @param gui
      */
     public void setView(GUI gui){
@@ -133,17 +133,7 @@ public class LocalUserModel {
      * @param remoteUser
      */
     public void removeRemoteUser(RemoteUser remoteUser) {
-//    	boolean existed=true;
-//        for(int i=0 ; i<remoteUsers.size();i++){
-//        	RemoteUser r=(RemoteUser)remoteUsers.elementAt(i);
-//        	if(!remoteUser.getAddressIP().equals(r.getAddressIP())){
-//        		existed=false;
-//        		System.out.println("User didn't exist !!");
-//        	}
-//        }
-//        if(existed==true){
-        	remoteUsers.removeElement(remoteUser);
-//        }       
+        remoteUsers.removeElement(remoteUser);    
     }
 
     /**

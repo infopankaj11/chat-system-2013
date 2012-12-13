@@ -49,6 +49,10 @@ public class TCPClient extends Thread {
             this.fileToSend = fileToSend;
             this.controller = c;
             socket = new Socket(serverAddress, serverPort);
+            /**
+             * On souhaite activer le thread le moment quand veux construire le 
+             * socket.
+             */
             this.start();
         } catch (IOException ex) {
         	Logger.getLogger(TCPClient.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,9 +67,11 @@ public class TCPClient extends Thread {
         	String path=controller.getFilePathOpen();
             FileInputStream fis = new FileInputStream(path);
             BufferedInputStream bis = new BufferedInputStream(fis);          
-            OutputStream os = socket.getOutputStream();
-            
+            OutputStream os = socket.getOutputStream();           
       
+            /**
+             * On lit le flux octet!
+             */
             while ((buf = bis.read(buffer, 0, buffer.length)) > 0){
                 os.write(buffer, 0, buf);
                 os.flush();

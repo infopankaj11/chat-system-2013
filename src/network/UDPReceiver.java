@@ -104,9 +104,7 @@ public class UDPReceiver extends Thread{
              ObjectInputStream received = new ObjectInputStream(bis);    
              try {
             	 String userDistant=adr.getHostAddress();
- //           	 System.out.println("userDistant : " +userDistant);
             	 String userLocal=InetAddress.getLocalHost().getHostAddress();
- //           	 System.out.println("userLocal : " +userLocal);
             	 RemoteUser remoteUser=c.getLocalUser().getRemoteUser(InetAddress.getByName(adr.getHostAddress()));
                  sigal = (Signal) received.readObject();
                  
@@ -133,14 +131,14 @@ public class UDPReceiver extends Thread{
                 	  if(userDistant.equals(userLocal)){}
                 	  else{
                 		  /**Permet de recuperer le login associe a cette address ip */ 
-//                		  try{
+                		  try{
                 			  c.controlDisplayBye((GoodBye)sigal,remoteUser.getUsername());               		  
                 			  c.getLocalUser().removeRemoteUser(remoteUser);
                 			  System.out.println(userDistant+ " says goodbye to everybody!!");
-//                		  }
-//                		  catch(NullPointerException e){
-//                		  System.out.println("User doesn't exist !!");
-//                		  }
+                		  }
+                		  catch(NullPointerException e){
+                		  System.out.println("User doesn't exist !!");
+                		  }
                 	  }
                    }
                   /**
@@ -164,7 +162,8 @@ public class UDPReceiver extends Thread{
                 	  c.dialogAcceptFile(((PropFile) sigal).getFileName(),((PropFile) sigal).getFileSize(),((PropFile) sigal).getFileID(),remoteUser.getUsername(),remoteUser.getAddressIP().toString());
                   }
                   /**
-                   * Pas encore fini !!!!!!!!!!!!!!!!!
+                   * Si on recoit le siganl AcceptFile, on va appeler le controlDisplayAcceptFile
+                   * dans le controlleur.
                    */
                   if(sigal instanceof AcceptFile){
                 	  c.controlDisplayAcceptFile(((AcceptFile) sigal).getFileID(), ((AcceptFile) sigal).accepted(), ((AcceptFile) sigal).now(), remoteUser.getAddressIP());

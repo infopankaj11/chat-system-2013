@@ -250,25 +250,27 @@ public class ChatController {
 	}
         
 	/**
-	 * Marche pas!!!
+	 * Quand l'utilisateur fait son choix,le controlleur rappelle le siganl_accept_file dans
+	 * le network, en envoyant id de fichier, le boolean s'il veux accept ou il veux mettre en 
+	 * attente!
 	 * @param id
 	 * @param accepted
 	 * @param now
 	 * @param user
 	 */
 	public void controlAcceptFile(int id, boolean accepted, boolean now, String ip,String fileName){	
-		tcpS=new TCPServer(fileName,this);
-		network.siganl_accept_file(id, accepted, now, ip);
-
 		/**
 		 * Ouvrir le soclet TCP cote serveur pour mettre en mode d'ecoute
-		 */		
+		 */	
+		tcpS=new TCPServer(fileName,this);
+		network.siganl_accept_file(id, accepted, now, ip);	
 	}
         
 	/**
-	 * Marche pas !!!!!!!!!!!!"PulseAudio Eventloop Thread" java.lang.IllegalStateException: drain failed
-	at org.classpath.icedtea.pulseaudio.EventLoop.native_iterate(Native Method)
-	at org.classpath.icedtea.pulseaudio.EventLoop.run(EventLoop.java:133)
+	 * Quand l'utilisateur recoit le signal acceptFile, selon different parametre, il va faire 
+	 * differentes choses: si remote user refuse le fichier, un dialog va afficher pour indiquer
+	 * le refuse de fichier. Sinon, on ouvert le socket TCP client pour commencer a envoyer le fichier
+	 * si utilisateur souhaite attendre, on n'envoit pas le fichier.
 	 * @param id
 	 * @param accepted
 	 * @param now
@@ -286,13 +288,25 @@ public class ChatController {
 				System.out.println("File accepted!!!");
 				tcpC=new TCPClient(ip,gui.getFileToSend(),this);         		  
           	}
+			else{
+				System.out.println("User wants to receive it later ! ");
+				fileRefuse=new RefuseFile();
+			}
         }
 	} 
 	
+	/**
+	 * Recuperer le path de fichier que l'on veux l'enregistrer
+	 * @return
+	 */
 	public String getFilePath(){
 		return gui.getPathSave();
 	}
 	
+	/**
+	 * Recuperer le path de fichier que l'on veux transmettre.
+	 * @return
+	 */
 	public String getFilePathOpen(){
 		return gui.getPathOpen();
 	}
