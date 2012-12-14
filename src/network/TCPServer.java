@@ -19,7 +19,7 @@ import controller.ChatController;
  */
 public class TCPServer extends Thread {
 
-    private ServerSocket listenSocket;
+    private ServerSocket serverSocket;
     private Socket clientSocket;
     @SuppressWarnings("unused")
 	private String filename;
@@ -30,7 +30,7 @@ public class TCPServer extends Thread {
         try {
             this.filename = filename;
             controller = c;
-            listenSocket = new ServerSocket(serverPort);
+            serverSocket = new ServerSocket(serverPort);
             System.out.println("server is listening... ...");         
             this.start();
         } catch (IOException e) {
@@ -48,7 +48,7 @@ public class TCPServer extends Thread {
         	 * On recupere le path de fichier
         	 */
         	path=controller.getFilePath();
-            clientSocket = listenSocket.accept();  
+            clientSocket = serverSocket.accept();  
             InputStream is = clientSocket.getInputStream();
             /**
              * On met le sortie le chemin qu'on a recuperer
@@ -70,7 +70,6 @@ public class TCPServer extends Thread {
         } finally {
             try {
                 clientSocket.close();
-           //     listenSocket.close();
             } catch (IOException e) {
             	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
                 System.out.println("Fail to close server socket !!");
