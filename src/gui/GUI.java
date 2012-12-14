@@ -193,10 +193,7 @@ public class GUI extends JFrame{
     	
     	jScrollPane1 = new JScrollPane(userPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     	jScrollPane1.setViewportView(userPanel);
-    	
- //   	jScrollPane2 = new JScrollPane(userPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
- //   	jScrollPane2.setViewportView(textMiddleTop);
-    	
+
     	tabMiddleTop=new JTabbedPane(JTabbedPane.TOP);
     	tabMiddleTop.addTab("Talk", textMiddleTop);
     	
