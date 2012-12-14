@@ -31,7 +31,7 @@ public class TCPServer extends Thread {
             this.filename = filename;
             controller = c;
             serverSocket = new ServerSocket(serverPort);
-            System.out.println("server is listening... ...");         
+            System.out.println("server is listening..");         
             this.start();
         } catch (IOException e) {
         	Logger.getLogger(TCPServer.class.getName()).log(Level.SEVERE, null, e);
