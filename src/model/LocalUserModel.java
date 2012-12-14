@@ -91,7 +91,8 @@ public class LocalUserModel {
     }
 
     /**
-     * Ajout un utilisateur distant a la liste d'utilisateurs
+     * Ajouter le remoteUSer dans la liste, si il existe deja, 
+     * on ne l'ajoute pas.
      * @param remoteIP
      * @param userName
      */
@@ -110,9 +111,25 @@ public class LocalUserModel {
         }
     }
 
+    /**
+     *  Supprimer un remote user de la liste
+     * @param remoteUser
+     */
+    public void removeRemoteUser(RemoteUser remoteUser) {
+        remoteUsers.removeElement(remoteUser);    
+    }
+
+    /**
+     * Supprimer tous les remote users dans la liste
+     */
+    public void removeAllRemoteUser(){
+        remoteUsers.clear();
+    }     
+    
+
 	/**
-     * Retourne l'utilisateur distant correspondant a
-     * l'adresse IP passee en parametre
+     * Recuperer le remoteUser a partir de son adress
+     * ip
      * @param address
      * @return result
      */
@@ -126,21 +143,4 @@ public class LocalUserModel {
         }
         return result;
     }
-
-    /**
-     *  Methode permet de supprimer un utilisateur de la liste
-     *  d'utilisateurs distants
-     * @param remoteUser
-     */
-    public void removeRemoteUser(RemoteUser remoteUser) {
-        remoteUsers.removeElement(remoteUser);    
-    }
-
-    /**
-     * Methode permettant de supprimer tous les utilisateurs
-     * de la liste d'utilisateurs distants
-     */
-    public void removeAllRemoteUser(){
-        remoteUsers.clear();
-    }     
 }
